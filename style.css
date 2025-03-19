@@ -1,6 +1,7 @@
 body{
         margin: auto 0;
         width: 100%;
+        background-color: white;
 }
 
 .header{
@@ -43,4 +44,40 @@ body{
 .header_marine_bar div{
         width: fit-content;
         height: fit-content;
+}
+
+.side-menu{
+        position: absolute;
+        display: flex;
+        height: 84vh;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 10px 20px 0 rgba(92, 115, 160, 0.07);
+        width: fit-content;
+        z-index: 3;
+        bottom: 0;
+        padding: 30px 0 45px;
+}
+
+.onglet a{
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #637381;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px 0px 10px 45px;
+}
+
+.onglet{
+        width: 300px;
+}
+
+.onglet a:hover{
+        cursor: pointer;
+        color: #004C6C;
+        background-color: rgba(0, 76, 108, 0.05);
+        border-right: 3px solid #004C6C;
 }
