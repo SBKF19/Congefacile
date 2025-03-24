@@ -19,7 +19,7 @@
                         <a>Statistiques</a>
                 </div>
                 <div class="onglet">
-                        <div></div>
+                        <div class="menu-lign"></div>
                 </div>
                 <div class="onglet">
                         <a>Mes informations</a>
@@ -38,6 +38,12 @@
 
 
         <div class="side-menu-profile">
-
+                <div class="side-menu-profile-image">
+                        <img src="man.png"/>
+                </div>
+                <div class="side-menu-profile-text">
+                        <p class="username">Placeholder</p>
+                        <p class="job">Placeholder</p>
+                </div>
         </div>
 </div>
