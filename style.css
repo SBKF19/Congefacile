@@ -84,7 +84,7 @@ body{
         width: 300px;
 }
 
-.onglet div{
+.menu-lign{
         border: 1px solid #DFE4EA;
         width: auto;
         margin: 26px 45px;
@@ -100,8 +100,27 @@ body{
 .side-menu-profile{
         display: flex;
         flex-direction: row;
+        align-items: center;
+        padding: 0px 0px 0px 45px;
 }
 
+.side-menu-profile-image{
+        width: fit-content;
+        height: fit-content;
+        border-radius: 40px;
+}
+
+.side-menu-profile-image img{
+        width: 49px;
+        height: 49px;
+        border-radius: 40px;
+}
+
+.side-menu-profile-text{
+        display: flex;
+        flex-direction: column;
+        margin-left: 15px;
+}
 
 
 /*---------------------------------------CSS DU KIT UI------------------------------------------*/
@@ -346,6 +365,7 @@ a:hover{
         line-height: 22px;
         letter-spacing: 0px;
         color: #637381;
+        margin: 0;
 }
 
 .username{
@@ -355,6 +375,7 @@ a:hover{
         line-height: 24px;
         letter-spacing: 0px;
         color: #111928;
+        margin: 0;
 }
 
 /*Divs*/
