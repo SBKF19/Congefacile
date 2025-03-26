@@ -1,0 +1,89 @@
+*{
+    font-family: 'Epilogue';
+    letter-spacing: 1%;
+    font-weight: 600;
+    size: 28.85px;
+    line-height: 24.50px;
+    max-width: 100%;
+
+}
+
+
+.container {
+    max-width: 700px;
+    font-family: 'Epilogue';
+}
+h1{
+    color: #1b316b;
+}
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+.timeline {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+.etape {
+    border: 2px solid #004080;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    font-weight: bold;
+    color: #004080;
+}
+.active {
+    background-color: #1b316b;
+    color: white;
+}
+.line {
+    width: 250px;
+    height: 2px;
+    background-color: #1b316b;
+}
+.descriptions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+.description-box {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 10px;
+    width: 140px;
+}
+.footer {
+    margin-top: 40px;
+}
+
+
+@media (max-width: 768px) {
+    .timeline {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .line {
+        width: 2px;
+        height: 50px;
+    }
+    .descriptions {
+        flex-direction: column;
+        align-items: center;
+    }
+    .description-box {
+        width: 90%;
+        margin-bottom: 10px;
+    }
+}
