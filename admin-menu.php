@@ -1,6 +1,9 @@
 <?php
         include "header.php";
 ?>
+
+<div class="cont2">
+<div class="side-menu-below">
 <div class="side-menu">
         <div class="side-menu-pages">
                 <div class="onglet">
@@ -8,6 +11,9 @@
                 </div>
                 <div class="onglet">
                         <a>Demandes en attente</a>
+                        <div class="side-menu-counter">
+                                <p>0</p>
+                        </div>
                 </div>
                 <div class="onglet">
                         <a>Historique des demandes</a>
@@ -18,17 +24,30 @@
                 <div class="onglet">
                         <a>Statistiques</a>
                 </div>
-                <div class="onglet">
                         <div class="menu-lign"></div>
-                </div>
                 <div class="onglet">
                         <a>Mes informations</a>
                 </div>
                 <div class="onglet">
                         <a>Mes préférences</a>
                 </div>
-                <div class="onglet">
+                <div class="onglet toggle-button">
                         <a>Administration</a>
+                        <div><img src="chevron-en-bas.png"/></div>
+                </div>
+                <div class="hidden-menu">
+                        <div>
+                                <a>Types de demandes</a>
+                        </div>
+                        <div>
+                                <a>Directions/Services</a>
+                        </div>
+                        <div>
+                                <a>Managers</a>
+                        </div>
+                        <div>
+                                <a>Postes</a>
+                        </div>
                 </div>
                 <div class="onglet">
                         <a>Déconnexion</a>
@@ -47,3 +66,5 @@
                 </div>
         </div>
 </div>
+</div>
+<script src="menu-lateral.js"></script>
