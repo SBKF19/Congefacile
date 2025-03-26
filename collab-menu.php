@@ -1,6 +1,8 @@
 <?php
         include "header.php";
 ?>
+<div class="cont2">
+<div class="side-menu-below">
 <div class="side-menu">
         <div class="side-menu-pages">
                 <div class="onglet">
@@ -12,9 +14,7 @@
                 <div class="onglet">
                         <a>Historique des demandes</a>
                 </div>
-                <div class="onglet">
                         <div class="menu-lign"></div>
-                </div>
                 <div class="onglet">
                         <a>Mes informations</a>
                 </div>
@@ -37,4 +37,5 @@
                         <p class="job">Placeholder</p>
                 </div>
         </div>
+</div>
 </div>
