@@ -4,7 +4,7 @@ body{
         height: auto;
         background-color: white;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
 }
 
 /*Header et menus*/
@@ -535,8 +535,6 @@ textarea{
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        width: 100vw;
-        height: 100vh;
 }
 /*PLACEMENT DE CETTE BALISE:
 JUSTE AVANT LE FOOTER, SEULEMENT METTRE UNE BALISE FERMEE
