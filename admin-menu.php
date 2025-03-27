@@ -3,7 +3,6 @@
 ?>
 
 <div class="cont2">
-<div class="side-menu-below">
 <div class="side-menu">
         <div class="side-menu-pages">
                 <div class="onglet">
@@ -65,6 +64,5 @@
                         <p class="job">Placeholder</p>
                 </div>
         </div>
-</div>
 </div>
 <script src="menu-lateral.js"></script>
