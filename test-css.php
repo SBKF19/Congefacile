@@ -20,7 +20,7 @@
 <select name="test1" id="test1"></select>
 
 <label class="label-input" for="test2">Test</label>
-<textarea name="test2" id="test2"></textarea>
+<textarea name="test2" id="test2" placeholder="placeholder"></textarea>
 
 <label for="pass1"></label>
 <input type="password" name="pass1"></input>
