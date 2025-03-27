@@ -13,4 +13,3 @@
 
         <div class="side-menu-profile"></div>
 </div>
-</div>
