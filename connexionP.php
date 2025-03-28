@@ -12,15 +12,15 @@
         <p>CongéFacile est votre nouvel outil dédié à la gestion des congés au sein de l'entreprise. <br> Plus beoin d'échanges interminables ou de formulaires papier : en quelques clics, vous pouvez gérer <br> vos abscences en toute transparences et simplicité. Connectez-vous ci-dessous pour accéder à votre espace.</p>
         <h1>Connectez-vous</h1>
         <form action="login.php" method="POST">
-            <div class="input-group">
+            <div class="connexion">
                 <label for="email">Adresse email</label>
                 <span>
                     <img class="pic-mail" src="email (1).png" alt="">
-                    <input type="email" id="email" name="email" required placeholder="****@mentalworks.fr">
+                    <input type="email" id="email" name="email" required placeholde="****@mentalworks.fr">
                 </span>
             </div>
             
-            <div class="input-group password-container">
+            <div class="connexion password-container">
                 <label for="password">Mot de passe</label>
                 <input type="password" id="password" name="password" required>
                 <span class="toggle-password" onclick="togglePassword()">
