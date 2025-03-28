@@ -103,6 +103,7 @@ body{
         color: #004C6C;
         background-color: rgba(0, 76, 108, 0.05);
         border-right: 3px solid #004C6C;
+        width: 297px;
 }
 
 .side-menu-profile{
