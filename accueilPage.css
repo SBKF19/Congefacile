@@ -8,14 +8,32 @@
 
 }
 
+body{
+        margin: 0;
+        width: 100%;
+        height: auto;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+}
 
-.container {
-    max-width: 700px;
-    font-family: 'Epilogue';
+.container{
+        display: flex;
+        background-color:turquoise;
+        width: 80%;
+        height: 90%;
+        align-self: flex-end;
 }
+
 h1{
-    color: #1b316b;
+        font-family: "Epilogue", sans-serif;
+        font-weight: 600;
+        font-size: 28.85px;
+        line-height: 24.57px;
+        letter-spacing: 1%;
+        color: #1B3168;
 }
+
 .timeline-container {
     display: flex;
     flex-direction: column;
