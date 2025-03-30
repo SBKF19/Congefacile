@@ -1,7 +1,3 @@
-<?php
-        session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -20,7 +16,7 @@
         <div class="header">
                 <div class="header_marine_bar">
                         <div>
-                                <img src="logo-mentalworks-blanc.png"/>
+                                <img src="includes/logo-mentalworks-blanc.png"/>
                         </div>
                 </div>
                 <div class="header_blue_bar"></div>

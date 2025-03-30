@@ -49,7 +49,7 @@
                         </div>
                 </div>
                 <div class="onglet">
-                        <a>Déconnexion</a>
+                        <a href="includes/deco.php">Déconnexion</a>
                 </div>
         </div>
 

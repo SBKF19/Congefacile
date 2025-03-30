@@ -1,4 +1,4 @@
-body{
+body {
         margin: 0;
         width: 100%;
         height: auto;
@@ -9,14 +9,14 @@ body{
 
 /*Header et menus*/
 
-.header{
+.header {
         display: flex;
         width: 100%;
         flex-direction: column;
         align-items: center;
 }
 
-.header_blue_bar{
+.header_blue_bar {
         display: flex;
         position: absolute;
         z-index: 0;
@@ -27,7 +27,7 @@ body{
         top: 6px;
 }
 
-.header_marine_bar{
+.header_marine_bar {
         display: flex;
         width: 98.5%;
         z-index: 1;
@@ -37,18 +37,18 @@ body{
         margin-top: 15px;
 }
 
-.header_marine_bar img{
+.header_marine_bar img {
         width: 167px;
         height: 40px;
         margin-left: 30px;
 }
 
-.header_marine_bar div{
+.header_marine_bar div {
         width: fit-content;
         height: fit-content;
 }
 
-.side-menu{
+.side-menu {
         display: flex;
         height: 83.5vh;
         flex-direction: column;
@@ -61,13 +61,13 @@ body{
         min-height: 900px;
 }
 
-.side-menu-pages{
+.side-menu-pages {
         display: flex;
         flex-direction: column;
         height: fit-content;
 }
 
-.onglet a{
+.onglet a {
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 16px;
@@ -79,27 +79,27 @@ body{
         padding: 10px 0px 10px 45px;
 }
 
-.onglet{
+.onglet {
         width: 300px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 }
 
-.onglet img{
+.onglet img {
         width: 20px;
         height: 20px;
         opacity: 0.5;
         margin: 5px 30px 0 0;
 }
 
-.menu-lign{
+.menu-lign {
         border: 1px solid #DFE4EA;
         width: auto;
         margin: 26px 45px;
 }
 
-.onglet:hover{
+.onglet:hover {
         cursor: pointer;
         color: #004C6C;
         background-color: rgba(0, 76, 108, 0.05);
@@ -107,26 +107,26 @@ body{
         width: 297px;
 }
 
-.side-menu-profile{
+.side-menu-profile {
         display: flex;
         flex-direction: row;
         align-items: center;
         padding: 0px 0px 0px 45px;
 }
 
-.side-menu-profile-image{
+.side-menu-profile-image {
         width: fit-content;
         height: fit-content;
         border-radius: 40px;
 }
 
-.side-menu-profile-image img{
+.side-menu-profile-image img {
         width: 49px;
         height: 49px;
         border-radius: 40px;
 }
 
-.side-menu-profile-text{
+.side-menu-profile-text {
         display: flex;
         flex-direction: column;
         margin-left: 15px;
@@ -134,7 +134,7 @@ body{
 
 /*--------------------------------------COMPTEUR DE DEMANDES------------------------------------*/
 
-.side-menu-counter{
+.side-menu-counter {
         width: 38px;
         height: 34px;
         background-color: rgba(0, 76, 108, 0.05);
@@ -145,7 +145,7 @@ body{
         margin-right: 45px;
 }
 
-.side-menu-counter p{
+.side-menu-counter p {
         font-family: "Inter", sans-serif;
         font-weight: 400;
         font-size: 16px;
@@ -161,23 +161,23 @@ body{
 
 /*---------------------------------------JAVASCRIPT---------------------------------------------*/
 
-.hidden-menu{
+.hidden-menu {
         display: none;
         flex-direction: column;
 }
 
-.hidden-menu div{
+.hidden-menu div {
         width: 300px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 }
 
-.hidden-menu div:hover{
+.hidden-menu div:hover {
         cursor: pointer;
 }
 
-.hidden-menu a{
+.hidden-menu a {
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 16px;
@@ -189,7 +189,7 @@ body{
         padding: 10px 0px 10px 55px;
 }
 
-.hidden-menu a:hover{
+.hidden-menu a:hover {
         color: #004C6C;
 }
 
@@ -197,14 +197,14 @@ body{
 
 
 /*Boutons validation*/
-button{
+button {
         display: flex;
         align-items: center;
         flex-direction: row;
 }
 
 .confirm,
-.deny{
+.deny {
         width: fit-content;
         border: none;
         padding: 13px 28px;
@@ -218,22 +218,22 @@ button{
         height: 40px;
 }
 
-.deny{
+.deny {
         background-color: #E10E0E;
 }
 
-.confirm{
+.confirm {
         background-color: #1A8245;
 }
 
 
-button:hover{
+button:hover {
         cursor: pointer;
 }
 
 /*Boutons*/
 
-.light-button{
+.light-button {
         width: fit-content;
         border: none;
         padding: 10px 20px 10px 20px;
@@ -247,7 +247,7 @@ button:hover{
         color: #475467;
 }
 
-.dark-button{
+.dark-button {
         width: fit-content;
         border: none;
         padding: 13px 28px 13px 28px;
@@ -262,7 +262,7 @@ button:hover{
         height: 40px;
 }
 
-.details-button{
+.details-button {
         width: fit-content;
         border: none;
         padding: 13px 28px 13px 28px;
@@ -283,7 +283,7 @@ button:hover{
 
 .confirmed,
 .pending,
-.denied{
+.denied {
         width: fit-content;
         border-radius: 30px;
         padding: 3px 10px;
@@ -294,24 +294,24 @@ button:hover{
         letter-spacing: 0px;
 }
 
-.confirmed{
+.confirmed {
         color: #1A8245;
         background-color: #DAF8E6;
 }
 
-.pending{
+.pending {
         color: #82791A;
         background-color: #F8F5DA;
 }
 
-.denied{
+.denied {
         color: #821A1D;
         background-color: #F8DADD;
 }
 
 /*Fonts*/
 
-h1{
+h1 {
         font-family: "Epilogue", sans-serif;
         font-weight: 600;
         font-size: 28.85px;
@@ -320,7 +320,7 @@ h1{
         color: #1B3168;
 }
 
-h2{
+h2 {
         font-family: "Epilogue", sans-serif;
         font-weight: 600;
         font-size: 24px;
@@ -329,7 +329,7 @@ h2{
         color: #1B3168;
 }
 
-h3{
+h3 {
         font-family: "Epilogue", sans-serif;
         font-weight: 600;
         font-size: 18px;
@@ -338,7 +338,7 @@ h3{
         color: rgba(0, 76, 108, 0.78);
 }
 
-p{
+p {
         font-family: "Epilogue", sans-serif;
         font-weight: 400;
         font-size: 16px;
@@ -347,41 +347,41 @@ p{
         color: black;
 }
 
-p a{
+p a {
         font-family: "Epilogue", sans-serif;
         font-weight: 700;
         font-size: 16px;
         line-height: 24.57px;
         letter-spacing: 1%;
-        color: #004C6C ;
+        color: #004C6C;
         text-decoration: none;
 }
 
-a:hover{
+a:hover {
         cursor: pointer;
 }
 
-.email{
+.email {
 
         font-family: "Epilogue", sans-serif;
         font-weight: 400;
         font-size: 16px;
         line-height: 24.57px;
         letter-spacing: 1%;
-        color: #004C6C ;
+        color: #004C6C;
         text-decoration: underline;
 }
 
-.placeholder{
+.placeholder {
         font-family: "Inter", sans-serif;
         font-weight: 400;
         font-size: 16px;
         line-height: 24px;
         letter-spacing: 0px;
-        color: #9CA3AF ;
+        color: #9CA3AF;
 }
 
-.break-details{
+.break-details {
         font-family: "Inter", sans-serif;
         font-weight: 400;
         font-size: 14px;
@@ -390,16 +390,16 @@ a:hover{
         color: #475467;
 }
 
-.label-input{
+.label-input {
         font-family: "Inter", sans-serif;
         font-weight: 400;
         font-size: 16px;
         line-height: 24px;
         letter-spacing: 0px;
-        color: #111928  ;
+        color: #111928;
 }
 
-.label-select{
+.label-select {
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 14px;
@@ -408,7 +408,7 @@ a:hover{
         color: #344054;
 }
 
-.number{
+.number {
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 20px;
@@ -422,13 +422,13 @@ a:hover{
         width: fit-content;
 }
 
-.number:hover{
+.number:hover {
         background-color: #004C6C;
         color: white;
         cursor: pointer;
 }
 
-.job{
+.job {
         font-family: "Inter", sans-serif;
         font-weight: 400;
         font-size: 14px;
@@ -438,7 +438,7 @@ a:hover{
         margin: 0;
 }
 
-.username{
+.username {
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 16px;
@@ -451,7 +451,7 @@ a:hover{
 /*Divs*/
 
 select,
-input{
+input {
         min-width: 350px;
         width: fit-content;
         height: 46px;
@@ -463,7 +463,7 @@ input{
         appearance: none;
 }
 
-textarea{
+textarea {
         min-height: 186px;
         min-width: 730px;
         display: flex;
@@ -475,7 +475,7 @@ textarea{
         appearance: none;
 }
 
-.filterbox{
+.filterbox {
         border-radius: 8px;
         border: 1px solid #D0D5DD;
         padding: 10px 14px;
@@ -484,12 +484,12 @@ textarea{
         background-color: white;
 }
 
-.defaultbox{
+.defaultbox {
         background-color: #F3F4F6;
         border-color: #F3F4F6;
 }
 
-.stepbox{
+.stepbox {
         width: 244px;
         height: fit-content;
         padding: 30px 20px;
@@ -498,12 +498,12 @@ textarea{
         background-color: rgba(0, 76, 108, 0.05);
 }
 
-.stepbox p{
+.stepbox p {
         display: flex;
         flex-wrap: wrap;
 }
 
-.line{
+.line {
         max-width: 595px;
         border: 1px solid #004C6C;
 }
@@ -518,13 +518,14 @@ textarea{
 /*-------------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------------------------------*/
 
-.container{
+.container {
         display: flex;
-        background-color:turquoise;
+        background-color: turquoise;
         width: 80%;
         height: 90%;
         align-self: flex-end;
 }
+
 /*PLACEMENT DU CONTAINER :
 <?php
         include "[nom du menu latéral]";
@@ -533,12 +534,13 @@ textarea{
 </div>
 */
 
-.cont2{
+.cont2 {
         display: flex;
         flex-direction: row;
         height: 100%;
         width: 100%;
 }
+
 /*PLACEMENT DE CETTE BALISE:
 JUSTE AVANT LE FOOTER, SEULEMENT METTRE UNE BALISE FERMEE
 CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL
@@ -554,43 +556,50 @@ CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL
 .wholeConnection {
         max-width: 44%;
         text-align: left;
-    }
-    
-    .connexion {
+}
+
+.connexion {
         text-align: left;
         margin-bottom: 15px;
-    }
-    label {
+}
+
+label {
         display: block;
         font-weight: bold;
-    }
-    input {
+}
+
+input {
         width: 35%;
         padding: 10px;
         margin-top: 5px;
         border: 1px solid #ccc;
         border-radius: 5px;
-    }
-    .pic-mail{
+}
+
+.pic-mail {
         width: 20px;
         height: 20px;
-    }
-    .password-container {
+}
+
+.password-container {
         position: relative;
-    }
-    .toggle-password {
+}
+
+.toggle-password {
         position: absolute;
         right: 64%;
         top: 68%;
         transform: translateY(-50%);
         cursor: pointer;
         color: grey;
-    }
-    .toggle-password img {
+}
+
+.toggle-password img {
         width: 20px;
         height: 20px;
-    }
-    .buttonConnexion {
+}
+
+.buttonConnexion {
         width: 18%;
         padding: 10px;
         background: #003366;
@@ -599,42 +608,130 @@ CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL
         border-radius: 5px;
         cursor: pointer;
         font-size: 13px;
-    }
-    .buttonConnexion:hover {
+}
+
+.buttonConnexion:hover {
         background: #002244;
-    }
-    .forgot-password {
+}
+
+.forgot-password {
         margin-top: 10px;
-    }
-    
-    
-    @media screen and (max-width: 768px) {
+}
+
+.erreur{
+        color: red;
+        font-size: 14px;
+        margin-top: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
         .container {
-            max-width: 90%;
-            padding: 15px;
+                max-width: 90%;
+                padding: 15px;
         }
+
         h1 {
-            font-size: 22px;
+                font-size: 22px;
         }
+
         .buttonConnexion {
-            font-size: 14px;
+                font-size: 14px;
         }
-    }
-    
-    @media screen and (max-width: 480px) {
+}
+
+@media screen and (max-width: 480px) {
         .container {
-            max-width: 100%;
-            padding: 10px;
-            border-radius: 0;
-            box-shadow: none;
+                max-width: 100%;
+                padding: 10px;
+                border-radius: 0;
+                box-shadow: none;
         }
+
         h1 {
-            font-size: 20px;
+                font-size: 20px;
         }
+
         .buttonConnexion {
-            font-size: 14px;
-            padding: 8px;
-            width: 49%;
+                font-size: 14px;
+                padding: 8px;
+                width: 49%;
         }
+}
+
+/*Page d'accueil*/
+.wholeAccueil {
+        max-width: 700px;
+        font-family: 'Epilogue';
     }
     
+    .timeline-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+    }
+    .timeline {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    .etape {
+        border: 2px solid #004080;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: white;
+        font-weight: bold;
+        color: #004080;
+    }
+    .active {
+        background-color: #1b316b;
+        color: white;
+    }
+    .line {
+        width: 250px;
+        height: 2px;
+        background-color: #1b316b;
+    }
+    .descriptions {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 10px;
+        text-align: center;
+        font-size: 14px;
+    }
+    .description-box {
+        background-color: #f2f2f2;
+        padding: 10px;
+        border-radius: 10px;
+        width: 140px;
+    }
+    .bottomAccueil {
+        margin-top: 40px;
+    }
+    
+    
+    @media (max-width: 768px) {
+        .timeline {
+            flex-direction: column;
+            gap: 10px;
+        }
+        .line {
+            width: 2px;
+            height: 50px;
+        }
+        .descriptions {
+            flex-direction: column;
+            align-items: center;
+        }
+        .description-box {
+            width: 90%;
+            margin-bottom: 10px;
+        }
+    }
