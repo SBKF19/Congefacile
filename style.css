@@ -2,7 +2,7 @@ body{
         margin: 0;
         width: 100%;
         height: auto;
-        background-color: white;
+        background-color: #fefffe;
         display: flex;
         flex-direction: column;
 }
@@ -58,7 +58,7 @@ body{
         z-index: 3;
         bottom: 0;
         padding: 30px 0 48px;
-        min-height: 900px;
+        background-color: white;
 }
 
 .side-menu-pages{
@@ -521,9 +521,8 @@ textarea{
 .container{
         display: flex;
         background-color:turquoise;
-        width: 80%;
-        height: 90%;
         align-self: flex-end;
+        flex-direction: column;
 }
 /*PLACEMENT DU CONTAINER :
 <?php
@@ -547,3 +546,113 @@ CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL
         include "footer.php";
 ?>
 */
+
+
+
+.title-with-button{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+}
+
+.large-filter{
+        width: 530px;
+}
+
+.small-filter{
+        width: 81px;
+}
+
+.medium-filter{
+        width: 122px;
+}
+
+.medium-filter p{
+        padding-left: 80px;
+}
+
+.type-filter{
+        width: 159px;
+}
+
+label{
+        display: flex;
+        flex-wrap: nowrap;
+        min-width: 170px;
+}
+
+/* CSS Pour tout ce qui est de la partie des filtres
+   Le CSS du dessous reste inchangĆ© (j'ai mĆŖme tout control-c control-v de github mdr)
+*/
+.filterBar{
+        height: 109px;
+        padding-top: 20px;
+        padding-right: 150px;
+        padding-bottom: 20px;
+        padding-left: 25px;
+        background-color: #F9FAFB;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+    .filter{
+        min-width: 0px;
+        height: 30px;
+        border-radius: 8px;
+        border-width: 1px;
+        padding-top: 10px;
+        padding-right: 14px;
+        padding-bottom: 10px;
+        padding-left: 14px;
+
+    }
+    .filterMargin{
+        margin-right: 2%;
+    }
+    .congeType{
+        display: flex;
+        flex-direction: column;
+    }
+    .list_conge{
+        display: flex;
+        flex-direction: row;
+    }
+    .info{
+        padding-top: 16px;
+        padding-right: 78px;
+        padding-left: 34px;
+        padding-bottom: 16px;
+    }
+
+    .containerFilter{
+        border-radius: 12px;
+        border-width: 1px;
+        border: 1px solid #EAECF0;
+        width: 100%;
+        max-height: 100%;
+        margin-top: 2%;
+    }
+    .infoButton{
+        width: 184px;
+        height: 72;
+        border-bottom-width: 1px;
+        padding-top: 16px;
+        padding-right: 24px;
+        padding-bottom: 16px;
+        padding-left: 24px;
+
+    }
+    .infoDetail{
+        padding-top: 20px;
+        padding-right: 24px;
+        height: 100%;
+        padding-left: 122px;
+        margin-bottom: 5.4%;
+    }
+    .filterBorderBottom{
+        border-bottom: 1px solid #EAECF0;
+    }
+    .History{
+        margin-top: 2%;
+        margin-left: 3%;
+    }
