@@ -29,7 +29,7 @@
  
          <div class="side-menu-profile">
                  <div class="side-menu-profile-image">
-                         <img src="avatar-homme.png"/>
+                         <img src="img/avatar-homme.png"/>
                  </div>
                  <div class="side-menu-profile-text">
                          <p class="username">Placeholder</p>

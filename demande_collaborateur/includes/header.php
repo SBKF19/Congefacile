@@ -20,7 +20,7 @@
         <div class="header">
                 <div class="header_marine_bar">
                         <div>
-                                <img src="logo-mentalworks-blanc.png"/>
+                                <img src="img/logo-mentalworks-blanc.png"/>
                         </div>
                 </div>
                 <div class="header_blue_bar"></div>
