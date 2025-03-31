@@ -248,6 +248,7 @@ button:hover {
 
 .dark-button {
     background-color: #004C6C;
+    color: white;
 }
 
 .details-button {
@@ -718,21 +719,6 @@ input {
 .toggle-password img {
     width: 20px;
     height: 20px;
-}
-
-.buttonConnexion {
-    width: 18%;
-    padding: 10px;
-    background: #003366;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 13px;
-}
-
-.buttonConnexion:hover {
-    background: #002244;
 }
 
 .forgot-password {

@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php
 
         ?>
-        <button type="submit" class="buttonConnexion" name="submit">Connexion au portail</button>
+        <button type="submit" class="dark-button" name="submit">Connexion au portail</button>
     </form>
 
     <div class="forgot-password">
