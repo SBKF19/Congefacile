@@ -19,4 +19,3 @@ include 'admin-menu.php';
         </div>
     </div>
 </body>
-</html>
