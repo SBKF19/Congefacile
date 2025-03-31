@@ -1,0 +1,105 @@
+body{
+    margin: 0;
+    width: 100%;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+    width: 350px;
+}
+h2{
+    font-family: "Epilogue", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 24.57px;
+    letter-spacing: 1%;
+    color: #1B3168;
+}
+
+p {
+    font-family: "Epilogue", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24.57px;
+    letter-spacing: 1%;
+    color: black;
+}
+
+p a {
+    font-family: "Epilogue", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24.57px;
+    letter-spacing: 1%;
+    color: #004C6C;
+    text-decoration: none;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+
+
+label {
+    font-family: "Epilogue", sans-serif;
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+
+}
+input{
+    margin-top: 10px;
+    min-width: 236px;
+    width: fit-content;
+    height: 16px;
+    border: 1px solid #DFE4EA;
+    align-items: center;
+    display: flex;
+    border-radius: 6px;
+    padding: 12px 16px 12px 20px;
+    appearance: none;
+}
+
+.button {
+    width: 18%;
+    padding: 10px;
+    background: #003366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+button:hover{
+        cursor: pointer;
+}
+
+button{
+    margin-top: 10px;
+}
+
+.supp {
+    background-color: #E10E0E;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    height: 25px;
+    width: 77px;
+}
+.AJour {
+    background-color: #004C6C;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    place-content: center;
+    height: 25px;
+    width: 106px;
+}
