@@ -1,22 +1,22 @@
-body {
+body{
         margin: 0;
         width: 100%;
         height: auto;
-        background-color: white;
+        background-color: #fefffe;
         display: flex;
         flex-direction: column;
 }
 
 /*Header et menus*/
 
-.header {
+.header{
         display: flex;
         width: 100%;
         flex-direction: column;
         align-items: center;
 }
 
-.header_blue_bar {
+.header_blue_bar{
         display: flex;
         position: absolute;
         z-index: 0;
@@ -27,7 +27,7 @@ body {
         top: 6px;
 }
 
-.header_marine_bar {
+.header_marine_bar{
         display: flex;
         width: 98.5%;
         z-index: 1;
@@ -37,20 +37,20 @@ body {
         margin-top: 15px;
 }
 
-.header_marine_bar img {
+.header_marine_bar img{
         width: 167px;
         height: 40px;
         margin-left: 30px;
 }
 
-.header_marine_bar div {
+.header_marine_bar div{
         width: fit-content;
         height: fit-content;
 }
 
-.side-menu {
+.side-menu{
         display: flex;
-        height: 83.5vh;
+        height: 1019px;
         flex-direction: column;
         justify-content: space-between;
         box-shadow: 0 10px 20px 0 rgba(92, 115, 160, 0.07);
@@ -58,16 +58,16 @@ body {
         z-index: 3;
         bottom: 0;
         padding: 30px 0 48px;
-        min-height: 900px;
+        background-color: white;
 }
 
-.side-menu-pages {
+.side-menu-pages{
         display: flex;
         flex-direction: column;
         height: fit-content;
 }
 
-.onglet a {
+.onglet a{
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 16px;
@@ -77,29 +77,30 @@ body {
         display: flex;
         flex-wrap: wrap;
         padding: 10px 0px 10px 45px;
+        text-decoration: none;
 }
 
-.onglet {
+.onglet{
         width: 300px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 }
 
-.onglet img {
+.onglet img{
         width: 20px;
         height: 20px;
         opacity: 0.5;
         margin: 5px 30px 0 0;
 }
 
-.menu-lign {
+.menu-lign{
         border: 1px solid #DFE4EA;
         width: auto;
         margin: 26px 45px;
 }
 
-.onglet:hover {
+.onglet:hover{
         cursor: pointer;
         color: #004C6C;
         background-color: rgba(0, 76, 108, 0.05);
@@ -107,26 +108,26 @@ body {
         width: 297px;
 }
 
-.side-menu-profile {
+.side-menu-profile{
         display: flex;
         flex-direction: row;
         align-items: center;
         padding: 0px 0px 0px 45px;
 }
 
-.side-menu-profile-image {
+.side-menu-profile-image{
         width: fit-content;
         height: fit-content;
         border-radius: 40px;
 }
 
-.side-menu-profile-image img {
+.side-menu-profile-image img{
         width: 49px;
         height: 49px;
         border-radius: 40px;
 }
 
-.side-menu-profile-text {
+.side-menu-profile-text{
         display: flex;
         flex-direction: column;
         margin-left: 15px;
@@ -134,7 +135,7 @@ body {
 
 /*--------------------------------------COMPTEUR DE DEMANDES------------------------------------*/
 
-.side-menu-counter {
+.side-menu-counter{
         width: 38px;
         height: 34px;
         background-color: rgba(0, 76, 108, 0.05);
@@ -145,7 +146,7 @@ body {
         margin-right: 45px;
 }
 
-.side-menu-counter p {
+.side-menu-counter p{
         font-family: "Inter", sans-serif;
         font-weight: 400;
         font-size: 16px;
@@ -161,23 +162,23 @@ body {
 
 /*---------------------------------------JAVASCRIPT---------------------------------------------*/
 
-.hidden-menu {
+.hidden-menu{
         display: none;
         flex-direction: column;
 }
 
-.hidden-menu div {
+.hidden-menu div{
         width: 300px;
         display: flex;
         justify-content: space-between;
         align-items: center;
 }
 
-.hidden-menu div:hover {
+.hidden-menu div:hover{
         cursor: pointer;
 }
 
-.hidden-menu a {
+.hidden-menu a{
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 16px;
@@ -187,9 +188,10 @@ body {
         display: flex;
         flex-wrap: wrap;
         padding: 10px 0px 10px 55px;
+        text-decoration: none;
 }
 
-.hidden-menu a:hover {
+.hidden-menu a:hover{
         color: #004C6C;
 }
 
@@ -197,93 +199,100 @@ body {
 
 
 /*Boutons validation*/
-button {
+button{
         display: flex;
         align-items: center;
         flex-direction: row;
 }
 
 .confirm,
-.deny {
+.deny{
         width: fit-content;
         border: none;
         padding: 13px 28px;
         border-radius: 6px;
+        height: 40px;
+}
+
+.confirm a,
+.deny a{
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 16px;
         line-height: 24px;
         letter-spacing: 0px;
         color: white;
-        height: 40px;
+        text-decoration: none;
 }
 
-.deny {
+.deny{
         background-color: #E10E0E;
 }
 
-.confirm {
+.confirm{
         background-color: #1A8245;
 }
 
 
-button:hover {
+button:hover{
         cursor: pointer;
 }
 
 /*Boutons*/
 
-.light-button {
-        width: fit-content;
-        border: none;
+.light-button{
         padding: 10px 20px 10px 20px;
         background-color: rgba(0, 76, 108, 0.08);
         border-radius: 7px;
-        font-family: "Inter", sans-serif;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 0px;
-        color: #475467;
 }
 
-.dark-button {
-        width: fit-content;
-        border: none;
-        padding: 13px 28px 13px 28px;
+.dark-button{
         background-color: #004C6C;
+}
+
+.details-button{
+        background-color: rgba(0, 76, 108, 0.08);
+}
+
+.details-button,
+.dark-button{
+        padding: 13px 28px 13px 28px;
         border-radius: 6px;
-        font-family: "Inter", sans-serif;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 0px;
-        color: white;
         height: 40px;
 }
 
-.details-button {
+.light-button,
+.details-button,
+.dark-button{
         width: fit-content;
         border: none;
-        padding: 13px 28px 13px 28px;
-        background-color: rgba(0, 76, 108, 0.08);
-        border-radius: 6px;
+}
+
+.light-button a,
+.details-button a{
+        color: #475467;
+}
+
+.dark-button a{
+        color: white;
+}
+
+.dark-button a,
+.light-button a,
+.details-button a{
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 16px;
         line-height: 24px;
         letter-spacing: 0px;
-        color: #475467;
-        height: 40px;
+        text-decoration: none;
 }
-
-
 
 /*Statuts de validation*/
 
 .confirmed,
 .pending,
-.denied {
+.denied{
         width: fit-content;
         border-radius: 30px;
         padding: 3px 10px;
@@ -294,126 +303,124 @@ button:hover {
         letter-spacing: 0px;
 }
 
-.confirmed {
+.confirmed{
         color: #1A8245;
         background-color: #DAF8E6;
 }
 
-.pending {
+.pending{
         color: #82791A;
         background-color: #F8F5DA;
 }
 
-.denied {
+.denied{
         color: #821A1D;
         background-color: #F8DADD;
 }
 
 /*Fonts*/
 
-h1 {
-        font-family: "Epilogue", sans-serif;
-        font-weight: 600;
+h1{
         font-size: 28.85px;
-        line-height: 24.57px;
-        letter-spacing: 1%;
-        color: #1B3168;
 }
 
-h2 {
-        font-family: "Epilogue", sans-serif;
-        font-weight: 600;
+h2{
         font-size: 24px;
+}
+
+h1, h2{
+        font-weight: 600;
         line-height: 24.57px;
-        letter-spacing: 1%;
         color: #1B3168;
 }
 
-h3 {
-        font-family: "Epilogue", sans-serif;
+h3{
         font-weight: 600;
         font-size: 18px;
         line-height: 24.57px;
-        letter-spacing: 1%;
         color: rgba(0, 76, 108, 0.78);
 }
 
-p {
-        font-family: "Epilogue", sans-serif;
+p{
         font-weight: 400;
         font-size: 16px;
         line-height: 24.57px;
-        letter-spacing: 1%;
         color: black;
 }
 
-p a {
-        font-family: "Epilogue", sans-serif;
+p a{
         font-weight: 700;
         font-size: 16px;
         line-height: 24.57px;
-        letter-spacing: 1%;
-        color: #004C6C;
+        color: #004C6C ;
         text-decoration: none;
 }
 
-a:hover {
+a:hover{
         cursor: pointer;
 }
 
-.email {
-
-        font-family: "Epilogue", sans-serif;
-        font-weight: 400;
+.email{
         font-size: 16px;
         line-height: 24.57px;
-        letter-spacing: 1%;
-        color: #004C6C;
+        color: #004C6C ;
         text-decoration: underline;
 }
 
-.placeholder {
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 0px;
-        color: #9CA3AF;
+h1, h2, h3, p,
+p a,
+.email{
+        font-family: "Epilogue", sans-serif;
 }
 
-.break-details {
+.placeholder{
         font-family: "Inter", sans-serif;
-        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        color: #9CA3AF ;
+}
+
+.break-details{
+        font-family: "Inter", sans-serif;
         font-size: 14px;
         line-height: 20px;
-        letter-spacing: 0px;
         color: #475467;
 }
 
-.label-input {
+.label-input{
         font-family: "Inter", sans-serif;
-        font-weight: 400;
         font-size: 16px;
         line-height: 24px;
-        letter-spacing: 0px;
         color: #111928;
 }
 
-.label-select {
+.label-select{
         font-family: "Inter", sans-serif;
-        font-weight: 500;
         font-size: 14px;
         line-height: 20px;
-        letter-spacing: 0px;
         color: #344054;
 }
 
-.number {
+.job{
         font-family: "Inter", sans-serif;
-        font-weight: 500;
+        font-size: 14px;
+        line-height: 22px;
+        color: #637381;
+        margin: 0;
+}
+
+.username{
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        color: #111928;
+        margin: 0;
+}
+
+.number{
+        font-family: "Inter", sans-serif;
         font-size: 20px;
         line-height: 26px;
-        letter-spacing: 0px;
         color: #004C6C;
         background-color: #F9FAFB;
         border: 2px solid #004C6C;
@@ -422,60 +429,55 @@ a:hover {
         width: fit-content;
 }
 
-.number:hover {
+.number,
+.username,
+.label-select{
+        font-weight: 500;
+}
+
+.email,
+.placeholder,
+.break-details,
+.label-input,
+.job{
+        font-weight: 400;
+}
+
+.number:hover{
         background-color: #004C6C;
         color: white;
         cursor: pointer;
 }
 
-.job {
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 22px;
-        letter-spacing: 0px;
-        color: #637381;
-        margin: 0;
-}
 
-.username {
-        font-family: "Inter", sans-serif;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 0px;
-        color: #111928;
-        margin: 0;
-}
 
 /*Divs*/
 
 select,
-input {
+input{
         min-width: 350px;
-        width: fit-content;
-        height: 46px;
-        border: 1px solid #DFE4EA;
         align-items: center;
-        display: flex;
-        border-radius: 6px;
         padding: 12px 16px 12px 20px;
-        appearance: none;
 }
 
-textarea {
+textarea{
         min-height: 186px;
         min-width: 730px;
-        display: flex;
-        border-radius: 6px;
         padding: 20px 15px;
-        border: 1px solid #DFE4EA;
-        width: fit-content;
         height: fit-content;
-        appearance: none;
 }
 
-.filterbox {
+select,
+input,
+textarea{
+        display: flex;
+        border-radius: 6px;
+        width: fit-content;
+        appearance: none;
+        border: 1px solid #DFE4EA;
+}
+
+.filterbox{
         border-radius: 8px;
         border: 1px solid #D0D5DD;
         padding: 10px 14px;
@@ -484,12 +486,12 @@ textarea {
         background-color: white;
 }
 
-.defaultbox {
+.defaultbox{
         background-color: #F3F4F6;
         border-color: #F3F4F6;
 }
 
-.stepbox {
+.stepbox{
         width: 244px;
         height: fit-content;
         padding: 30px 20px;
@@ -498,12 +500,12 @@ textarea {
         background-color: rgba(0, 76, 108, 0.05);
 }
 
-.stepbox p {
+.stepbox p{
         display: flex;
         flex-wrap: wrap;
 }
 
-.line {
+.line{
         max-width: 595px;
         border: 1px solid #004C6C;
 }
@@ -518,32 +520,24 @@ textarea {
 /*-------------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------------------------------*/
 
-.container {
-        display: flex;
-        background-color: turquoise;
-        width: 80%;
-        height: 90%;
-        align-self: flex-end;
-}
-
 /*PLACEMENT DU CONTAINER :
 <?php
         include "[nom du menu latéral]";
 ?>
-<div class="container">
+<div class="History">
 </div>
 */
 
-.cont2 {
+.cont2{
         display: flex;
         flex-direction: row;
         height: 100%;
         width: 100%;
 }
-
 /*PLACEMENT DE CETTE BALISE:
 JUSTE AVANT LE FOOTER, SEULEMENT METTRE UNE BALISE FERMEE
-CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL
+CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL :
+
 </div>
 <?php
         include "footer.php";
@@ -551,187 +545,111 @@ CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL
 */
 
 
-/*---------------------------------------PAGE DE CONNEXION------------------------------------------*/
 
-.wholeConnection {
-        max-width: 44%;
-        text-align: left;
+.title-with-button{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
 }
 
-.connexion {
-        text-align: left;
-        margin-bottom: 15px;
+.large-filter{
+        width: 530px;
 }
 
-label {
-        display: block;
-        font-weight: bold;
+.small-filter{
+        width: 81px;
 }
 
-input {
-        width: 35%;
-        padding: 10px;
-        margin-top: 5px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
+.medium-filter{
+        width: 122px;
 }
 
-.pic-mail {
-        width: 20px;
-        height: 20px;
+.medium-filter p{
+        padding-left: 80px;
 }
 
-.password-container {
-        position: relative;
+.type-filter{
+        width: 159px;
 }
 
-.toggle-password {
-        position: absolute;
-        right: 64%;
-        top: 68%;
-        transform: translateY(-50%);
-        cursor: pointer;
-        color: grey;
+label{
+        display: flex;
+        flex-wrap: nowrap;
+        min-width: 170px;
 }
 
-.toggle-password img {
-        width: 20px;
-        height: 20px;
-}
-
-.buttonConnexion {
-        width: 18%;
-        padding: 10px;
-        background: #003366;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 13px;
-}
-
-.buttonConnexion:hover {
-        background: #002244;
-}
-
-.forgot-password {
-        margin-top: 10px;
-}
-
-.erreur{
-        color: red;
-        font-size: 14px;
-        margin-top: 10px;
-}
-
-
-@media screen and (max-width: 768px) {
-        .container {
-                max-width: 90%;
-                padding: 15px;
-        }
-
-        h1 {
-                font-size: 22px;
-        }
-
-        .buttonConnexion {
-                font-size: 14px;
-        }
-}
-
-@media screen and (max-width: 480px) {
-        .container {
-                max-width: 100%;
-                padding: 10px;
-                border-radius: 0;
-                box-shadow: none;
-        }
-
-        h1 {
-                font-size: 20px;
-        }
-
-        .buttonConnexion {
-                font-size: 14px;
-                padding: 8px;
-                width: 49%;
-        }
-}
-
-/*Page d'accueil*/
-.wholeAccueil {
-        max-width: 700px;
-        font-family: 'Epilogue';
+/* CSS Pour tout ce qui est de la partie des filtres
+   Le CSS du dessous reste inchangĆ© (j'ai mĆŖme tout control-c control-v de github mdr)
+*/
+.filterBar{
+        height: 109px;
+        padding-top: 20px;
+        padding-right: 150px;
+        padding-bottom: 20px;
+        padding-left: 25px;
+        background-color: #F9FAFB;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
     }
-    
-    .timeline-container {
+    .filter{
+        min-width: 0px;
+        height: 30px;
+        border-radius: 8px;
+        border-width: 1px;
+        padding-top: 10px;
+        padding-right: 14px;
+        padding-bottom: 10px;
+        padding-left: 14px;
+
+    }
+    .filterMargin{
+        margin-right: 2%;
+    }
+    .congeType{
         display: flex;
         flex-direction: column;
-        align-items: center;
-        margin-top: 30px;
     }
-    .timeline {
+    .list_conge{
         display: flex;
-        align-items: center;
-        position: relative;
+        flex-direction: row;
     }
-    .etape {
-        border: 2px solid #004080;
-        border-radius: 50%;
-        width: 44px;
-        height: 44px;
-        text-align: center;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: white;
-        font-weight: bold;
-        color: #004080;
+    .info{
+        padding-top: 16px;
+        padding-right: 78px;
+        padding-left: 34px;
+        padding-bottom: 16px;
     }
-    .active {
-        background-color: #1b316b;
-        color: white;
-    }
-    .line {
-        width: 250px;
-        height: 2px;
-        background-color: #1b316b;
-    }
-    .descriptions {
-        display: flex;
-        justify-content: space-between;
+
+    .containerFilter{
+        border-radius: 12px;
+        border-width: 1px;
+        border: 1px solid #EAECF0;
         width: 100%;
-        margin-top: 10px;
-        text-align: center;
-        font-size: 14px;
+        max-height: 100%;
+        margin-top: 2%;
     }
-    .description-box {
-        background-color: #f2f2f2;
-        padding: 10px;
-        border-radius: 10px;
-        width: 140px;
+    .infoButton{
+        width: 184px;
+        height: 72;
+        border-bottom-width: 1px;
+        padding-top: 16px;
+        padding-right: 24px;
+        padding-bottom: 16px;
+        padding-left: 24px;
+
     }
-    .bottomAccueil {
-        margin-top: 40px;
+    .infoDetail{
+        padding-top: 20px;
+        padding-right: 24px;
+        height: 100%;
+        padding-left: 122px;
+        margin-bottom: 5.4%;
     }
-    
-    
-    @media (max-width: 768px) {
-        .timeline {
-            flex-direction: column;
-            gap: 10px;
-        }
-        .line {
-            width: 2px;
-            height: 50px;
-        }
-        .descriptions {
-            flex-direction: column;
-            align-items: center;
-        }
-        .description-box {
-            width: 90%;
-            margin-bottom: 10px;
-        }
+    .filterBorderBottom{
+        border-bottom: 1px solid #EAECF0;
+    }
+    .History{
+        margin-top: 2%;
+        margin-left: 3%;
     }
