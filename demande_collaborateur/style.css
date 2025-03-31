@@ -454,7 +454,6 @@ select,
 input{
         min-width: 350px;
         width: fit-content;
-        height: 46px;
         border: 1px solid #DFE4EA;
         align-items: center;
         display: flex;
@@ -581,13 +580,6 @@ label{
         flex-wrap: nowrap;
         min-width: 170px;
 }
-.date{
-        display: flex;
-        gap:20px
-}
-.demande{
-        padding: 30px 45px;
-}
 
 /* CSS Pour tout ce qui est de la partie des filtres
    Le CSS du dessous reste inchangĆ© (j'ai mĆŖme tout control-c control-v de github mdr)
@@ -662,4 +654,14 @@ label{
     .History{
         margin-top: 2%;
         margin-left: 3%;
+    }
+
+    .date{
+        display: flex;
+        gap:20px;
+    }
+
+    .demande{
+        padding : 30px;
+
     }

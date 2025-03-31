@@ -1,7 +1,7 @@
 <?php include 'includes/collab-menu.php'?>
 <div class="demande">
 	<h1>Effectuer une nouvelle demande</h1>
-	<form action="method">
+	<form action="post">
 		<div>
 			<label for="fname" class="label-input">Type de demande-champ obligatoire</label>
 			<br>
@@ -29,7 +29,7 @@
 		<div>
 			<label for="nbjour" class="label-input">Nombre de jours demandés</label>
 			<br>
-			<input type="number" id="nbjour" name="nbjour" accept=".pdf" class="defaultbox">
+			<input type="text" readonly placeholder="0" class="defaultbox">
 		</div>
 		<br>
 		<div>
