@@ -1,5 +1,4 @@
 <?php
-session_start();
 include 'includes/login-menu.php';
 include 'includes/database.php';
 
@@ -67,9 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <div class="wholeConnection">
     <h1>CongéFacile</h1>
-    <p>CongéFacile est votre nouvel outil dédié à la gestion des congés au sein de l'entreprise. <br> Plus beoin
-        d'échanges interminables ou de formulaires papier : en quelques clics, vous pouvez gérer <br> vos abscences en
-        toute transparences et simplicité. Connectez-vous ci-dessous pour accéder à votre espace.</p>
+    <p>CongéFacile est votre nouvel outil dédié à la gestion des congés au sein de l'entreprise. <br>
+        Plus beoin d'échanges interminables ou de formulaires papier : en quelques clics, vous pouvez gérer <br>
+        vos abscences en toute transparences et simplicité. Connectez-vous ci-dessous pour accéder à votre espace.</p>
     <h1>Connectez-vous</h1>
     <form action="" method="POST">
         <div class="connexion">

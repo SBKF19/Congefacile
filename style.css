@@ -16,6 +16,10 @@ body {
         align-items: center;
 }
 
+a {
+        text-decoration: none;
+}
+
 .header_blue_bar {
         display: flex;
         position: absolute;
@@ -618,7 +622,7 @@ input {
         margin-top: 10px;
 }
 
-.erreur{
+.erreur {
         color: red;
         font-size: 14px;
         margin-top: 10px;
@@ -663,20 +667,22 @@ input {
 .wholeAccueil {
         max-width: 700px;
         font-family: 'Epilogue';
-    }
-    
-    .timeline-container {
+}
+
+.timeline-container {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-top: 30px;
-    }
-    .timeline {
+}
+
+.timeline {
         display: flex;
         align-items: center;
         position: relative;
-    }
-    .etape {
+}
+
+.etape {
         border: 2px solid #004080;
         border-radius: 50%;
         width: 44px;
@@ -688,50 +694,68 @@ input {
         background-color: white;
         font-weight: bold;
         color: #004080;
-    }
-    .active {
+}
+
+.active {
         background-color: #1b316b;
         color: white;
-    }
-    .line {
+}
+
+.line {
         width: 250px;
         height: 2px;
         background-color: #1b316b;
-    }
-    .descriptions {
+}
+
+.descriptions {
         display: flex;
         justify-content: space-between;
         width: 100%;
         margin-top: 10px;
         text-align: center;
         font-size: 14px;
-    }
-    .description-box {
+}
+
+.description-box {
         background-color: #f2f2f2;
         padding: 10px;
         border-radius: 10px;
         width: 140px;
-    }
-    .bottomAccueil {
+}
+
+.bottomAccueil {
         margin-top: 40px;
-    }
-    
-    
-    @media (max-width: 768px) {
+}
+
+
+@media (max-width: 768px) {
         .timeline {
-            flex-direction: column;
-            gap: 10px;
+                flex-direction: column;
+                gap: 10px;
         }
+
         .line {
-            width: 2px;
-            height: 50px;
+                width: 2px;
+                height: 50px;
         }
+
         .descriptions {
-            flex-direction: column;
-            align-items: center;
+                flex-direction: column;
+                align-items: center;
         }
+
         .description-box {
-            width: 90%;
-            margin-bottom: 10px;
+                width: 90%;
+                margin-bottom: 10px;
         }
-    }
+}
+
+/*------------------------------------PAGE DEMANDE CONGE-------------------------------------------*/
+.date {
+        display: flex;
+        gap: 20px
+}
+
+.demande {
+        padding: 30px 45px;
+}
