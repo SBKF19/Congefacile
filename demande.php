@@ -1,5 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">     
+<?php
+
+session_start();
+include 'admin-menu.php';
+
+?>  
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
