@@ -1,6 +1,6 @@
 <?php
-        include "admin-menu.php";
-        include "database.php";
+        include "includes/admin-menu.php";
+        include "includes/database.php";
 
 
 $query = $connexion->prepare('
@@ -73,5 +73,5 @@ $postes = $query->fetchAll(\PDO::FETCH_ASSOC);
 
 </div>
 <?php
-        include "footer.php";
+        include "includes/footer.php";
 ?>
