@@ -11,11 +11,11 @@
 <span class="denied">TEST</span>
 <span class="confirmed">TEST</span>
 
-<button class="confirm">Accepter LA DEMANDE</button>
-<button class="deny">REFUSER LA DEMANDE</button>
-<button class="light-button">Bouton bouton BOUTON</button>
-<button class="dark-button">Bouton bouton BOUTON</button>
-<button class="details-button">Détails</button>
+<button class="confirm"><a href="*">Accepter LA DEMANDE</a></button>
+<button class="deny"><a href="*">REFUSER LA DEMANDE</a></button>
+<button class="light-button"><a href="*">Bouton bouton BOUTON</a></button>
+<button class="dark-button"><a href="*">Bouton bouton BOUTON</a></button>
+<button class="details-button"><a href="*">Détails</a></button>
 
 <label class="label-select" for="test1">Test</label>
 <select name="test1" id="test1"></select>

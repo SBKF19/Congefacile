@@ -50,7 +50,7 @@ body{
 
 .side-menu{
         display: flex;
-        height: 83.5vh;
+        height: 1019px;
         flex-direction: column;
         justify-content: space-between;
         box-shadow: 0 10px 20px 0 rgba(92, 115, 160, 0.07);
@@ -77,6 +77,7 @@ body{
         display: flex;
         flex-wrap: wrap;
         padding: 10px 0px 10px 45px;
+        text-decoration: none;
 }
 
 .onglet{
@@ -187,6 +188,7 @@ body{
         display: flex;
         flex-wrap: wrap;
         padding: 10px 0px 10px 55px;
+        text-decoration: none;
 }
 
 .hidden-menu a:hover{
@@ -209,13 +211,18 @@ button{
         border: none;
         padding: 13px 28px;
         border-radius: 6px;
+        height: 40px;
+}
+
+.confirm a,
+.deny a{
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 16px;
         line-height: 24px;
         letter-spacing: 0px;
         color: white;
-        height: 40px;
+        text-decoration: none;
 }
 
 .deny{
@@ -234,50 +241,52 @@ button:hover{
 /*Boutons*/
 
 .light-button{
-        width: fit-content;
-        border: none;
         padding: 10px 20px 10px 20px;
         background-color: rgba(0, 76, 108, 0.08);
         border-radius: 7px;
-        font-family: "Inter", sans-serif;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 0px;
-        color: #475467;
 }
 
 .dark-button{
-        width: fit-content;
-        border: none;
-        padding: 13px 28px 13px 28px;
         background-color: #004C6C;
-        border-radius: 6px;
-        font-family: "Inter", sans-serif;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 0px;
-        color: white;
-        height: 40px;
 }
 
 .details-button{
+        background-color: rgba(0, 76, 108, 0.08);
+}
+
+.details-button,
+.dark-button{
+        padding: 13px 28px 13px 28px;
+        border-radius: 6px;
+        height: 40px;
+}
+
+.light-button,
+.details-button,
+.dark-button{
         width: fit-content;
         border: none;
-        padding: 13px 28px 13px 28px;
-        background-color: rgba(0, 76, 108, 0.08);
-        border-radius: 6px;
+}
+
+.light-button a,
+.details-button a{
+        color: #475467;
+}
+
+.dark-button a{
+        color: white;
+}
+
+.dark-button a,
+.light-button a,
+.details-button a{
         font-family: "Inter", sans-serif;
         font-weight: 500;
         font-size: 16px;
         line-height: 24px;
         letter-spacing: 0px;
-        color: #475467;
-        height: 40px;
+        text-decoration: none;
 }
-
-
 
 /*Statuts de validation*/
 
@@ -312,47 +321,37 @@ button:hover{
 /*Fonts*/
 
 h1{
-        font-family: "Epilogue", sans-serif;
-        font-weight: 600;
         font-size: 28.85px;
-        line-height: 24.57px;
-        letter-spacing: 1%;
-        color: #1B3168;
 }
 
 h2{
-        font-family: "Epilogue", sans-serif;
-        font-weight: 600;
         font-size: 24px;
+}
+
+h1, h2{
+        font-weight: 600;
         line-height: 24.57px;
-        letter-spacing: 1%;
         color: #1B3168;
 }
 
 h3{
-        font-family: "Epilogue", sans-serif;
         font-weight: 600;
         font-size: 18px;
         line-height: 24.57px;
-        letter-spacing: 1%;
         color: rgba(0, 76, 108, 0.78);
 }
 
 p{
-        font-family: "Epilogue", sans-serif;
         font-weight: 400;
         font-size: 16px;
         line-height: 24.57px;
-        letter-spacing: 1%;
         color: black;
 }
 
 p a{
-        font-family: "Epilogue", sans-serif;
         font-weight: 700;
         font-size: 16px;
         line-height: 24.57px;
-        letter-spacing: 1%;
         color: #004C6C ;
         text-decoration: none;
 }
@@ -362,58 +361,66 @@ a:hover{
 }
 
 .email{
-
-        font-family: "Epilogue", sans-serif;
-        font-weight: 400;
         font-size: 16px;
         line-height: 24.57px;
-        letter-spacing: 1%;
         color: #004C6C ;
         text-decoration: underline;
 }
 
+h1, h2, h3, p,
+p a,
+.email{
+        font-family: "Epilogue", sans-serif;
+}
+
 .placeholder{
         font-family: "Inter", sans-serif;
-        font-weight: 400;
         font-size: 16px;
         line-height: 24px;
-        letter-spacing: 0px;
         color: #9CA3AF ;
 }
 
 .break-details{
         font-family: "Inter", sans-serif;
-        font-weight: 400;
         font-size: 14px;
         line-height: 20px;
-        letter-spacing: 0px;
         color: #475467;
 }
 
 .label-input{
         font-family: "Inter", sans-serif;
-        font-weight: 400;
         font-size: 16px;
         line-height: 24px;
-        letter-spacing: 0px;
-        color: #111928  ;
+        color: #111928;
 }
 
 .label-select{
         font-family: "Inter", sans-serif;
-        font-weight: 500;
         font-size: 14px;
         line-height: 20px;
-        letter-spacing: 0px;
         color: #344054;
+}
+
+.job{
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        line-height: 22px;
+        color: #637381;
+        margin: 0;
+}
+
+.username{
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        color: #111928;
+        margin: 0;
 }
 
 .number{
         font-family: "Inter", sans-serif;
-        font-weight: 500;
         font-size: 20px;
         line-height: 26px;
-        letter-spacing: 0px;
         color: #004C6C;
         background-color: #F9FAFB;
         border: 2px solid #004C6C;
@@ -422,57 +429,52 @@ a:hover{
         width: fit-content;
 }
 
+.number,
+.username,
+.label-select{
+        font-weight: 500;
+}
+
+.email,
+.placeholder,
+.break-details,
+.label-input,
+.job{
+        font-weight: 400;
+}
+
 .number:hover{
         background-color: #004C6C;
         color: white;
         cursor: pointer;
 }
 
-.job{
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 22px;
-        letter-spacing: 0px;
-        color: #637381;
-        margin: 0;
-}
 
-.username{
-        font-family: "Inter", sans-serif;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 0px;
-        color: #111928;
-        margin: 0;
-}
 
 /*Divs*/
 
 select,
 input{
         min-width: 350px;
-        width: fit-content;
-        height: 46px;
-        border: 1px solid #DFE4EA;
         align-items: center;
-        display: flex;
-        border-radius: 6px;
         padding: 12px 16px 12px 20px;
-        appearance: none;
 }
 
 textarea{
         min-height: 186px;
         min-width: 730px;
+        padding: 20px 15px;
+        height: fit-content;
+}
+
+select,
+input,
+textarea{
         display: flex;
         border-radius: 6px;
-        padding: 20px 15px;
-        border: 1px solid #DFE4EA;
         width: fit-content;
-        height: fit-content;
         appearance: none;
+        border: 1px solid #DFE4EA;
 }
 
 .filterbox{
@@ -518,17 +520,11 @@ textarea{
 /*-------------------------------------------------------------------------------------------------------------------------*/
 /*-------------------------------------------------------------------------------------------------------------------------*/
 
-.container{
-        display: flex;
-        background-color:turquoise;
-        align-self: flex-end;
-        flex-direction: column;
-}
 /*PLACEMENT DU CONTAINER :
 <?php
         include "[nom du menu latéral]";
 ?>
-<div class="container">
+<div class="History">
 </div>
 */
 
@@ -540,7 +536,8 @@ textarea{
 }
 /*PLACEMENT DE CETTE BALISE:
 JUSTE AVANT LE FOOTER, SEULEMENT METTRE UNE BALISE FERMEE
-CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL
+CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL :
+
 </div>
 <?php
         include "footer.php";
