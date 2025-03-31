@@ -1,0 +1,658 @@
+body{
+        margin: 0;
+        width: 100%;
+        height: auto;
+        background-color: #fefffe;
+        display: flex;
+        flex-direction: column;
+}
+
+/*Header et menus*/
+
+.header{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+}
+
+.header_blue_bar{
+        display: flex;
+        position: absolute;
+        z-index: 0;
+        background-color: #B4C4CF;
+        width: 97.5%;
+        height: 58px;
+        border-radius: 12px;
+        top: 6px;
+}
+
+.header_marine_bar{
+        display: flex;
+        width: 98.5%;
+        z-index: 1;
+        background-color: #004C6C;
+        border-radius: 12px;
+        padding: 10px 0;
+        margin-top: 15px;
+}
+
+.header_marine_bar img{
+        width: 167px;
+        height: 40px;
+        margin-left: 30px;
+}
+
+.header_marine_bar div{
+        width: fit-content;
+        height: fit-content;
+}
+
+.side-menu{
+        display: flex;
+        height: 83.5vh;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 10px 20px 0 rgba(92, 115, 160, 0.07);
+        width: fit-content;
+        z-index: 3;
+        bottom: 0;
+        padding: 30px 0 48px;
+        background-color: white;
+}
+
+.side-menu-pages{
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+}
+
+.onglet a{
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #637381;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px 0px 10px 45px;
+}
+
+.onglet{
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+
+.onglet img{
+        width: 20px;
+        height: 20px;
+        opacity: 0.5;
+        margin: 5px 30px 0 0;
+}
+
+.menu-lign{
+        border: 1px solid #DFE4EA;
+        width: auto;
+        margin: 26px 45px;
+}
+
+.onglet:hover{
+        cursor: pointer;
+        color: #004C6C;
+        background-color: rgba(0, 76, 108, 0.05);
+        border-right: 3px solid #004C6C;
+        width: 297px;
+}
+
+.side-menu-profile{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0px 0px 0px 45px;
+}
+
+.side-menu-profile-image{
+        width: fit-content;
+        height: fit-content;
+        border-radius: 40px;
+}
+
+.side-menu-profile-image img{
+        width: 49px;
+        height: 49px;
+        border-radius: 40px;
+}
+
+.side-menu-profile-text{
+        display: flex;
+        flex-direction: column;
+        margin-left: 15px;
+}
+
+/*--------------------------------------COMPTEUR DE DEMANDES------------------------------------*/
+
+.side-menu-counter{
+        width: 38px;
+        height: 34px;
+        background-color: rgba(0, 76, 108, 0.05);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+        margin-right: 45px;
+}
+
+.side-menu-counter p{
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #637381;
+}
+
+
+
+
+
+
+/*---------------------------------------JAVASCRIPT---------------------------------------------*/
+
+.hidden-menu{
+        display: none;
+        flex-direction: column;
+}
+
+.hidden-menu div{
+        width: 300px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+
+.hidden-menu div:hover{
+        cursor: pointer;
+}
+
+.hidden-menu a{
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #637381;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px 0px 10px 55px;
+}
+
+.hidden-menu a:hover{
+        color: #004C6C;
+}
+
+/*---------------------------------------CSS DU KIT UI------------------------------------------*/
+
+
+/*Boutons validation*/
+button{
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+}
+
+.confirm,
+.deny{
+        width: fit-content;
+        border: none;
+        padding: 13px 28px;
+        border-radius: 6px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: white;
+        height: 40px;
+}
+
+.deny{
+        background-color: #E10E0E;
+}
+
+.confirm{
+        background-color: #1A8245;
+}
+
+
+button:hover{
+        cursor: pointer;
+}
+
+/*Boutons*/
+
+.light-button{
+        width: fit-content;
+        border: none;
+        padding: 10px 20px 10px 20px;
+        background-color: rgba(0, 76, 108, 0.08);
+        border-radius: 7px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #475467;
+}
+
+.dark-button{
+        width: fit-content;
+        border: none;
+        padding: 13px 28px 13px 28px;
+        background-color: #004C6C;
+        border-radius: 6px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: white;
+        height: 40px;
+}
+
+.details-button{
+        width: fit-content;
+        border: none;
+        padding: 13px 28px 13px 28px;
+        background-color: rgba(0, 76, 108, 0.08);
+        border-radius: 6px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #475467;
+        height: 40px;
+}
+
+
+
+/*Statuts de validation*/
+
+.confirmed,
+.pending,
+.denied{
+        width: fit-content;
+        border-radius: 30px;
+        padding: 3px 10px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0px;
+}
+
+.confirmed{
+        color: #1A8245;
+        background-color: #DAF8E6;
+}
+
+.pending{
+        color: #82791A;
+        background-color: #F8F5DA;
+}
+
+.denied{
+        color: #821A1D;
+        background-color: #F8DADD;
+}
+
+/*Fonts*/
+
+h1{
+        font-family: "Epilogue", sans-serif;
+        font-weight: 600;
+        font-size: 28.85px;
+        line-height: 24.57px;
+        letter-spacing: 1%;
+        color: #1B3168;
+}
+
+h2{
+        font-family: "Epilogue", sans-serif;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 24.57px;
+        letter-spacing: 1%;
+        color: #1B3168;
+}
+
+h3{
+        font-family: "Epilogue", sans-serif;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 24.57px;
+        letter-spacing: 1%;
+        color: rgba(0, 76, 108, 0.78);
+}
+
+p{
+        font-family: "Epilogue", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24.57px;
+        letter-spacing: 1%;
+        color: black;
+}
+
+p a{
+        font-family: "Epilogue", sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24.57px;
+        letter-spacing: 1%;
+        color: #004C6C ;
+        text-decoration: none;
+}
+
+a:hover{
+        cursor: pointer;
+}
+
+.email{
+
+        font-family: "Epilogue", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24.57px;
+        letter-spacing: 1%;
+        color: #004C6C ;
+        text-decoration: underline;
+}
+
+.placeholder{
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #9CA3AF ;
+}
+
+.break-details{
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0px;
+        color: #475467;
+}
+
+.label-input{
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #111928  ;
+}
+
+.label-select{
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        letter-spacing: 0px;
+        color: #344054;
+}
+
+.number{
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 26px;
+        letter-spacing: 0px;
+        color: #004C6C;
+        background-color: #F9FAFB;
+        border: 2px solid #004C6C;
+        border-radius: 50%;
+        padding: 10px 20px;
+        width: fit-content;
+}
+
+.number:hover{
+        background-color: #004C6C;
+        color: white;
+        cursor: pointer;
+}
+
+.job{
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        letter-spacing: 0px;
+        color: #637381;
+        margin: 0;
+}
+
+.username{
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        color: #111928;
+        margin: 0;
+}
+
+/*Divs*/
+
+select,
+input{
+        min-width: 350px;
+        width: fit-content;
+        height: 46px;
+        border: 1px solid #DFE4EA;
+        align-items: center;
+        display: flex;
+        border-radius: 6px;
+        padding: 12px 16px 12px 20px;
+        appearance: none;
+}
+
+textarea{
+        min-height: 186px;
+        min-width: 730px;
+        display: flex;
+        border-radius: 6px;
+        padding: 20px 15px;
+        border: 1px solid #DFE4EA;
+        width: fit-content;
+        height: fit-content;
+        appearance: none;
+}
+
+.filterbox{
+        border-radius: 8px;
+        border: 1px solid #D0D5DD;
+        padding: 10px 14px;
+        min-width: 187px;
+        min-height: 44px;
+        background-color: white;
+}
+
+.defaultbox{
+        background-color: #F3F4F6;
+        border-color: #F3F4F6;
+}
+
+.stepbox{
+        width: 244px;
+        height: fit-content;
+        padding: 30px 20px;
+        text-align: center;
+        border-radius: 7px;
+        background-color: rgba(0, 76, 108, 0.05);
+}
+
+.stepbox p{
+        display: flex;
+        flex-wrap: wrap;
+}
+
+.line{
+        max-width: 595px;
+        border: 1px solid #004C6C;
+}
+
+
+
+
+
+/*-------------------------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------CORPS-----------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------------------*/
+/*-------------------------------------------------------------------------------------------------------------------------*/
+
+.container{
+        display: flex;
+        background-color:turquoise;
+        align-self: flex-end;
+        flex-direction: column;
+}
+/*PLACEMENT DU CONTAINER :
+<?php
+        include "[nom du menu latéral]";
+?>
+<div class="container">
+</div>
+*/
+
+.cont2{
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;
+}
+/*PLACEMENT DE CETTE BALISE:
+JUSTE AVANT LE FOOTER, SEULEMENT METTRE UNE BALISE FERMEE
+CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL
+</div>
+<?php
+        include "footer.php";
+?>
+*/
+
+
+
+.title-with-button{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 15px;
+}
+
+.large-filter{
+        width: 530px;
+}
+
+.small-filter{
+        width: 81px;
+}
+
+.medium-filter{
+        width: 122px;
+}
+
+.medium-filter p{
+        padding-left: 80px;
+}
+
+.type-filter{
+        width: 159px;
+}
+
+label{
+        display: flex;
+        flex-wrap: nowrap;
+        min-width: 170px;
+}
+
+/* CSS Pour tout ce qui est de la partie des filtres
+   Le CSS du dessous reste inchangĆ© (j'ai mĆŖme tout control-c control-v de github mdr)
+*/
+.filterBar{
+        height: 109px;
+        padding-top: 20px;
+        padding-right: 150px;
+        padding-bottom: 20px;
+        padding-left: 25px;
+        background-color: #F9FAFB;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+    }
+    .filter{
+        min-width: 0px;
+        height: 30px;
+        border-radius: 8px;
+        border-width: 1px;
+        padding-top: 10px;
+        padding-right: 14px;
+        padding-bottom: 10px;
+        padding-left: 14px;
+
+    }
+    .filterMargin{
+        margin-right: 2%;
+    }
+    .congeType{
+        display: flex;
+        flex-direction: column;
+    }
+    .list_conge{
+        display: flex;
+        flex-direction: row;
+    }
+    .info{
+        padding-top: 16px;
+        padding-right: 78px;
+        padding-left: 34px;
+        padding-bottom: 16px;
+    }
+
+    .containerFilter{
+        border-radius: 12px;
+        border-width: 1px;
+        border: 1px solid #EAECF0;
+        width: 100%;
+        max-height: 100%;
+        margin-top: 2%;
+    }
+    .infoButton{
+        width: 184px;
+        height: 72;
+        border-bottom-width: 1px;
+        padding-top: 16px;
+        padding-right: 24px;
+        padding-bottom: 16px;
+        padding-left: 24px;
+
+    }
+    .infoDetail{
+        padding-top: 20px;
+        padding-right: 24px;
+        height: 100%;
+        padding-left: 122px;
+        margin-bottom: 5.4%;
+    }
+    .filterBorderBottom{
+        border-bottom: 1px solid #EAECF0;
+    }
+    .History{
+        margin-top: 2%;
+        margin-left: 3%;
+    }
