@@ -1,68 +1,68 @@
 <?php
-        include "header.php";
+include "header.php";
 ?>
 
 <div class="cont2">
-<div class="side-menu">
-        <div class="side-menu-pages">
-                <div class="onglet">
-                        <a>Accueil</a>
-                </div>
-                <div class="onglet">
-                        <a>Demandes en attente</a>
-                        <div class="side-menu-counter">
-                                <p>0</p>
+        <div class="side-menu">
+                <div class="side-menu-pages">
+                        <div class="onglet">
+                                <a href="accueil.php">Accueil</a>
                         </div>
-                </div>
-                <div class="onglet">
-                        <a>Historique des demandes</a>
-                </div>
-                <div class="onglet">
-                        <a>Mon équipe</a>
-                </div>
-                <div class="onglet">
-                        <a>Statistiques</a>
-                </div>
+                        <div class="onglet">
+                                <a>Demandes en attente</a>
+                                <div class="side-menu-counter">
+                                        <p>0</p>
+                                </div>
+                        </div>
+                        <div class="onglet">
+                                <a>Historique des demandes</a>
+                        </div>
+                        <div class="onglet">
+                                <a>Mon équipe</a>
+                        </div>
+                        <div class="onglet">
+                                <a>Statistiques</a>
+                        </div>
                         <div class="menu-lign"></div>
-                <div class="onglet">
-                        <a>Mes informations</a>
-                </div>
-                <div class="onglet">
-                        <a>Mes préférences</a>
-                </div>
-                <div class="onglet toggle-button">
-                        <a>Administration</a>
-                        <div><img src="chevron-en-bas.png"/></div>
-                </div>
-                <div class="hidden-menu">
-                        <div>
-                                <a>Types de demandes</a>
+                        <div class="onglet">
+                                <a>Mes informations</a>
                         </div>
-                        <div>
-                                <a>Directions/Services</a>
+                        <div class="onglet">
+                                <a>Mes préférences</a>
                         </div>
-                        <div>
-                                <a>Managers</a>
+                        <div class="onglet toggle-button">
+                                <a>Administration</a>
+                                <div><img src="chevron-en-bas.png" /></div>
                         </div>
-                        <div>
-                                <a>Postes</a>
+                        <div class="hidden-menu">
+                                <div>
+                                        <a>Types de demandes</a>
+                                </div>
+                                <div>
+                                        <a>Directions/Services</a>
+                                </div>
+                                <div>
+                                        <a>Managers</a>
+                                </div>
+                                <div>
+                                        <a>Postes</a>
+                                </div>
+                        </div>
+                        <div class="onglet">
+                                <a href="includes/deco.php">Déconnexion</a>
                         </div>
                 </div>
-                <div class="onglet">
-                        <a href="includes/deco.php">Déconnexion</a>
+
+
+
+                <div class="side-menu-profile">
+                        <div class="side-menu-profile-image">
+                                <img src="man.png" />
+                        </div>
+                        <div class="side-menu-profile-text">
+                                <p class="username">Placeholder</p>
+                                <p class="job">Placeholder</p>
+                        </div>
                 </div>
         </div>
-
-
-
-        <div class="side-menu-profile">
-                <div class="side-menu-profile-image">
-                        <img src="man.png"/>
-                </div>
-                <div class="side-menu-profile-text">
-                        <p class="username">Placeholder</p>
-                        <p class="job">Placeholder</p>
-                </div>
-        </div>
-</div>
-<script src="menu-lateral.js"></script>
+        <script src="menu-lateral.js"></script>
