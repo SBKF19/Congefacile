@@ -249,17 +249,24 @@ button:hover {
 .dark-button {
     background-color: #004C6C;
     color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    height: 50px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-decoration: none;
 }
 
 .details-button {
     background-color: rgba(0, 76, 108, 0.08);
+    height: 40px;
 }
 
 .details-button,
 .dark-button {
     padding: 13px 28px 13px 28px;
     border-radius: 6px;
-    height: 40px;
 }
 
 .light-button,
@@ -343,6 +350,8 @@ h3 {
     color: rgba(0, 76, 108, 0.78);
 }
 
+
+.petit_texte,
 p {
     font-weight: 400;
     font-size: 16px;
@@ -350,6 +359,7 @@ p {
     color: black;
 }
 
+.petit_texte a,
 p a {
     font-weight: 700;
     font-size: 16px;
@@ -374,6 +384,8 @@ h2,
 h3,
 p,
 p a,
+.petit_texte,
+.petit_texte a,
 .email {
     font-family: "Epilogue", sans-serif;
 }
@@ -454,6 +466,38 @@ p a,
     cursor: pointer;
 }
 
+
+
+
+
+.mail-input {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .mail-input input {
+    width: 100%;
+    padding: 12px 12px 12px 40px; /* espace pour l’icône */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color: white;
+  }
+
+  .mail-input .icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+  }
+
+  .mail-input .icon img {
+    width: 100%;
+    height: auto;
+  }
 
 
 /*Divs*/
@@ -692,7 +736,6 @@ label {
 
 input {
     width: 35%;
-    padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -828,6 +871,11 @@ input {
 
 .bottomAccueil {
     margin-top: 40px;
+}
+
+.whole_forgot_pword{
+    padding-top : 2%;
+    padding-left: 3%;
 }
 
 
