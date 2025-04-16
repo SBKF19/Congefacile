@@ -64,43 +64,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-<div class="wholeConnection">
+<div class="History">
     <h1>CongéFacile</h1>
     <p>CongéFacile est votre nouvel outil dédié à la gestion des congés au sein de l'entreprise. <br>
-        Plus beoin d'échanges interminables ou de formulaires papier : en quelques clics, vous pouvez gérer <br>
-        vos abscences en toute transparences et simplicité. Connectez-vous ci-dessous pour accéder à votre espace.</p>
-    <h1>Connectez-vous</h1>
+        Plus besoin d'échanges interminables ou de formulaires papier : en quelques clics, vous pouvez gérer <br>
+        vos abscences en toute transparence et simplicité. Connectez-vous ci-dessous pour accéder à votre espace.</p>
+    <h2>Connectez-vous</h2>
     <form action="" method="POST">
         <div class="connexion">
-            <label for="email">Adresse email</label>
+            <label for="email" class="label-input">Adresse email</label>
             <?php
             if (!empty($erreurs['email'])) {
                 echo "<j class='erreur'>{$erreurs['email']}</j></br>";
             }
             ?>
-            <span>
-                <img class="pic-mail" src="images/email (1).png" alt="">
-                <input type="email" id="email" name="email" required placeholder="****@mentalworks.fr">
-            </span>
+                <input type="email" id="email" name="email" class="email-input" required placeholder="****@mentalworks.fr">
         </div>
 
         <div class="connexion password-container">
-            <label for="mot_de_passe">Mot de passe</label>
+            <label for="mot_de_passe" class="label-input">Mot de passe</label>
             <?php
             if (!empty($erreurs['mot_de_passe'])) {
                 echo "<j class='erreur'>{$erreurs['mot_de_passe']}</j></br>";
             }
             ?>
-            <input type="password" id="mot_de_passe" name="mot_de_passe" required>
-            <span class="toggle-password" onclick="togglePassword()">
-                <img src="images/oeil-ouvert.png" id="eyeIcon" alt="Afficher/Masquer le mot de passe">
-            </span>
+            <input type="password" id="mot_de_passe" name="mot_de_passe" class="password-input" required>
         </div>
 
         <?php
 
         ?>
-        <button type="submit" class="dark-button" name="submit">Connexion au portail</button>
+        <button type="submit" class="dark-button" name="submit"><a>Connexion au portail</a></button>
     </form>
 
     <div class="forgot-password">

@@ -249,22 +249,48 @@ button:hover {
 .dark-button {
     background-color: #004C6C;
     color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    height: 50px;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-decoration: none;
+}
+
+.alt-dark-button {
+    background-color: #004C6C;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    text-decoration: none;
+    padding: 10px 20px 10px 20px;
+    border-radius: 7px;
+}
+
+.alt-dark-button a{
+        color: white;
+        text-decoration: none;
 }
 
 .details-button {
     background-color: rgba(0, 76, 108, 0.08);
+    height: 40px;
 }
 
 .details-button,
 .dark-button {
     padding: 13px 28px 13px 28px;
     border-radius: 6px;
-    height: 40px;
 }
 
 .light-button,
 .details-button,
-.dark-button {
+.dark-button,
+.alt-dark-button {
     width: fit-content;
     border: none;
 }
@@ -323,10 +349,12 @@ button:hover {
 
 h1 {
     font-size: 28.85px;
+    margin-top: 30px;
 }
 
 h2 {
     font-size: 24px;
+    margin-top: 35px;
 }
 
 h1,
@@ -343,6 +371,8 @@ h3 {
     color: rgba(0, 76, 108, 0.78);
 }
 
+
+.petit_texte,
 p {
     font-weight: 400;
     font-size: 16px;
@@ -350,6 +380,11 @@ p {
     color: black;
 }
 
+p {
+        margin: 25px 0;
+}
+
+.petit_texte a,
 p a {
     font-weight: 700;
     font-size: 16px;
@@ -374,6 +409,8 @@ h2,
 h3,
 p,
 p a,
+.petit_texte,
+.petit_texte a,
 .email {
     font-family: "Epilogue", sans-serif;
 }
@@ -397,6 +434,7 @@ p a,
     font-size: 16px;
     line-height: 24px;
     color: #111928;
+    margin-bottom: 10px;
 }
 
 .label-select {
@@ -404,6 +442,43 @@ p a,
     font-size: 14px;
     line-height: 20px;
     color: #344054;
+}
+
+.label-field {
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        color: #111928;
+        font-weight: 500;
+        margin: 0;
+}
+
+.label-fixed-value{
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        color: #6B7280;
+        font-weight: 500;
+        margin: 0;
+}
+
+.fixed-value{
+        font-family: "Inter", sans-serif;
+        font-size: 16px;
+        line-height: 24px;
+        color: #9CA3AF;
+        font-weight: 400;
+}
+
+.select-option{
+        font-family: "Inter", sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+        color: #344054;
+}
+
+.text-no-margin{
+        margin: 0;
 }
 
 .job {
@@ -430,11 +505,15 @@ p a,
     background-color: #F9FAFB;
     border: 2px solid #004C6C;
     border-radius: 50%;
-    padding: 10px 20px;
-    width: fit-content;
+    width: 50px;
+    height: 50px;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.number,
+.number:hover,
 .username,
 .label-select {
     font-weight: 500;
@@ -454,15 +533,42 @@ p a,
     cursor: pointer;
 }
 
-
-
 /*Divs*/
 
 select,
 input {
-    min-width: 350px;
     align-items: center;
-    padding: 12px 16px 12px 20px;
+}
+
+select {
+        min-width: 350px;
+        padding: 12px 16px 12px 20px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+        opacity: 0;
+    }
+
+.select-input{
+        background-image: url(images/chevron-en-bas.png);
+        background-repeat: no-repeat;
+        background-color: white;
+        background-position: 95%;
+        background-size: 16px 16px;
+        min-width: 314px;
+        padding: 12px 16px 12px 20px;
+}
+
+.date-input{
+        background-image: url(images/calendrier.png);
+        background-repeat: no-repeat;
+        background-color: white;
+        background-position: 5%;
+        background-size: 16px 16px;
+        min-width: 265px;
+        margin-bottom: 20px;
+        padding: 12px 0px 12px 45px;
+        margin-top: 0;
 }
 
 textarea {
@@ -470,6 +576,16 @@ textarea {
     min-width: 730px;
     padding: 20px 15px;
     height: fit-content;
+}
+
+.textarea-comment{
+        margin: 10px 0 40px;
+}
+
+.form-request{
+        display: flex;
+        flex-direction: column;
+        margin-top: 30px;
 }
 
 select,
@@ -482,6 +598,32 @@ textarea {
     border: 1px solid #DFE4EA;
 }
 
+.email-input{
+        background-image: url(images/mail.png);
+        background-repeat: no-repeat;
+        background-color: white;
+        background-position: 5%;
+        background-size: 16px 16px;
+        min-width: 305px;
+        margin-bottom: 20px;
+        padding: 12px 0px 12px 45px;
+}
+
+.email-input::placeholder{
+        background-position: 10%;
+}
+
+.password-input{
+        background-image: url(images/eye.png);
+        background-repeat: no-repeat;
+        background-color: white;
+        background-position: 95%;
+        background-size: 16px 16px;
+        min-width: 314px;
+        margin-bottom: 20px;
+        padding: 12px 16px 12px 20px;
+}
+
 .filterbox {
     border-radius: 8px;
     border: 1px solid #D0D5DD;
@@ -491,15 +633,28 @@ textarea {
     background-color: white;
 }
 
+.defaultbox-input{
+        min-width: 273px;
+        margin-bottom: 20px;
+        padding: 12px 16px 12px 20px;
+        margin-top: 0;
+}
+
 .defaultbox {
     background-color: #F3F4F6;
     border-color: #F3F4F6;
 }
 
+.file-input{
+        min-width: 273px;
+        margin-bottom: 20px;
+        padding: 12px 16px 12px 20px;
+        margin-top: 0;
+}
+
 .stepbox {
-    width: 244px;
-    height: fit-content;
-    padding: 30px 20px;
+    width: 204px;
+    padding: 10px 20px;
     text-align: center;
     border-radius: 7px;
     background-color: rgba(0, 76, 108, 0.05);
@@ -665,7 +820,7 @@ Le CSS du dessous reste inchangĆ© (j'ai mĆŖme tout control-c control-v de gi
 }
 
 .History {
-    margin-top: 2%;
+    margin-top: 1.5%;
     margin-left: 3%;
 }
 
@@ -691,16 +846,9 @@ label {
 }
 
 input {
-    width: 35%;
-    padding: 10px;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-.pic-mail {
-    width: 20px;
-    height: 20px;
 }
 
 .password-container {
@@ -777,6 +925,13 @@ input {
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
+    width: 107%;
+}
+
+.steps-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
 }
 
 .timeline {
@@ -828,6 +983,11 @@ input {
 
 .bottomAccueil {
     margin-top: 40px;
+}
+
+.whole_forgot_pword{
+    padding-top : 2%;
+    padding-left: 3%;
 }
 
 

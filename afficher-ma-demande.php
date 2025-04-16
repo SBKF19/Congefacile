@@ -6,7 +6,7 @@
 <div class="History">
 
 <?php
-        $id_demande = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
+        $id_demande = 5; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
         $requete = $connexion->prepare('
 		SELECT d.request_type_id, d.created_at, d.start_at, DATEDIFF(start_at, end_at) as DateDiff, d.end_at, d.answer_comment, d.answer, d.id AS request, t.name AS request_type
 		FROM request d, request_type t
@@ -36,9 +36,9 @@
 
 <h1>Ma demande de congé</h1>
 <h3>Ma demande du <?php echo date("d/m/Y", strtotime($date_creation)); ?></h3>
-<p>Type de demande : <?php echo $type_demande; ?></p>
-<p>Période : <?php echo date("d/m/Y H:i", strtotime($date_debut))." au ".date("d/m/Y H:i", strtotime($date_fin)); ?></p>
-<p>Nombre de jours : <?php
+<p class="text-no-margin">Type de demande : <?php echo $type_demande; ?></p>
+<p class="text-no-margin">Période : <?php echo date("d/m/Y H:i", strtotime($date_debut))." au ".date("d/m/Y H:i", strtotime($date_fin)); ?></p>
+<p class="text-no-margin">Nombre de jours : <?php
 if (!isset($reponse)){
         echo $duree." jours";
 } elseif ($reponse == 1){
@@ -60,13 +60,13 @@ if (!isset($reponse)){
 </p>
 <?php
 if(isset($reponse)){
-        echo "<p>Commentaire du manager :</p>
-        <textarea readonly class='placeholder' placeholder='".$commentaire."'></textarea>";
+        echo "<label class='label-field' for='commentaire'>Commentaire du manager :</label>
+        <textarea name='commentaire' readonly class='placeholder textarea-comment' placeholder='".$commentaire."'></textarea>";
         echo "<button class='light-button'><a>Retourner à la liste de mes demandes</a></button>";
 } elseif(!isset($reponse)){
         echo "<div class='title-with-button'>
                 <button class='light-button'><a>Retourner à la liste de mes demandes</a></button>
-                <button class='dark-button'><a href='modifier-ma-demande.php?id=".$id_demande."'>Modifier ma demande</a></button>
+                <button class='alt-dark-button'><a href='modifier-ma-demande.php?id=".$id_demande."'>Modifier ma demande</a></button>
         </div>";
 };
 ?>
