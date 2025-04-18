@@ -276,6 +276,24 @@ button:hover {
         text-decoration: none;
 }
 
+.large-dark-button{
+        background-color: #004C6C;
+        color: white;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0px;
+        text-decoration: none;
+        padding: 8px 38px;
+        border-radius: 7px;
+}
+
+.large-dark-button a{
+        color: white;
+        text-decoration: none;
+}
+
 .details-button {
     background-color: rgba(0, 76, 108, 0.08);
     height: 40px;
@@ -313,6 +331,12 @@ button:hover {
     line-height: 24px;
     letter-spacing: 0px;
     text-decoration: none;
+}
+
+.light-button img{
+        width: 16px;
+        height: 16px;
+        margin-left: 5px;
 }
 
 /*Statuts de validation*/
@@ -369,6 +393,7 @@ h3 {
     font-size: 18px;
     line-height: 24.57px;
     color: rgba(0, 76, 108, 0.78);
+    margin: 20px 0 25px;
 }
 
 
@@ -479,6 +504,9 @@ p a,
 
 .text-no-margin{
         margin: 0;
+}
+.text-low-margin{
+        margin: 5px 0;
 }
 
 .job {
@@ -670,7 +698,38 @@ textarea {
     border: 1px solid #004C6C;
 }
 
+.filter-info-medium{
+        width: 164px;
+}
 
+.filter-info-type{
+        width: 205px;
+        padding-left: 27px;
+}
+
+.filter-info-small{
+        width: 120px;
+}
+
+.filter-info-details{
+        width: 118px;
+        padding-right: 24px;
+}
+
+.filter-info-large{
+        width: 589px;
+        padding-left: 27px;
+}
+
+.filter-info-details,
+.filter-info-medium,
+.filter-info-small,
+.filter-info-type,
+.filter-info-large{
+        display: flex;
+        align-items: center;
+        height: 72px;
+}
 
 
 
@@ -714,6 +773,18 @@ CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL :
     gap: 15px;
 }
 
+.title-with-dark-button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+.title-with-dark-button h1{
+        margin: 0;
+}
+
 .large-filter {
     width: 530px;
 }
@@ -737,32 +808,30 @@ CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL :
 label {
     display: flex;
     flex-wrap: nowrap;
-    min-width: 170px;
 }
 
 /* CSS Pour tout ce qui est de la partie des filtres
 Le CSS du dessous reste inchangĆ© (j'ai mĆŖme tout control-c control-v de github mdr)
 */
 .filterBar {
-    height: 109px;
-    padding-top: 20px;
-    padding-right: 150px;
-    padding-bottom: 20px;
-    padding-left: 25px;
+    padding: 20px 25px;
     background-color: #F9FAFB;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
+    max-width: 1103px;
+    height: 69px;
+}
+
+.filterBar div{
+        margin: 0 4px;
 }
 
 .filter {
     min-width: 0px;
-    height: 30px;
+    height: 24px;
     border-radius: 8px;
     border-width: 1px;
-    padding-top: 10px;
-    padding-right: 14px;
-    padding-bottom: 10px;
-    padding-left: 14px;
+    padding: 10px 14px;
 
 }
 
@@ -793,7 +862,7 @@ Le CSS du dessous reste inchangĆ© (j'ai mĆŖme tout control-c control-v de gi
     border: 1px solid #EAECF0;
     width: 100%;
     max-height: 100%;
-    margin-top: 2%;
+    margin-top: 50px;
 }
 
 .infoButton {
