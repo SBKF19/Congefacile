@@ -19,7 +19,7 @@ include 'includes/database.php';
         </div>
         <button type="submit" class="dark-button" name="submit">Demander à réinitialiser votre mot de passe</button>
     </form>
-    <p><a>Cliquez ici</a> pour retourner à la de connexion</p>
+    <p><a>Cliquez ici</a> pour retourner à la page de connexion</p>
 
 </div>
 <?php
