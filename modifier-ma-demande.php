@@ -1,14 +1,16 @@
 <?php
         include "includes/collab-menu.php";
         include "includes/database.php";
-$requete = $connexion->prepare('SELECT name FROM request_type');
-$requete->execute();
-$types = $requete->fetchAll(PDO::FETCH_ASSOC);
-?>
 
-<?php
+
 $erreurs['date'] = '';
 $erreurs['justificatif'] = '';
+$id_demande = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
+$type_demande = '';
+$debut = '';
+$fin = '';
+$duree = 0;
+$infos_sup = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = $_POST['type'] ?? '';
     $date_debut = $_POST['date_debut'] ?? '';
@@ -38,25 +40,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $date_actuelle = date('Y-m-d H:i:s');
         $requeteInsertion = $connexion->prepare('
-        UPDATE request SET request_type_id = :typeID, created_at = :date_actuelle, start_at = :date_debut, end_at = date_fin, receipt_file = :justificatif, comment = :commentaire WHERE id = :id_demande
+        UPDATE request SET request_type_id = :typeID, created_at = :date_actuelle, start_at = :date_debut, end_at = :date_fin, receipt_file = :justificatif, comment = :commentaire WHERE id = :id_demande;
         '
         );
 
 
-        $requeteInsertion->bindParam('typeID', $typeID[0]['id']);
-        $requeteInsertion->bindParam('date_actuelle', $date_actuelle);
-        $requeteInsertion->bindParam('date_debut', $date_debut);
-        $requeteInsertion->bindParam('date_fin', $date_fin);
-        $requeteInsertion->bindParam('justificatif', $_FILES['justificatif']);
-        $requeteInsertion->bindParam('commentaire', $commentaire);
+        $requeteInsertion->bindParam(':typeID', $typeID[0]['id']);
+        $requeteInsertion->bindParam(':date_actuelle', $date_actuelle);
+        $requeteInsertion->bindParam(':date_debut', $date_debut);
+        $requeteInsertion->bindParam(':date_fin', $date_fin);
+        $requeteInsertion->bindParam(':justificatif', $_FILES['justificatif']);
+        $requeteInsertion->bindParam(':commentaire', $commentaire);
+        $requeteInsertion->bindParam(':id_demande', $id_demande);
 
-        $requeteInsertion->execute();
+        try {
+                $requeteInsertion->execute();
+                header('Location: afficher-ma-demande.php?id_demande=' . $id_demande);
+                exit;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
 
     }
 }
-?>
 
-<?php
         $id_demande = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
         $requete = $connexion->prepare('
 		SELECT d.request_type_id, d.start_at, DATEDIFF(start_at, end_at) as DateDiff, d.end_at, d.comment, d.id AS request, t.name AS request_type
@@ -81,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fin = $demande["end_at"];
         $duree = $demande["DateDiff"];
         $infos_sup = $demande["comment"];
+        $types = $connexion->query('SELECT name FROM request_type')->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -137,7 +145,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <br>
             <input type="number" id="nbjour" name="nbjour" accept=".pdf" class="defaultbox defaultbox-input fixed-value"
             value="<?php
-            echo $duree;
+            if ($duree < 0) {
+                $duree *= -1;
+                echo $duree;
+            } else {
+                echo $duree;
+            }
             ?>">
         </div>
         <br>
@@ -156,7 +169,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?></textarea>
             <br>
         </div>
-        <button type="submit" class="dark-button">Modifier ma demande*</button>
+        <input type="submit" class="dark-button" value="Modifier ma demande*">
     </form>
     <p>
         *En cas d'erreur de saisie ou de changements, vous pourrez modifier votre demande tant que celle-ci n'a pas été
@@ -166,5 +179,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <?php
+
         include "includes/footer.php";
 ?>
