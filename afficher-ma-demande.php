@@ -1,0 +1,79 @@
+<?php
+        include "includes/collab-menu.php";
+        include "includes/database.php";
+?>
+
+<div class="History">
+
+<?php
+        $id_demande = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
+        $requete = $connexion->prepare('
+		SELECT d.request_type_id, d.created_at, d.start_at, DATEDIFF(start_at, end_at) as DateDiff, d.end_at, d.answer_comment, d.answer, d.id AS request, t.name AS request_type
+		FROM request d, request_type t
+		WHERE d.request_type_id = t.id
+		AND d.id = :id_demande
+	');
+        $requete->bindParam(":id_demande", $id_demande);
+
+	$requete->execute();
+
+	$demande = $requete->fetch(\PDO::FETCH_ASSOC);
+
+	if ($demande === false) {
+		echo '<h1>La demande n\'a pas été trouvée.</h1>';
+		echo '<button class="dark-button"><a href="index.php">Retour à la liste</a></button>';
+		exit;
+	}
+
+        $type_demande = $demande["request_type"];
+        $date_creation = $demande["created_at"];
+        $date_debut = $demande["start_at"];
+        $date_fin = $demande["end_at"];
+        $duree = $demande["DateDiff"];
+        $commentaire = $demande["answer_comment"];
+        $reponse = $demande["answer"];
+?>
+
+<h1>Ma demande de congé</h1>
+<h3>Ma demande du <?php echo date("d/m/Y", strtotime($date_creation)); ?></h3>
+<p>Type de demande : <?php echo $type_demande; ?></p>
+<p>Période : <?php echo date("d/m/Y H:i", strtotime($date_debut))." au ".date("d/m/Y H:i", strtotime($date_fin)); ?></p>
+<p>Nombre de jours : <?php
+if (!isset($reponse)){
+        echo $duree." jours";
+} elseif ($reponse == 1){
+        echo ($duree*-1)." jours";
+} elseif ($reponse == 0){
+        echo ($duree*-1)." jours";
+}; /*Correction d'un bug qui met le nombre de jour en négatif si le statut est égal à 1 ou 0
+à voir si vous arrivez à le réparer sans la boucle if*/
+?></p>
+<p>Statut de la demande : <?php
+if (!isset($reponse)){
+        echo "<span class='pending'>En attente</span>";
+} elseif ($reponse == 1){
+        echo "<span class='confirmed'>Validé</span>";
+} elseif ($reponse == 0){
+        echo "<span class='denied'>Refusé</span>";
+};
+?>
+</p>
+<?php
+if(isset($reponse)){
+        echo "<p>Commentaire du manager :</p>
+        <textarea readonly class='placeholder' placeholder='".$commentaire."'></textarea>";
+        echo "<button class='light-button'><a>Retourner à la liste de mes demandes</a></button>";
+} elseif(!isset($reponse)){
+        echo "<div class='title-with-button'>
+                <button class='light-button'><a>Retourner à la liste de mes demandes</a></button>
+                <button class='dark-button'><a href='modifier-ma-demande.php?id=".$id_demande."'>Modifier ma demande</a></button>
+        </div>";
+};
+?>
+
+</div>
+</div>
+
+<?php
+        include "includes/footer.php";
+?>
