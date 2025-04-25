@@ -1,14 +1,16 @@
 <?php
         include "includes/collab-menu.php";
         include "includes/database.php";
-$requete = $connexion->prepare('SELECT name FROM request_type');
-$requete->execute();
-$types = $requete->fetchAll(PDO::FETCH_ASSOC);
-?>
 
-<?php
+
 $erreurs['date'] = '';
 $erreurs['justificatif'] = '';
+$id_demande = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
+$type_demande = '';
+$debut = '';
+$fin = '';
+$duree = 0;
+$infos_sup = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = $_POST['type'] ?? '';
     $date_debut = $_POST['date_debut'] ?? '';
@@ -38,25 +40,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $date_actuelle = date('Y-m-d H:i:s');
         $requeteInsertion = $connexion->prepare('
-        UPDATE request SET request_type_id = :typeID, created_at = :date_actuelle, start_at = :date_debut, end_at = date_fin, receipt_file = :justificatif, comment = :commentaire WHERE id = :id_demande
+        UPDATE request SET request_type_id = :typeID, created_at = :date_actuelle, start_at = :date_debut, end_at = :date_fin, receipt_file = :justificatif, comment = :commentaire WHERE id = :id_demande;
         '
         );
 
 
-        $requeteInsertion->bindParam('typeID', $typeID[0]['id']);
-        $requeteInsertion->bindParam('date_actuelle', $date_actuelle);
-        $requeteInsertion->bindParam('date_debut', $date_debut);
-        $requeteInsertion->bindParam('date_fin', $date_fin);
-        $requeteInsertion->bindParam('justificatif', $_FILES['justificatif']);
-        $requeteInsertion->bindParam('commentaire', $commentaire);
+        $requeteInsertion->bindParam(':typeID', $typeID[0]['id']);
+        $requeteInsertion->bindParam(':date_actuelle', $date_actuelle);
+        $requeteInsertion->bindParam(':date_debut', $date_debut);
+        $requeteInsertion->bindParam(':date_fin', $date_fin);
+        $requeteInsertion->bindParam(':justificatif', $_FILES['justificatif']);
+        $requeteInsertion->bindParam(':commentaire', $commentaire);
+        $requeteInsertion->bindParam(':id_demande', $id_demande);
 
-        $requeteInsertion->execute();
+        try {
+                $requeteInsertion->execute();
+                header('Location: afficher-ma-demande.php?id_demande=' . $id_demande);
+                exit;
+            } catch (PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
 
     }
 }
-?>
 
-<?php
         $id_demande = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
         $requete = $connexion->prepare('
 		SELECT d.request_type_id, d.start_at, DATEDIFF(start_at, end_at) as DateDiff, d.end_at, d.comment, d.id AS request, t.name AS request_type
@@ -81,17 +88,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fin = $demande["end_at"];
         $duree = $demande["DateDiff"];
         $infos_sup = $demande["comment"];
+        $types = $connexion->query('SELECT name FROM request_type')->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
-<div class="demande">
+<div class="History">
     <h1>Modifier ma demande</h1>
-    <form action="" method="POST">
+    <form action="" method="POST" class="form-request">
         <div>
-            <label for="type" class="label-input">Type de demande-champ obligatoire</label>
+            <label for="type" class="label-field">Type de demande - champ obligatoire</label>
             <br>
-            <select name="type" type="type" id="type" class="label-select">
-                <option value="">Selectionner un type</option>
+            <select name="type" type="type" id="type" class="select-option select-input">
+                <option value="" class="placeholder">Sélectionner un type</option>
                 <?php foreach ($types as $typ): ?>
                     <option value="<?php echo htmlspecialchars($typ['name']);
                     ?>"
@@ -111,18 +119,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div class="date">
             <div>
-                <label for="date_debut" class="label-input">Date début-champ obligatoire</label>
+                <label for="date_debut" class="label-field">Date début - champ obligatoire</label>
                 <br>
-                <input type="date" id="date_debut" name="date_debut" class="label-select"
+                <input type="date" id="date_debut" name="date_debut" class="label-select date-input"
                 value="<?php
                 echo date("Y", strtotime($debut)).'-'.date("m", strtotime($debut)).'-'.date("d", strtotime($debut));
                 ?>">
             </div>
             <div>
                 <div>
-                    <label for="date_fin" class="label-input">Date de fin-champ obligatoire</label>
+                    <label for="date_fin" class="label-field">Date de fin - champ obligatoire</label>
                     <br>
-                    <input type="date" id="date_fin" name="date_fin" class="label-select"
+                    <input type="date" id="date_fin" name="date_fin" class="label-select date-input"
                     value="<?php
                         echo date("Y", strtotime($fin)).'-'.date("m", strtotime($fin)).'-'.date("d", strtotime($fin));
                         ?>">
@@ -133,22 +141,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div>
-            <label for="nbjour" class="label-input">Nombre de jours demandés</label>
+            <label for="nbjour" class="label-fixed-value">Nombre de jours demandés</label>
             <br>
-            <input type="number" id="nbjour" name="nbjour" accept=".pdf" class="defaultbox"
+            <input type="number" id="nbjour" name="nbjour" accept=".pdf" class="defaultbox defaultbox-input fixed-value"
             value="<?php
-            echo $duree;
+            if ($duree < 0) {
+                $duree *= -1;
+                echo $duree;
+            } else {
+                echo $duree;
+            }
             ?>">
         </div>
         <br>
         <div>
-            <label for="justificatif" class="label-input">Justificatif si applicable</label>
+            <label for="justificatif" class="label-field">Justificatif si applicable</label>
             <br>
-            <input type="file" id="justificatif" name="justificatif" accept=".pdf" class="label-select">
+            <input type="file" id="justificatif" name="justificatif" accept=".pdf" class="label-select file-input">
         </div>
         <br>
         <div>
-            <label for="commentaire" class="label-input">Commentaire supplémentaire</label>
+            <label for="commentaire" class="label-field">Commentaire supplémentaire</label>
             <br>
             <textarea name="commentaire" class="placeholder"
                 placeholder="Si conge exceptionnel ou sans solde, vous pouvez préciser votre demande."><?php
@@ -156,15 +169,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?></textarea>
             <br>
         </div>
-        <button type="submit" class="dark-button">Modifier ma demande*</button>
+        <input type="submit" class="dark-button" value="Modifier ma demande*">
     </form>
     <p>
-        *En cas d'erreur de saisie ou de changement, vous pourrez modifier votre demande tant que celle ci n'a pas été
-        validée par le manager
+        *En cas d'erreur de saisie ou de changements, vous pourrez modifier votre demande tant que celle-ci n'a pas été
+        validée par le manager.
     </p>
 </div>
 
 
 <?php
+
         include "includes/footer.php";
 ?>

@@ -36,16 +36,15 @@
 
 <h1>Ma demande de congé</h1>
 <h3>Ma demande du <?php echo date("d/m/Y", strtotime($date_creation)); ?></h3>
-<p>Type de demande : <?php echo $type_demande; ?></p>
-<p>Période : <?php echo date("d/m/Y H:i", strtotime($date_debut))." au ".date("d/m/Y H:i", strtotime($date_fin)); ?></p>
-<p>Nombre de jours : <?php
-if (!isset($reponse)){
-        echo $duree." jours";
-} elseif ($reponse == 1){
-        echo ($duree*-1)." jours";
-} elseif ($reponse == 0){
-        echo ($duree*-1)." jours";
-}; /*Correction d'un bug qui met le nombre de jour en négatif si le statut est égal à 1 ou 0
+<p class="text-no-margin">Type de demande : <?php echo $type_demande; ?></p>
+<p class="text-low-margin">Période : <?php echo date("d/m/Y H:i", strtotime($date_debut))." au ".date("d/m/Y H:i", strtotime($date_fin)); ?></p>
+<p class="text-no-margin">Nombre de jours : <?php
+if ($duree < 0){
+        $duree = $duree * -1;
+        echo $duree;
+} else{
+        echo $duree;
+} /*Correction d'un bug qui met le nombre de jour en négatif si le statut est égal à 1 ou 0
 à voir si vous arrivez à le réparer sans la boucle if*/
 ?></p>
 <p>Statut de la demande : <?php
@@ -60,13 +59,13 @@ if (!isset($reponse)){
 </p>
 <?php
 if(isset($reponse)){
-        echo "<p>Commentaire du manager :</p>
-        <textarea readonly class='placeholder' placeholder='".$commentaire."'></textarea>";
+        echo "<label class='label-field' for='commentaire'>Commentaire du manager :</label>
+        <textarea name='commentaire' readonly class='placeholder textarea-comment' placeholder='".$commentaire."'></textarea>";
         echo "<button class='light-button'><a>Retourner à la liste de mes demandes</a></button>";
 } elseif(!isset($reponse)){
         echo "<div class='title-with-button'>
                 <button class='light-button'><a>Retourner à la liste de mes demandes</a></button>
-                <button class='dark-button'><a href='modifier-ma-demande.php?id=".$id_demande."'>Modifier ma demande</a></button>
+                <button class='alt-dark-button'><a href='modifier-ma-demande.php?id=".$id_demande."'>Modifier ma demande</a></button>
         </div>";
 };
 ?>
