@@ -10,6 +10,8 @@ $types = $requete->fetchAll(PDO::FETCH_ASSOC);
 <?php
 $erreurs['date'] = '';
 $erreurs['justificatif'] = '';
+$erreurs['empty'] = '';
+$aller = 'demande_conge_test.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = $_POST['type'] ?? '';
     $date_debut = $_POST['date_debut'] ?? '';
@@ -28,6 +30,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $annee_debut = '';
             $annee_fin = '';
+        }
+        if (($date_debut == '') || ($date_fin == '')) {
+            $erreurs['date'] = "<j class='erreur'>*Veuillez saisir une date de début et de fin.</j>";
+        } else {
+            $erreurs['date'] = '';
         }
         $jours_demandes = (strtotime($date_fin) - strtotime($date_debut)) / (60 * 60 * 24) + 1;
 
@@ -50,7 +57,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         )'
         );
 
-
         $requeteInsertion->bindParam('typeID', $typeID[0]['id']);
         $requeteInsertion->bindParam('collaborator_id', $_SESSION['utilisateur']['person_id']);
         $requeteInsertion->bindParam('date_actuelle', $date_actuelle);
@@ -58,9 +64,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $requeteInsertion->bindParam('date_fin', $date_fin);
         $requeteInsertion->bindParam('justificatif', $_FILES['justificatif']);
         $requeteInsertion->bindParam('commentaire', $commentaire);
-
-        $requeteInsertion->execute();
-
+        if (($type == '') || ($date_debut == '') || ($date_fin == '')) {
+            $erreurs['justificatif'] = "";
+            $erreurs['empty'] = "<j class='erreur'>*Veuillez remplir tous les champs obligatoires.</j>";
+            $aller = 'demande_conge_test.php';
+        } else {
+            $erreurs['empty'] = '';
+            header('Location: accueil.php');
+            $requeteInsertion->execute();
+        }
     }
 }
 ?>
@@ -70,14 +82,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="History">
     <h1>Effectuer une nouvelle demande</h1>
-    <form action="" method="POST" class="form-request">
+    <form action="<?php echo $aller ?>" method="POST" class="form-request">
         <div>
+            <?php echo $erreurs['empty']; ?>
             <label for="type" class="label-field">Type de demande-champ obligatoire</label>
             <br>
-            <select name="type" type="type" id="type" class="select-option select-input">
+            <select name="type" id="type" class="select-option select-input">
                 <option value="" class="placeholder">Selectionner un type</option>
                 <?php foreach ($types as $typ): ?>
-                    <option value="<?php echo htmlspecialchars($typ['name']); ?>">
+                    <option value="<?php echo htmlspecialchars($typ['name']); ?>" <?php echo (isset($_POST['type']) && $_POST['type'] === $typ['name']) ? 'selected' : ''; ?>>
                         <?php echo htmlspecialchars($typ['name']); ?>
                     </option>
                 <?php endforeach; ?>
@@ -106,7 +119,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div>
             <label for="nbjour" class="label-fixed-value">Nombre de jours demandés</label>
             <br>
-            <input type="number" id="nbjour" name="nbjour" accept=".pdf" class="defaultbox defaultbox-input fixed-value">
+            <input type="number" id="nbjour" name="nbjour" accept=".pdf"
+                class="defaultbox defaultbox-input fixed-value">
         </div>
         <br>
         <div>

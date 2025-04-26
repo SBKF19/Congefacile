@@ -78,6 +78,7 @@ body {
     flex-wrap: wrap;
     padding: 10px 0px 10px 45px;
     text-decoration: none;
+    width: 100%;
 }
 
 .onglet {
