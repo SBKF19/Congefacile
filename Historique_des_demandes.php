@@ -3,20 +3,44 @@
 include 'includes/collab-menu.php';
 include 'includes/database.php';
 
-$query = $connexion->prepare('
-    SELECT request.id as id, answer, start_at, end_at, DATEDIFF( end_at, start_at) as DateDiff, name , comment , last_name, first_name
-    FROM request, request_type, person
-    WHERE request_type_id = request_type.id AND collaborator_id = person.id AND answer IS NOT NULL
-');
+if($_SESSION['utilisateur']['role'] == "Manager"){
+    $query = $connexion->prepare('
+        SELECT request.id as id, answer, start_at, end_at, DATEDIFF( end_at, start_at) as DateDiff, name , last_name, first_name
+        FROM request, request_type, person
+        WHERE request_type_id = request_type.id AND collaborator_id = person.id AND answer IS NOT NULL
+    ');
+
+
+        
+    $query->execute();
+    
+    $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
+    }
+    elseif($_SESSION['utilisateur']['role'] != "Manager")
+    {
+        $query = $connexion->prepare('
+        SELECT request.id as id, answer, created_at, start_at, end_at, DATEDIFF( end_at, start_at) as DateDiff, name
+        FROM request, request_type, person
+        WHERE request_type_id = request_type.id AND collaborator_id = person.id AND answer IS NOT NULL
+    ');    
+    
+    }
+    else{
+        header("Location: ../connexion.php");
+    }
 
 $query->execute();
 
 $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
 
-
 ?>
 <div class="History">
-    <h1>Demandes en attente</h1>
+    <?php
+    if($_SESSION['utilisateur']['role'] == "Manager"){?>
+    <h1>Historique des demandes</h1>
+    <?php } else { ?>
+    <h1>Historique de mes demandes</h1>
+    <?php } ?>
     <div class="containerFilter">
         <div class="side-menu-profile filterBar">
             <div class="filterMargin">
@@ -24,10 +48,17 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
 
                 <input class ="filter type-filter" type="text" name="typedemande" id="typedemande">
             </div>
-            <div class="filterMargin">
-                <label class="label-select" for="commentaire">Collaborateur</label>
-                <input class ="filter medium-filter" type="text" name="Collaborateur" id="Collaborateur">
+            <?php if($_SESSION['utilisateur']['role'] == "Manager"){ ?>
+                <div class="filterMargin">
+                    <label class="label-select" for="commentaire">Collaborateur</label>
+                    <input class ="filter medium-filter" type="text" name="Collaborateur" id="Collaborateur">
+                </div>
+            <?php } else { ?>
+                <div class="filterMargin">
+                <label class="label-select" for="commentaire">Demandée le</label>
+                <input class ="filter medium-filter" type="text" name="dateDemande" id="dateDebut">
             </div>
+            <?php } ?>
             <div class="filterMargin">
                 <label class="label-select" for="commentaire">Date de début</label>
                 <input class ="filter medium-filter" type="text" name="dateDebut" id="dateDebut">
@@ -62,6 +93,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                             <?php }
                         ?>
                     </div>
+                    <?php if($_SESSION['utilisateur']['role'] == "Manager"){?>
                     <div class="Type2">
                         <?php
                             if( $i === Count($dates)-1){ ?>
@@ -75,6 +107,21 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                             <?php }
                         ?>
                     </div>
+                    <?php } else { ?>
+                    <div class="Type2">
+                        <?php
+                            if( $i === Count($dates)-1){ ?>
+                            <div class="filter-info-medium">
+                                <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["created_at"]))?></p>
+                            </div>
+                            <?php } else{ ?>
+                            <div class="filter-info-medium filterBorderBottom">
+                                <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["created_at"]))?></p>
+                            </div>
+                            <?php }
+                        ?>
+                    </div>
+                    <?php } ?>
                     <div class="Type3">
                         <?php
                             if( $i === Count($dates)-1){ ?>
