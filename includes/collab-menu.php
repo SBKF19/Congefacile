@@ -1,5 +1,6 @@
 <?php
 include "header.php";
+include 'includes/database.php';
 ?>
 <div class="cont2">
         <div class="side-menu">
@@ -32,8 +33,7 @@ include "header.php";
                                 <img src="images/avatar-homme.png" />
                         </div>
                         <div class="side-menu-profile-text">
-                                <p class="username">Placeholder</p>
-                                <p class="job">Placeholder</p>
+                                <?php include 'name_and_role.php'; ?>
                         </div>
                 </div>
         </div>
