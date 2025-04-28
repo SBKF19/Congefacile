@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h3>Demande du  <?= date("d/m/Y H:i:s", strtotime($dates["created_at"]))?></h3>
     <p>Période : <?=date("d/m/Y H:i:s", strtotime($dates["start_at"])) ?> au <?= date("d/m/Y H:i:s",strtotime($dates["end_at"])) ?></p> 
     <p>Nombre de jours : <?= $dates["DateDiff"] ?> jours</p>
-    <form method="POST">
+    <form method="POST" style = "Margin-Bottom: 5%">
         <div>
             <label class="titreCommentaire" for="commentaire">Commentaire Supplémentaire</label>
             <textarea readonly="readonly" rows="3"><?= $dates["comment"] ?></textarea>
