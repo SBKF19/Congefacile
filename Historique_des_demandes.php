@@ -8,7 +8,7 @@ $query = $connexion->prepare('
     FROM request, request_type, person
     WHERE request_type_id = request_type.id AND collaborator_id = person.id AND answer IS NOT NULL
 ');
-    
+
 $query->execute();
 
 $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
@@ -16,33 +16,33 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
 
 ?>
 <div class="History">
-    <h2>Demandes en attente</h2>
+    <h1>Demandes en attente</h1>
     <div class="containerFilter">
         <div class="side-menu-profile filterBar">
             <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Type de demande</label>
+                <label class="label-select" for="commentaire">Type de demande</label>
 
-                <input class ="filter" type="text" name="typedemande" id="typedemande">
+                <input class ="filter type-filter" type="text" name="typedemande" id="typedemande">
             </div>
             <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Collaborateur</label>
-                <input class ="filter" type="text" name="Collaborateur" id="Collaborateur">
+                <label class="label-select" for="commentaire">Collaborateur</label>
+                <input class ="filter medium-filter" type="text" name="Collaborateur" id="Collaborateur">
             </div>
             <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Date de début</label>
-                <input class ="filter" type="text" name="dateDebut" id="dateDebut">
+                <label class="label-select" for="commentaire">Date de début</label>
+                <input class ="filter medium-filter" type="text" name="dateDebut" id="dateDebut">
             </div>
             <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Date de fin</label>
-                <input class ="filter" type="text" name="dateFin" id="dateFin">
+                <label class="label-select" for="commentaire">Date de fin</label>
+                <input class ="filter medium-filter" type="text" name="dateFin" id="dateFin">
             </div>
             <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Nb jours</label>
-                <input class ="filter" type="text" name="nbJours" id="nbJours">
+                <label class="label-select" for="commentaire">Nb jours</label>
+                <input class ="filter small-filter" type="text" name="nbJours" id="nbJours">
             </div>
             <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Statut</label>
-                <input class="filter" type="text" name="Collaborateur" id="Collaborateur">
+                <label class="label-select" for="commentaire">Statut</label>
+                <input class="filter medium-filter" type="text" name="Collaborateur" id="Collaborateur">
             </div>
         </div>
         <div class="list_conge">
@@ -50,9 +50,13 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <?php
                 for ($i = 0; $i < Count($dates); $i++){
                     if( $i === Count($dates)-1){ ?>
-                        <p class="info break-details"><?= $dates[$i]["name"];?></p>
+                    <div class="filter-info-type">
+                        <p class="break-details"><?= $dates[$i]["name"];?></p>
+                    </div>
                     <?php } else{ ?>
-                        <p class="info filterBorderBottom break-details"><?= $dates[$i]["name"];?></p>
+                        <div class="filter-info-type filterBorderBottom">
+                        <p class="break-details"><?= $dates[$i]["name"];?></p>
+                        </div>
                     <?php }
                 }
                 ?>
@@ -61,9 +65,13 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <?php
                 for ($i = 0; $i < Count($dates); $i++){
                     if( $i === Count($dates)-1){ ?>
-                        <p class="info break-details"><?= $dates[$i]["first_name"]." ".$dates[$i]["last_name"]; ?></p>
+                    <div class="filter-info-medium">
+                        <p class="break-details"><?= $dates[$i]["first_name"]." ".$dates[$i]["last_name"]; ?></p>
+                    </div>
                     <?php } else{ ?>
-                        <p class="info filterBorderBottom break-details"><?= $dates[$i]["first_name"]." ".$dates[$i]["last_name"]; ?></p>
+                        <div class="filter-info-medium filterBorderBottom">
+                        <p class="break-details"><?= $dates[$i]["first_name"]." ".$dates[$i]["last_name"]; ?></p>
+                        </div>
                     <?php }
                 }
                 ?>
@@ -72,9 +80,13 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <?php
                 for ($i = 0; $i < Count($dates); $i++){
                     if( $i === Count($dates)-1){ ?>
-                        <p class="info break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["start_at"])); ?></p>
+                    <div class="filter-info-medium">
+                        <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["start_at"])); ?></p>
+                    </div>
                     <?php } else{ ?>
-                        <p class="info filterBorderBottom break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["start_at"])); ?></p>
+                        <div class="filter-info-medium filterBorderBottom">
+                        <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["start_at"])); ?></p>
+                        </div>
                     <?php }
                 }
                 ?>
@@ -83,9 +95,13 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <?php
                 for ($i = 0; $i < Count($dates); $i++){
                     if( $i === Count($dates)-1){ ?>
-                        <p class="info break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["end_at"])); ?></p>
+                    <div class="filter-info-medium">
+                        <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["end_at"])); ?></p>
+                    </div>
                     <?php } else{ ?>
-                        <p class="info filterBorderBottom break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["end_at"])); ?></p>
+                        <div class="filter-info-medium filterBorderBottom">
+                        <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["end_at"])); ?></p>
+                        </div>
                     <?php }
                 }
                 ?>
@@ -94,9 +110,13 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <?php
                 for ($i = 0; $i < Count($dates); $i++){
                     if( $i === Count($dates)-1){ ?>
-                        <p class="info break-details"><?= $dates[$i]["DateDiff"]; ?></p>
+                    <div class="filter-info-small">
+                        <p class="break-details"><?= $dates[$i]["DateDiff"]; ?></p>
+                    </div>
                     <?php } else{ ?>
-                        <p class="info filterBorderBottom break-details"><?= $dates[$i]["DateDiff"]; ?></p>
+                        <div class="filter-info-small filterBorderBottom">
+                        <p class="break-details"><?= $dates[$i]["DateDiff"]; ?></p>
+                        </div>
                     <?php }
                 } ?>
             </div>
@@ -104,16 +124,24 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <?php
                 for ($i = 0; $i < Count($dates); $i++){
                     if( $i === Count($dates)-1 && $dates[$i]['answer'] === 1){ ?>
-                        <p class="info break-details">Validé</p>
-                    <?php }                    
+                    <div class="filter-info-medium">
+                        <p class="break-details">Validé</p>
+                    </div>
+                    <?php }
                     if( $i === Count($dates)-1 && $dates[$i]['answer'] === 0){ ?>
-                        <p class="info break-details">Refusé</p>
+                    <div class="filter-info-medium">
+                        <p class="break-details">Refusé</p>
+                    </div>
                     <?php }
                     if( $i !== Count($dates)-1 && $dates[$i]['answer'] === 1){ ?>
-                        <p class="info break-details filterBorderBottom">Validé</p>
+                    <div class="filter-info-medium filterBorderBottom">
+                        <p class="break-details">Validé</p>
+                    </div>
                     <?php }
                     if( $i !== Count($dates)-1 && $dates[$i]['answer'] === 0){ ?>
-                        <p class="info break-details filterBorderBottom">Refusé</p>
+                    <div class="filter-info-medium filterBorderBottom">
+                        <p class="break-details">Refusé</p>
+                    </div>
                     <?php }
                 }
                 ?>
@@ -122,15 +150,19 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <?php
                 for ($i = 0; $i < Count($dates); $i++){
                     if( $i === Count($dates)-1){ ?>
-                    <div class="infoDetail">
-                        <a class="details-button" href="/php/Bouton/Demande.php?id=<?= $dates[$i]['id'] ?>" style="text-decoration: none;">Details</a>
+                    <div class="filter-info-details">
+                        <button class="details-button">
+                        <a href="/php/Bouton/Demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
+                        </button>
                     </div>
                     <?php } else{ ?>
-                    <div class="infoDetail filterBorderBottom">
-                        <a class="details-button" href="/php/Bouton/Demande.php?id=<?= $dates[$i]['id'] ?>" style="text-decoration: none;">Details</a>
+                    <div class="filter-info-details filterBorderBottom">
+                        <button class="details-button">
+                        <a href="/php/Bouton/Demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
+                        </button>
                     </div>
                     <?php }
-                } ?> 
+                } ?>
             </div>
         </div>
     </div>
@@ -139,4 +171,3 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
 <?php
 include 'includes/footer.php';
 ?>
-    
