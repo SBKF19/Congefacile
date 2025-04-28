@@ -1,5 +1,17 @@
 <?php
 include "header.php";
+include 'database.php';
+$requete = $connexion->prepare(
+
+        'SELECT COUNT(collaborator_id) AS demande_en_attente
+     FROM request
+     JOIN user ON collaborator_id = user.person_id
+     JOIN person ON user.person_id = person.id
+     WHERE request.answer IS NULL AND person.manager_id = :id'
+);
+$requete->bindParam(':id', $_SESSION['utilisateur']['person_id']);
+$requete->execute();
+$demande_en_attente = $requete->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <div class="cont2">
@@ -11,7 +23,7 @@ include "header.php";
                         <div class="onglet">
                                 <a>Demandes en attente</a>
                                 <div class="side-menu-counter">
-                                        <p>0</p>
+                                        <p><?php echo $demande_en_attente['demande_en_attente'] ?></p>
                                 </div>
                         </div>
                         <div class="onglet">
