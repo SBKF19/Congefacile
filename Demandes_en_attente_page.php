@@ -13,11 +13,9 @@ $query->execute();
 
 $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
 
-var_dump($_SESSION['utilisateur']['role'])
-
 ?>
 <div class="History">
-    <h2>Historique de mes demandes</h2>
+    <h2>Demandes en attente</h2>
     <div class="containerFilter">
         <div class="side-menu-profile filterBar">
         <div class="filterMargin">
