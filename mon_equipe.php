@@ -16,7 +16,10 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
 ?>
 
 <div class="History">
-    <h2>Mon équipe</h2>
+    <div class="title-with-dark-button">
+        <h1>Mon équipe</h1>
+        <button class="large-dark-button"><a>Ajouter un collaborateur</a></button>
+    </div>
     <div class="containerFilter">
         <div class="side-menu-profile filterBar">
         <div class="filterMargin">
@@ -38,7 +41,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
             </div>
             <div class="filterMargin">
                 <label class="titreCommentaire" for="commentaire">Nb congés posés sur l'année</label>
-                <input class ="filter medium-filter" type="text" name="nbConges" id="nbConges">
+                <input class ="filter type-filter" type="text" name="nbConges" id="nbConges">
             </div>
         </div>
         <?php
