@@ -8,10 +8,10 @@ include "header.php";
                                 <a href="accueil.php">Accueil</a>
                         </div>
                         <div class="onglet">
-                                <a href="demande_conge_test.php">Demandes en attente</a>
+                                <a href="demande_conge_test.php">Nouvelle demande</a>
                         </div>
                         <div class="onglet">
-                                <a>Historique des demandes</a>
+                                <a href="historique_des_demandes.php">Historique des demandes</a>
                         </div>
                         <div class="menu-lign"></div>
                         <div class="onglet">

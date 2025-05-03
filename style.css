@@ -574,10 +574,11 @@ p a,
 .mail-input {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
   }
 
   .mail-input input {
+    box-sizing: border-box;
     width: 100%;
     padding: 12px 12px 12px 40px; /* espace pour l’icône */
     border: 1px solid #ddd;

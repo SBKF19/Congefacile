@@ -72,13 +72,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>Connectez-vous</h2>
     <form action="" method="POST">
         <div class="connexion">
-            <label for="email" class="label-input">Adresse email</label>
+        <label class="petit_texte" for="email">Adresse email</label>
             <?php
             if (!empty($erreurs['email'])) {
                 echo "<j class='erreur'>{$erreurs['email']}</j></br>";
             }
             ?>
-                <input type="email" id="email" name="email" class="email-input" required placeholder="****@mentalworks.fr">
+            <div class="mail-input">
+                <span class="icon">
+                    <img src="images/mail.png" alt="Icône email">
+                </span>
+                <input type="email" id="email" name="email" required placeholder="****@mentalworks.fr">
+            </div>
         </div>
 
         <div class="connexion password-container">
@@ -98,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <div class="forgot-password">
-        <p>Vous avez oublié votre mot de passe ? <a href="#">Cliquez ici</a> pour le réinitialiser.</p>
+        <p>Vous avez oublié votre mot de passe ? <a href="motdepasseoublie.php">Cliquez ici</a> pour le réinitialiser.</p>
     </div>
 </div>
 
