@@ -1,5 +1,6 @@
 <?php
 include "header.php";
+include 'includes/database.php';
 ?>
 <div class="cont2">
         <div class="side-menu">
@@ -8,10 +9,10 @@ include "header.php";
                                 <a href="accueil.php">Accueil</a>
                         </div>
                         <div class="onglet">
-                                <a href="demande_conge_test.php">Demandes en attente</a>
+                                <a href="demande_conge_test.php">Nouvelle demande</a>
                         </div>
                         <div class="onglet">
-                                <a>Historique des demandes</a>
+                                <a href="historique_des_demandes.php">Historique des demandes</a>
                         </div>
                         <div class="menu-lign"></div>
                         <div class="onglet">
@@ -29,11 +30,10 @@ include "header.php";
 
                 <div class="side-menu-profile">
                         <div class="side-menu-profile-image">
-                                <img src="avatar-homme.png" />
+                                <img src="images/avatar-homme.png" />
                         </div>
                         <div class="side-menu-profile-text">
-                                <p class="username">Placeholder</p>
-                                <p class="job">Placeholder</p>
+                                <?php include 'name_and_role.php'; ?>
                         </div>
                 </div>
         </div>

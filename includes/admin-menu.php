@@ -1,5 +1,13 @@
 <?php
 include "header.php";
+include 'database.php';
+$requete = $connexion->prepare('SELECT COUNT(collaborator_id) AS demande_en_attente FROM request JOIN user 
+ON collaborator_id = user.person_id JOIN person ON user.person_id = person.id WHERE request.answer IS NULL AND person.manager_id = :id');
+
+$requete->bindParam(':id', $_SESSION['utilisateur']['person_id']);
+$requete->execute();
+$demande_en_attente = $requete->fetch(PDO::FETCH_ASSOC);
+
 ?>
 
 <div class="cont2">
@@ -11,7 +19,7 @@ include "header.php";
                         <div class="onglet">
                                 <a>Demandes en attente</a>
                                 <div class="side-menu-counter">
-                                        <p>0</p>
+                                        <p><?php echo $demande_en_attente['demande_en_attente'] ?></p>
                                 </div>
                         </div>
                         <div class="onglet">
@@ -32,7 +40,7 @@ include "header.php";
                         </div>
                         <div class="onglet toggle-button">
                                 <a>Administration</a>
-                                <div><img src="chevron-en-bas.png" /></div>
+                                <div><img src="images/chevron-en-bas.png" /></div>
                         </div>
                         <div class="hidden-menu">
                                 <div>
@@ -53,16 +61,13 @@ include "header.php";
                         </div>
                 </div>
 
-
-
                 <div class="side-menu-profile">
                         <div class="side-menu-profile-image">
-                                <img src="man.png" />
+                                <img src="images/man.png" />
                         </div>
                         <div class="side-menu-profile-text">
-                                <p class="username">Placeholder</p>
-                                <p class="job">Placeholder</p>
+                                <?php include 'name_and_role.php'; ?>
                         </div>
                 </div>
         </div>
-        <script src="menu-lateral.js"></script>
+        <script src="includes/menu-lateral.js"></script>

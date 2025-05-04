@@ -5,7 +5,7 @@
 <div class="side-menu">
         <div class="side-menu-pages">
                 <div class="onglet">
-                        <a>Connexion</a>
+                        <a href="connexion.php">Connexion</a>
                 </div>
         </div>
 
