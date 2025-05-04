@@ -25,9 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     $requete = $connexion->prepare('
-        SELECT person_id, email, password, role
-        FROM user
-        WHERE email = :email');
+        SELECT person_id, email, password, role, department_id
+        FROM user, person
+        WHERE person_id = person.id AND email = :email');
 
     $requete->bindParam('email', $data['email']);
     $requete->execute();
@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'person_id' => $utilisateur['person_id'],
                 'email' => $utilisateur['email'],
                 'role' => $utilisateur['role'],
+                'department' => $utilisateur['department_id']
             ];
 
             // On créé un message de succès de connexion.
