@@ -1,47 +1,47 @@
-
 <?php
-include 'includes/admin-menu.php';
+include 'includes/collab-menu.php';
 include 'includes/database.php';
 
 $query = $connexion->prepare('
-    SELECT request.id, created_at, start_at, end_at, DATEDIFF( end_at, start_at) as DateDiff, name , comment , last_name, first_name
-    FROM request, request_type, person
-    WHERE request_type_id = request_type.id AND collaborator_id = person.id AND answer IS NULL
+        SELECT first_name, last_name, email, position.name as Job, COUNT(request.Collaborator_id) as nbConges
+        FROM user, person, position, request, department
+        WHERE user.person_id = person.id AND position_id = position.id AND person.id = Collaborator_id AND department.id = person.department_id AND department.id = :department_id
+        GROUP BY first_name, last_name, email, position.name
 ');
-    
+$id = $_SESSION['utilisateur']['department'];
+$query->bindParam(':department_id', $id);
 $query->execute();
 
 $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
-
 ?>
+
 <div class="History">
-    <h2>Demandes en attente</h2>
+    <div class="title-with-dark-button">
+        <h1>Mon équipe</h1>
+        <button class="large-dark-button"><a>Ajouter un collaborateur</a></button>
+    </div>
     <div class="containerFilter">
         <div class="side-menu-profile filterBar">
         <div class="filterMargin">
-                <label class="label-select" for="commentaire">Type de demande</label>
+                <label class="label-select" for="commentaire">Nom</label>
 
-                <input class ="filter type-filter" type="text" name="typedemande" id="typedemande">
+                <input class ="filter medium-filter" type="text" name="nomEquipe" id="nomEquipe">
             </div>
             <div class="filterMargin">
-                <label class="label-select" for="commentaire">Demandée le</label>
-                <input class ="filter medium-filter" type="text" name="dateDemande" id="dateDemande">
+                <label class="label-select" for="commentaire">Prénom</label>
+                <input class ="filter medium-filter" type="text" name="prenomEquipe" id="prenomEquipe">
             </div>
             <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Collaborateur</label>
-                <input class ="filter medium-filter" type="text" name="Collaborateur" id="Collaborateur">
+                <label class="titreCommentaire" for="commentaire">Adresse mail</label>
+                <input class ="filter type-filter" type="text" name="mailEquipe" id="mailEquipe">
             </div>
             <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Date de début</label>
-                <input class ="filter medium-filter" type="text" name="dateDebut" id="dateDebut">
+                <label class="titreCommentaire" for="commentaire">Poste</label>
+                <input class ="filter  type-filter" type="text" name="posteEquipe" id="posteEquipe">
             </div>
             <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Date de fin</label>
-                <input class ="filter medium-filter" type="text" name="dateFin" id="dateFin">
-            </div>
-            <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Nb jours</label>
-                <input class ="filter medium-filter" type="text" name="nbJours" id="nbJours">
+                <label class="titreCommentaire" for="commentaire">Nb congés posés sur l'année</label>
+                <input class ="filter type-filter" type="text" name="nbConges" id="nbConges">
             </div>
         </div>
         <?php
@@ -51,51 +51,38 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <div class="Type1">
                     <?php
                             if( $i === Count($dates)-1){ ?>
-                            <div class="filter-info-type">
-                                <p class="break-details"><?= $dates[$i]["name"];?></p>
+                            <div class="filter-info-medium margin-team">
+                                <p class="break-details"><?= $dates[$i]["first_name"];?></p>
                             </div>
                             <?php } else{ ?>
-                                <div class="filter-info-type filterBorderBottom">
-                                <p class="break-details"><?= $dates[$i]["name"];?></p>
+                                <div class="filter-info-medium filterBorderBottom margin-team">
+                                <p class="break-details"><?= $dates[$i]["first_name"];?></p>
                                 </div>
                             <?php }
                         ?>
                 </div>
-                <div class="Type7">
+                <div class="Type2">
                     <?php
                         if( $i === Count($dates)-1){ ?>
-                        <div class="filter-info-medium">
-                            <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["created_at"]))?></p>
+                        <div class="filter-info-medium margin-team">
+                        <p class="break-details"><?= $dates[$i]["last_name"];?></p>
                         </div>
                         <?php } else{ ?>
-                        <div class="filter-info-medium filterBorderBottom">
-                            <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["created_at"]))?></p>
+                        <div class="filter-info-medium filterBorderBottom margin-team">
+                        <p class="break-details"><?= $dates[$i]["last_name"];?></p>
                         </div>
                         <?php }
                     ?>
                 </div>
-                <div class="Type2">
+                <div class="Type3">
                         <?php
                             if( $i === Count($dates)-1){ ?>
-                            <div class="filter-info-medium">
-                                <p class="break-details"><?= $dates[$i]["first_name"]." ".$dates[$i]["last_name"]; ?></p>
+                            <div class="filter-info-type">
+                                <p class="break-details"><?= $dates[$i]["email"]?></p>
                             </div>
                             <?php } else{ ?>
-                                <div class="filter-info-medium filterBorderBottom">
-                                <p class="break-details"><?= $dates[$i]["first_name"]." ".$dates[$i]["last_name"]; ?></p>
-                                </div>
-                            <?php }
-                        ?>
-                </div>
-                <div class="Type3">
-                <?php
-                            if( $i === Count($dates)-1){ ?>
-                            <div class="filter-info-medium">
-                                <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["start_at"])); ?></p>
-                            </div>
-                            <?php } else{ ?>
-                                <div class="filter-info-medium filterBorderBottom">
-                                <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["start_at"])); ?></p>
+                                <div class="filter-info-type filterBorderBottom">
+                                <p class="break-details"><?= $dates[$i]["email"]?></p>
                                 </div>
                             <?php }
                         ?>
@@ -104,11 +91,11 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <?php
                             if( $i === Count($dates)-1){ ?>
                             <div class="filter-info-medium">
-                                <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["end_at"])); ?></p>
+                            <p class="break-details"><?= $dates[$i]["Job"]?></p>
                             </div>
                             <?php } else{ ?>
                                 <div class="filter-info-medium filterBorderBottom">
-                                <p class="break-details"><?= date("d/m/Y H:i", strtotime($dates[$i]["end_at"])); ?></p>
+                                <p class="break-details"><?= $dates[$i]["Job"]?></p>
                                 </div>
                             <?php }
                         ?>
@@ -116,27 +103,27 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <div class="Type5">
                 <?php
                             if( $i === Count($dates)-1){ ?>
-                            <div class="filter-info-small">
-                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?></p>
+                            <div class="filter-info-small margin-team">
+                                <p class="break-details"><?= $dates[$i]["nbConges"]; ?></p>
                             </div>
                             <?php } else{ ?>
-                                <div class="filter-info-small filterBorderBottom">
-                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?></p>
+                                <div class="filter-info-small filterBorderBottom margin-team">
+                                <p class="break-details"><?= $dates[$i]["nbConges"]; ?></p>
                                 </div>
                             <?php } ?>
                 </div>
                 <div class="">
                         <?php
                             if( $i === Count($dates)-1){ ?>
-                            <div class="filter-info-details">
+                            <div class="filter-info-details details-padding">
                                 <button class="details-button">
-                                <a href="/php/Congefacile/Demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
+                                <a href="*">Détails</a>
                                 </button>
                             </div>
                             <?php } else{ ?>
-                            <div class="filter-info-details filterBorderBottom">
+                            <div class="filter-info-details filterBorderBottom details-padding">
                                 <button class="details-button">
-                                <a href="/php/Congefacile/Demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
+                                <a href="*">Détails</a>
                                 </button>
                             </div>
                     <?php }?>
@@ -149,14 +136,13 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
     </div>
 </div>
 <script>
-    const searchbarTypeDemande = document.querySelector("#typedemande");
-    const searchbarCollabo = document.querySelector("#Collaborateur");
-    const searchbarDateDebut = document.querySelector("#dateDebut");
-    const searchbarDateFin = document.querySelector("#dateFin");
-    const searchbarNBJours = document.querySelector("#nbJours");
-    const searchbarDateDemande = document.querySelector("#dateDemande");
+    const searchbarNomEquipe = document.querySelector("#nomEquipe");
+    const searchbarPrenomEquipe = document.querySelector("#prenomEquipe");
+    const searchbarMailEquipe = document.querySelector("#mailEquipe");
+    const searchbarPosteEquipe = document.querySelector("#posteEquipe");
+    const searchbarNbConges = document.querySelector("#nbConges");
         
-    searchbarTypeDemande.addEventListener("keyup", (e) =>{
+    searchbarNomEquipe.addEventListener("keyup", (e) =>{
         const searchedLetters = e.target.value;
         const typeElement = document.querySelectorAll(".Type1");
         const borderBottom = document.querySelectorAll(".filterBorderBottom");
@@ -164,41 +150,35 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
         filterElements(searchedLetters,typeElement,cards,borderBottom);
     });
 
-    searchbarCollabo.addEventListener("keyup", (e) =>{
+    searchbarPrenomEquipe.addEventListener("keyup", (e) =>{
         const searchedLetters = e.target.value;
         const typeElement = document.querySelectorAll(".Type2");
         const borderBottom = document.querySelectorAll(".filterBorderBottom");
         const cards = document.querySelectorAll(".card");
         filterElements(searchedLetters,typeElement,cards,borderBottom);
     });
-    searchbarDateDebut.addEventListener("keyup", (e) =>{
+    searchbarMailEquipe.addEventListener("keyup", (e) =>{
         const searchedLetters = e.target.value;
         const typeElement = document.querySelectorAll(".Type3");
         const borderBottom = document.querySelectorAll(".filterBorderBottom");
         const cards = document.querySelectorAll(".card");
         filterElements(searchedLetters,typeElement,cards,borderBottom);
     });
-    searchbarDateFin.addEventListener("keyup", (e) =>{
+    searchbarPosteEquipe.addEventListener("keyup", (e) =>{
         const searchedLetters = e.target.value;
         const typeElement = document.querySelectorAll(".Type4");
         const borderBottom = document.querySelectorAll(".filterBorderBottom");
         const cards = document.querySelectorAll(".card");
         filterElements(searchedLetters,typeElement,cards,borderBottom);
     });
-    searchbarNBJours.addEventListener("keyup", (e) =>{
+    searchbarNbConges.addEventListener("keyup", (e) =>{
         const searchedLetters = e.target.value;
         const typeElement = document.querySelectorAll(".Type5");
         const borderBottom = document.querySelectorAll(".filterBorderBottom");
         const cards = document.querySelectorAll(".card");
         filterElements(searchedLetters,typeElement,cards,borderBottom);
     });
-    searchbarDateDemande.addEventListener("keyup", (e) =>{
-        const searchedLetters = e.target.value;
-        const typeElement = document.querySelectorAll(".Type7");
-        const borderBottom = document.querySelectorAll(".filterBorderBottom");
-        const cards = document.querySelectorAll(".card");
-        filterElements(searchedLetters,typeElement,cards,borderBottom);
-    });
+
     function filterElements(letters, Type, elements,borderbottom){
         if(letters.length > 0){
             for (let i=0; i < elements.length; i++){
@@ -217,6 +197,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
             }
         }
     }
+
 </script>
 <?php
 include 'includes/footer.php';
