@@ -1,4 +1,5 @@
 <?php include 'includes/collab-menu.php'?>
+<script src="compteur.js"></script>
 <div class="demande">
 	<h1>Effectuer une nouvelle demande</h1>
 	<form action="post">
@@ -13,9 +14,9 @@
 		</div>
 		<div class="date">
 			<div>
-				<label for="date_début" class="label-input">Date début-champ obligatoire</label>
+				<label for="date_debut" class="label-input">Date début-champ obligatoire</label>
 				<br>
-				<input type="date" id="date_début" name="date_début" class="label-select">
+				<input type="date" id="date_debut" name="date_debut" class="label-select">
 			</div>
 			<div>
 				<div>
@@ -27,9 +28,9 @@
 			</div>
 		</div>
 		<div>
-			<label for="nbjour" class="label-input">Nombre de jours demandés</label>
+			<label for="nbjours" class="label-input">Nombre de jours demandés</label>
 			<br>
-			<input type="text" readonly placeholder="0" class="defaultbox">
+			<input type="text" id="nbjours" readonly  class="defaultbox">
 		</div>
 		<br>
 		<div>
