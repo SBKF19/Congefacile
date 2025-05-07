@@ -117,11 +117,11 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <?php
                             if( $i === Count($dates)-1){ ?>
                             <div class="filter-info-small">
-                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?></p>
+                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?> jour(s)</p>
                             </div>
                             <?php } else{ ?>
                                 <div class="filter-info-small filterBorderBottom">
-                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?></p>
+                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?> jour(s)</p>
                                 </div>
                             <?php } ?>
                 </div>
