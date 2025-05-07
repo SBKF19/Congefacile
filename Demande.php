@@ -16,7 +16,7 @@ $query->execute();
 $idpage = $query->fetch(\PDO::FETCH_ASSOC);
 
 $query = $connexion->prepare('
-	SELECT created_at, start_at, end_at, receipt_file, DATEDIFF( end_at, start_at) as DateDiff, name , comment , last_name, first_name
+	SELECT created_at, start_at, end_at, receipt_file, DATEDIFF( end_at, start_at) as DateDiff, name , comment , last_name, first_name , answer_comment
 	FROM request, request_type, person
 	WHERE request_type_id = request_type.id AND collaborator_id = person.id AND request.id = :id
 ');
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query->execute();
     }
 
-    if(isset($data['refuser'])&& isset($data['commentaire'])&& !isset($answer)){
+    if(isset($data['refuser'])&& isset($data['commentaire'])&& !isset($idpage['answer'])){
         $query = $connexion->prepare('UPDATE request SET answer = :answer, answer_comment = :answer_comment, answer_at = :answer_at WHERE id = :id');
         $query->bindParam(':answer', $answer); 
         $query->bindParam(':answer_comment', $answer_comment);
@@ -78,12 +78,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php }
     ?>
     <h2>Répondre à la demande</h2>
+    <?php if (!isset($idpage["answer"])){ ?>
         <form method="POST">
         <div>
             <label class="titreCommentaire" for="commentaire">Saisir un commentaire</label>
             <textarea rows="3" name="commentaire" id="commentaire"></textarea>
         </div>
-        <div class="side-menu-profile">
+
+            <div class="side-menu-profile">
             <div>
                 <input type="submit" id="refuser" class="deny" name="refuser" value="Refuser la demande">
             </div>
@@ -91,6 +93,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="submit" id="accepter" class="confirm" name="accepter" value="Accepter la demande">
             </div>
         </div>
+        <?php } else { ?>
+        <div>
+            <label class="titreCommentaire" for="commentaire">Saisir un commentaire</label>
+            <textarea rows="3" name="commentaire" readonly id="commentaire"><?php echo $dates["answer_comment"] ?></textarea>
+        </div>
+        <?php } ?>
+        
     </form>
 </div>
 <?php

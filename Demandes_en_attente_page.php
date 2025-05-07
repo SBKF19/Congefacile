@@ -6,12 +6,13 @@ include 'includes/database.php';
 $query = $connexion->prepare('
     SELECT request.id, created_at, start_at, end_at, DATEDIFF( end_at, start_at) as DateDiff, name , comment , last_name, first_name
     FROM request, request_type, person
-    WHERE request_type_id = request_type.id AND collaborator_id = person.id AND answer IS NULL
+    WHERE request_type_id = request_type.id AND collaborator_id = person.id AND manager_id = :manager_id AND answer IS NULL
 ');
-    
-$query->execute();
+    $id = $_SESSION['utilisateur']['person_id'];
+    $query->bindParam(':manager_id', $id);
+    $query->execute();
 
-$dates = $query->fetchAll(\PDO::FETCH_ASSOC);
+    $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
 
 ?>
 <div class="History">
