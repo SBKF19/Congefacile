@@ -32,7 +32,7 @@ include "header.php";
                         </div>
                         <div class="onglet toggle-button">
                                 <a>Administration</a>
-                                <div><img src="chevron-en-bas.png" /></div>
+                                <div><img src="images/chevron-en-bas.png" /></div>
                         </div>
                         <div class="hidden-menu">
                                 <div>
@@ -65,4 +65,4 @@ include "header.php";
                         </div>
                 </div>
         </div>
-        <script src="menu-lateral.js"></script>
+        <script src="includes/menu-lateral.js"></script>
