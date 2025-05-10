@@ -8,8 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
 
     // Suppression des espaces avant/après pour les différentes données.
-    $data['email'] = trim($data['email'] ?? '');
-    $data['mot_de_passe'] = trim($data['mot_de_passe'] ?? '');
+    $data['email'] = trim($data['email']);
+    $data['mot_de_passe'] = trim($data['mot_de_passe']);
 
     // Vérification si l'email n'est pas vide.
     if (empty($data['email'])) {
@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     $requete = $connexion->prepare('
-        SELECT person_id, email, password, role, department_id
+        SELECT person_id, email, password, role, department_id, manager_id
         FROM user, person
         WHERE person_id = person.id AND email = :email');
 
@@ -38,14 +38,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($utilisateur === false) {
         $erreurs['email'] = '*Compte non valide.';
     } else {
-        if (($data['mot_de_passe'] == $utilisateur['password'])) {
+        if (password_verify($data['mot_de_passe'], $utilisateur['password'])) {
             // OK l'utilisateur peut se connecter.
             // On créé une session avec les données de l'utilisateur.
             $_SESSION['utilisateur'] = [
                 'person_id' => $utilisateur['person_id'],
                 'email' => $utilisateur['email'],
                 'role' => $utilisateur['role'],
-                'department' => $utilisateur['department_id']
+                'department' => $utilisateur['department_id'],
+                'manager_id' => $utilisateur['manager_id']
             ];
 
             // On créé un message de succès de connexion.

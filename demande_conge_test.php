@@ -12,7 +12,11 @@ $erreurs['date'] = '';
 $erreurs['justificatif'] = '';
 $erreurs['empty'] = '';
 $aller = 'demande_conge_test.php';
+
+// Vérifie si la méthode de la requête est POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Récupère les données du formulaire
     $type = $_POST['type'] ?? '';
     $date_debut = $_POST['date_debut'] ?? '';
     $date_fin = $_POST['date_fin'] ?? '';
@@ -24,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $erreurs['date'] = "<j class='erreur'>*la date de début ne peut pas être postérieure à la date de fin.</j>";
     } else {
         $erreurs['date'] = '';
+
         if (strlen($date_debut) >= 4 && strlen($date_fin) >= 4) {
             $annee_debut = substr($date_debut, 0, 4);
             $annee_fin = substr($date_fin, 0, 4);
@@ -31,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $annee_debut = '';
             $annee_fin = '';
         }
+        // Vérifie que la date de début et de fin ne sont pas vides
         if (($date_debut == '') || ($date_fin == '')) {
             $erreurs['date'] = "<j class='erreur'>*Veuillez saisir une date de début et de fin.</j>";
         } else {
@@ -44,7 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $typeID = $requete->fetchAll(PDO::FETCH_ASSOC);
 
+        // On récupère la date actuelle
         $date_actuelle = date('Y-m-d H:i:s');
+
         $requeteInsertion = $connexion->prepare('
         INSERT INTO request (request_type_id, collaborator_id, created_at, start_at, end_at, receipt_file, comment) VALUES (
             :typeID,
@@ -64,14 +72,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $requeteInsertion->bindParam('date_fin', $date_fin);
         $requeteInsertion->bindParam('justificatif', $_FILES['justificatif']);
         $requeteInsertion->bindParam('commentaire', $commentaire);
+
+        // On met à jour le champ alert_new_request du manager rattaché au collaborateur
+        $requeteAlerte = $connexion->prepare('
+        UPDATE person
+        SET alert_new_request = 1
+        WHERE id = :manager_id'
+        );
+        $requeteAlerte->bindParam('manager_id', $_SESSION['utilisateur']['manager_id']);
+
+        
+        // On vérifie que les champs ne sont pas vides
         if (($type == '') || ($date_debut == '') || ($date_fin == '')) {
             $erreurs['justificatif'] = "";
             $erreurs['empty'] = "<j class='erreur'>*Veuillez remplir tous les champs obligatoires.</j>";
             $aller = 'demande_conge_test.php';
         } else {
+        // Si tous les champs sont remplis, on exécute la requête d'insertion et la requête d'alerte
             $erreurs['empty'] = '';
-            header('Location: accueil.php');
             $requeteInsertion->execute();
+            $requeteAlerte->execute();
+            header('Location: Historique_des_demandes.php');
         }
     }
 }
