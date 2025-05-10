@@ -4,15 +4,32 @@
 
 
 $query = $connexion->prepare('
-    SELECT DISTINCT (name), COUNT(position.id) as nbPostesPerson
-    FROM position , person
-    WHERE position.id = position_id
-    GROUP BY name;
+    SELECT name, id
+    FROM position
 ');
 
 $query->execute();
 
-$postes = $query->fetchAll(\PDO::FETCH_ASSOC);
+$postes1 = $query->fetchAll(\PDO::FETCH_ASSOC);
+$query = $connexion->prepare('
+    SELECT position_id
+    FROM person
+');
+
+$query->execute();
+
+$postes2 = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+$tab = [];
+for ($i = 0; $i < Count($postes1); $i++){
+    $count = 0;
+    for ($a = 0; $a < Count($postes2); $a++){
+        if ($postes1[$i]["id"] === $postes2[$a]["position_id"]){
+            $count = $count + 1;
+        }
+    }
+    array_push($tab,$count);
+}
 ?>
 
 <div class="History">
@@ -34,14 +51,14 @@ $postes = $query->fetchAll(\PDO::FETCH_ASSOC);
                 <div class="list_conge">
                         <div class="congeType">
                             <?php
-                                for ($i = 0; $i < Count($postes); $i++){
-                                    if( $i === Count($postes)-1){ ?>
+                                for ($i = 0; $i < Count($postes1); $i++){
+                                    if( $i === Count($postes1)-1){ ?>
                                     <div class="filter-info-large">
-                                        <p class="break-details"><?= $postes[$i]['name']?></p>
+                                        <p class="break-details"><?= $postes1[$i]['name']?></p>
                                     </div>
                                     <?php } else{ ?>
                                         <div class="filter-info-large filterBorderBottom">
-                                        <p class="break-details"><?= $postes[$i]['name']?></p>
+                                        <p class="break-details"><?= $postes1[$i]['name']?></p>
                                         </div>
                                     <?php }
                                 }
@@ -49,14 +66,14 @@ $postes = $query->fetchAll(\PDO::FETCH_ASSOC);
                         </div>
                         <div class="congeType">
                             <?php
-                                for ($i = 0; $i < Count($postes); $i++){
-                                    if( $i === Count($postes)-1){ ?>
+                                for ($i = 0; $i < Count($tab); $i++){
+                                    if( $i === Count($tab)-1){ ?>
                                     <div class="filter-info-medium">
-                                        <p class="break-details"><?= $postes[$i]['nbPostesPerson']?></p>
+                                        <p class="break-details"><?= $tab[$i]?></p>
                                     </div>
                                     <?php } else{ ?>
                                         <div class="filter-info-medium filterBorderBottom">
-                                        <p class="break-details"><?= $postes[$i]['nbPostesPerson']?></p>
+                                        <p class="break-details"><?= $tab[$i]?></p>
                                         </div>
                                     <?php }
                                 }
@@ -64,8 +81,8 @@ $postes = $query->fetchAll(\PDO::FETCH_ASSOC);
                         </div>
                         <div class="congeType">
                 <?php
-                for ($i = 0; $i < Count($postes); $i++){
-                    if( $i === Count($postes)-1){ ?>
+                for ($i = 0; $i < Count($postes1); $i++){
+                    if( $i === Count($postes1)-1){ ?>
                     <div class="filter-info-details">
                         <button class="details-button" href="*"><a>Détails</a></button>
                     </div>

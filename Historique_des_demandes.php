@@ -7,7 +7,7 @@ if($_SESSION['utilisateur']['role'] == "Manager"){
     $query = $connexion->prepare('
         SELECT request.id as id, answer, start_at, end_at, DATEDIFF( end_at, start_at) as DateDiff, name , last_name, first_name
         FROM request, request_type, person
-        WHERE request_type_id = request_type.id AND collaborator_id = person.id AND manager_id = :manager_id AND answer IS NULL
+        WHERE request_type_id = request_type.id AND collaborator_id = person.id AND manager_id = :manager_id AND answer IS NOT NULL
 ');
         $id = $_SESSION['utilisateur']['person_id'];
         $query->bindParam(':manager_id', $id);
@@ -21,7 +21,7 @@ if($_SESSION['utilisateur']['role'] == "Manager"){
         $query = $connexion->prepare('
         SELECT request.id as id, answer, created_at, start_at, end_at, DATEDIFF( end_at, start_at) as DateDiff, name
         FROM request, request_type, person
-        WHERE request_type_id = request_type.id AND collaborator_id = person.id AND collaborator_id = :collaborator_id AND answer IS NULL
+        WHERE request_type_id = request_type.id AND collaborator_id = person.id AND collaborator_id = :collaborator_id AND answer IS NOT NULL
         ');
         $id = $_SESSION['utilisateur']['person_id'];
         $query->bindParam(':collaborator_id', $id);
@@ -155,11 +155,11 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                         <?php
                             if( $i === Count($dates)-1){ ?>
                             <div class="filter-info-small">
-                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?></p>
+                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?> jour(s)</p>
                             </div>
                             <?php } else{ ?>
                                 <div class="filter-info-small filterBorderBottom">
-                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?></p>
+                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?> jour(s)</p>
                                 </div>
                             <?php } ?>
                     </div>
