@@ -16,7 +16,7 @@ include 'includes/database.php';
                         </div>
                         <div class="menu-lign"></div>
                         <div class="onglet">
-                                <a>Mes informations</a>
+                                <a href="mes_informations.php">Mes informations</a>
                         </div>
                         <div class="onglet">
                                 <a>Mes préférences</a>

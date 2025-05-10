@@ -17,23 +17,23 @@ $demande_en_attente = $requete->fetch(PDO::FETCH_ASSOC);
                                 <a href="accueil.php">Accueil</a>
                         </div>
                         <div class="onglet">
-                                <a>Demandes en attente</a>
+                                <a href="demandes_en_attente.php">Demandes en attente</a>
                                 <div class="side-menu-counter">
                                         <p><?php echo $demande_en_attente['demande_en_attente'] ?></p>
                                 </div>
                         </div>
                         <div class="onglet">
-                                <a>Historique des demandes</a>
+                                <a href="">Historique des demandes</a>
                         </div>
                         <div class="onglet">
-                                <a>Mon équipe</a>
+                                <a href="mon_equipe.php">Mon équipe</a>
                         </div>
                         <div class="onglet">
                                 <a>Statistiques</a>
                         </div>
                         <div class="menu-lign"></div>
                         <div class="onglet">
-                                <a>Mes informations</a>
+                                <a href="mes_informations.php">Mes informations</a>
                         </div>
                         <div class="onglet">
                                 <a>Mes préférences</a>

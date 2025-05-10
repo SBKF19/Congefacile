@@ -33,32 +33,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $requete->execute();
     $utilisateur = $requete->fetch(\PDO::FETCH_ASSOC);
 
+    var_dump($utilisateur['person_id']);
+    $actif = $connexion->prepare('
+        SELECT enabled
+        FROM user
+        WHERE person_id = :id AND enabled = 1');
+    $actif->bindParam('id', $utilisateur['person_id']);
+    $actif->execute();
+    $actif = $actif->fetch(\PDO::FETCH_ASSOC);
 
+    var_dump($actif);
     // Utilisateur non trouvé en base de données.
-    if ($utilisateur === false) {
-        $erreurs['email'] = '*Compte non valide.';
-    } else {
-        if (password_verify($data['mot_de_passe'], $utilisateur['password'])) {
-            // OK l'utilisateur peut se connecter.
-            // On créé une session avec les données de l'utilisateur.
-            $_SESSION['utilisateur'] = [
-                'person_id' => $utilisateur['person_id'],
-                'email' => $utilisateur['email'],
-                'role' => $utilisateur['role'],
-                'department' => $utilisateur['department_id'],
-                'manager_id' => $utilisateur['manager_id']
-            ];
+    if ($actif === false) {
+        $erreurs['email'] = '*Votre compte est désactivé. Veuillez contacter votre administrateur.';
 
-            // On créé un message de succès de connexion.
-            $_SESSION['message'] = [
-                'type' => 'success',
-                'message' => 'Vous êtes maintenant connecté.',
-            ];
+    }elseif ($actif['enabled'] === 1) {
+        
+        if ($utilisateur === false) {
+            $erreurs['email'] = '*Compte non valide.';
 
-            // On redirige l'utilisateur sur la page d'accueil.
-            header('Location: accueil.php');
         } else {
-            $erreurs['mot_de_passe'] = '*Mot de passe invalide.';
+            if (password_verify($data['mot_de_passe'], $utilisateur['password'])) {
+                // OK l'utilisateur peut se connecter.
+                // On créé une session avec les données de l'utilisateur.
+                $_SESSION['utilisateur'] = [
+                    'person_id' => $utilisateur['person_id'],
+                    'email' => $utilisateur['email'],
+                    'role' => $utilisateur['role'],
+                    'department' => $utilisateur['department_id'],
+                    'manager_id' => $utilisateur['manager_id']
+                ];
+
+                // On créé un message de succès de connexion.
+                $_SESSION['message'] = [
+                    'type' => 'success',
+                    'message' => 'Vous êtes maintenant connecté.',
+                ];
+
+                // On redirige l'utilisateur sur la page d'accueil.
+                header('Location: accueil.php');
+            } else {
+                $erreurs['mot_de_passe'] = '*Mot de passe invalide.';
+            }
         }
     }
 
@@ -74,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>Connectez-vous</h2>
     <form action="" method="POST">
         <div class="connexion">
-        <label class="petit_texte" for="email">Adresse email</label>
+            <label class="petit_texte" for="email">Adresse email</label>
             <?php
             if (!empty($erreurs['email'])) {
                 echo "<j class='erreur'>{$erreurs['email']}</j></br>";
@@ -105,7 +121,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <div class="forgot-password">
-        <p>Vous avez oublié votre mot de passe ? <a href="motdepasseoublie.php">Cliquez ici</a> pour le réinitialiser.</p>
+        <p>Vous avez oublié votre mot de passe ? <a href="motdepasseoublie.php">Cliquez ici</a> pour le réinitialiser.
+        </p>
     </div>
 </div>
 
