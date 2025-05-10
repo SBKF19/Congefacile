@@ -8,8 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
 
     // Suppression des espaces avant/après pour les différentes données.
-    $data['email'] = trim($data['email'] ?? '');
-    $data['mot_de_passe'] = trim($data['mot_de_passe'] ?? '');
+    $data['email'] = trim($data['email']);
+    $data['mot_de_passe'] = trim($data['mot_de_passe']);
 
     // Vérification si l'email n'est pas vide.
     if (empty($data['email'])) {
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($utilisateur === false) {
         $erreurs['email'] = '*Compte non valide.';
     } else {
-        if (($data['mot_de_passe'] == $utilisateur['password'])) {
+        if (password_verify($data['mot_de_passe'], $utilisateur['password'])) {
             // OK l'utilisateur peut se connecter.
             // On créé une session avec les données de l'utilisateur.
             $_SESSION['utilisateur'] = [
