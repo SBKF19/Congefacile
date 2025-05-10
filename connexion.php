@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     $requete = $connexion->prepare('
-        SELECT person_id, email, password, role, department_id
+        SELECT person_id, email, password, role, department_id, manager_id
         FROM user, person
         WHERE person_id = person.id AND email = :email');
 
@@ -45,7 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'person_id' => $utilisateur['person_id'],
                 'email' => $utilisateur['email'],
                 'role' => $utilisateur['role'],
-                'department' => $utilisateur['department_id']
+                'department' => $utilisateur['department_id'],
+                'manager_id' => $utilisateur['manager_id']
             ];
 
             // On créé un message de succès de connexion.
