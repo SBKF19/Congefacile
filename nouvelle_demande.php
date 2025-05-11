@@ -1,6 +1,8 @@
 <?php
 include 'includes/collab-menu.php';
-include 'includes/database.php';
+include 'includes/database.php';?>
+<script src="compteur.js"></script>
+<?php
 
 $requete = $connexion->prepare('SELECT name FROM request_type');
 $requete->execute();
@@ -105,6 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h1>Effectuer une nouvelle demande</h1>
     <form action="<?php echo $aller ?>" method="POST" class="form-request">
         <div>
+
             <?php echo $erreurs['empty']; ?>
             <label for="type" class="label-field">Type de demande-champ obligatoire</label>
             <br>
@@ -115,10 +118,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <?php echo htmlspecialchars($typ['name']); ?>
                     </option>
                 <?php endforeach; ?>
+
             </select>
             <br>
             <br>
+
             <?php echo $erreurs['date']; ?>
+
         </div>
         <div class="date">
             <div>
@@ -133,6 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="date" id="date_fin" name="date_fin" class="label-select date-input">
 
                     <?php echo $erreurs['justificatif']; ?>
+
                 </div>
                 <br>
             </div>
@@ -140,8 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div>
             <label for="nbjour" class="label-fixed-value">Nombre de jours demandés</label>
             <br>
-            <input type="number" id="nbjour" name="nbjour" accept=".pdf"
-                class="defaultbox defaultbox-input fixed-value">
+            <input type="text" id="nbjours" readonly  class="defaultbox defaultbox-input fixed-value">
         </div>
         <br>
         <div>
