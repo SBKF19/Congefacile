@@ -13,7 +13,7 @@ $types = $requete->fetchAll(PDO::FETCH_ASSOC);
 $erreurs['date'] = '';
 $erreurs['justificatif'] = '';
 $erreurs['empty'] = '';
-$aller = 'demande_conge_test.php';
+$aller = '';
 
 // Vérifie si la méthode de la requête est POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -83,18 +83,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         );
         $requeteAlerte->bindParam('manager_id', $_SESSION['utilisateur']['manager_id']);
 
-        
         // On vérifie que les champs ne sont pas vides
         if (($type == '') || ($date_debut == '') || ($date_fin == '')) {
             $erreurs['justificatif'] = "";
             $erreurs['empty'] = "<j class='erreur'>*Veuillez remplir tous les champs obligatoires.</j>";
-            $aller = 'demande_conge_test.php';
+            $aller = 'nouvelle_demande.php';
         } else {
         // Si tous les champs sont remplis, on exécute la requête d'insertion et la requête d'alerte
+            $aller = '';
             $erreurs['empty'] = '';
             $requeteInsertion->execute();
             $requeteAlerte->execute();
-            header('Location: Historique_des_demandes.php');
+            header('Location: historique_des_demandes.php');
         }
     }
 }
