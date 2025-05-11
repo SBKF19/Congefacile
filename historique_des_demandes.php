@@ -1,7 +1,14 @@
 
 <?php
-include 'includes/collab-menu.php';
+session_start();
 include 'includes/database.php';
+if($_SESSION['utilisateur']['role']== "Collaborateur"){
+include 'includes/collab-menu.php';
+} 
+else if($_SESSION['utilisateur']['role']== "Manager"){
+include 'includes/admin-menu.php';
+}
+
 
 if($_SESSION['utilisateur']['role'] == "Manager"){
     $query = $connexion->prepare('
@@ -10,7 +17,8 @@ if($_SESSION['utilisateur']['role'] == "Manager"){
         WHERE request_type_id = request_type.id 
         AND collaborator_id = person.id 
         AND manager_id = :manager_id 
-        AND answer IS NOT NULL');
+        AND answer IS NULL
+');
         $id = $_SESSION['utilisateur']['person_id'];
         $query->bindParam(':manager_id', $id);
         $query->execute();
@@ -26,7 +34,8 @@ if($_SESSION['utilisateur']['role'] == "Manager"){
         WHERE request_type_id = request_type.id 
         AND collaborator_id = person.id 
         AND collaborator_id = :collaborator_id 
-        AND answer IS NOT NULL');
+        AND answer IS NULL
+        ');
         $id = $_SESSION['utilisateur']['person_id'];
         $query->bindParam(':collaborator_id', $id);
         $query->execute();
@@ -159,11 +168,11 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                         <?php
                             if( $i === Count($dates)-1){ ?>
                             <div class="filter-info-small">
-                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?> jour(s)</p>
+                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?></p>
                             </div>
                             <?php } else{ ?>
                                 <div class="filter-info-small filterBorderBottom">
-                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?> jour(s)</p>
+                                <p class="break-details"><?= $dates[$i]["DateDiff"]; ?></p>
                                 </div>
                             <?php } ?>
                     </div>
