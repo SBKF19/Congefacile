@@ -6,7 +6,7 @@
 <div class="History">
 
 <?php
-        $id_demande = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
+        $id_demande = $_GET["id"]; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
         $requete = $connexion->prepare('
 		SELECT d.request_type_id, d.created_at, d.start_at, DATEDIFF(start_at, end_at) as DateDiff, d.end_at, d.answer_comment, d.answer, d.id AS request, t.name AS request_type
 		FROM request d, request_type t
