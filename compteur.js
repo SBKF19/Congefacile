@@ -1,11 +1,6 @@
 function calculerDiff() {
-    const start = document.getElementById("date_début").value;//selectionne la valeur de la date de début dans le document html
+    const start = document.getElementById("date_debut").value;//selectionne la valeur de la date de début dans le document html
     const end = document.getElementById("date_fin").value;
-
-    if (!start || !end) {
-      alert("Veuillez sélectionner les deux dates.");
-      return;
-    }
 
     const date1 = new Date(start);//créé un objet de type date en js
     const date2 = new Date(end);

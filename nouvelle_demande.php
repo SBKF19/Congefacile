@@ -1,6 +1,7 @@
 <?php
 include 'includes/collab-menu.php';
 include 'includes/database.php'; ?>
+<script src="compteur.js"></script>
 <?php
 
 $requete = $connexion->prepare('SELECT name FROM request_type');
@@ -129,13 +130,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
                 <label for="date_debut" class="label-field">Date début-champ obligatoire</label>
                 <br>
-                <input type="date" id="date_debut" name="date_debut" class="label-select date-input">
+                <input type="date" id="date_debut" name="date_debut" class="label-select date-input" onchange="calculerDiff()>
             </div>
             <div>
                 <div>
                     <label for="date_fin" class="label-field">Date de fin-champ obligatoire</label>
                     <br>
-                    <input type="date" id="date_fin" name="date_fin" class="label-select date-input">
+                    <input type="date" id="date_fin" name="date_fin" class="label-select date-input" onchange="calculerDiff()>
 
                     <?php echo $erreurs['justificatif']; ?>
 
@@ -144,9 +145,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div>
-            <label for="nbjour" class="label-fixed-value">Nombre de jours demandés</label>
+            <label for="nbjours" class="label-fixed-value">Nombre de jours demandés</label>
             <br>
-            <input type="text" id="nbjours" readonly class="defaultbox defaultbox-input fixed-value">
+            <input type="text" id="nbjours" readonly class="defaultbox defaultbox-input fixed-value " >
         </div>
         <br>
         <div>
