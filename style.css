@@ -78,6 +78,7 @@ body {
     flex-wrap: wrap;
     padding: 10px 0px 10px 45px;
     text-decoration: none;
+    width: 100%;
 }
 
 .onglet {
@@ -573,10 +574,11 @@ p a,
 .mail-input {
     position: relative;
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
   }
 
   .mail-input input {
+    box-sizing: border-box;
     width: 100%;
     padding: 12px 12px 12px 40px; /* espace pour l’icône */
     border: 1px solid #ddd;
@@ -614,6 +616,8 @@ select {
 
 input[type="date"]::-webkit-calendar-picker-indicator {
         opacity: 0;
+        margin-left: -220px;
+        padding-left: 20px;
     }
 
 .select-input{
@@ -1134,4 +1138,12 @@ input {
 
 .demande {
     padding: 30px 45px;
+}
+
+/* PAGE MON EQUIPE  */
+.margin-team{
+    padding-left: 20%;
+}
+.details-padding{
+    padding-left: 69px;
 }
