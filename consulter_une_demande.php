@@ -2,7 +2,12 @@
 <?php
 include 'includes/admin-menu.php';
 include 'includes/database.php';
-
+?>
+<div class="History">
+<?php
+if($_SESSION['utilisateur']['role'] !== 'Manager'){
+    header('Location: connexion.php');
+}
 $query = $connexion->prepare('
 	SELECT answer
 	FROM request
@@ -24,8 +29,13 @@ $query = $connexion->prepare('
 $query->bindParam(':id', $id);
 
 $query->execute();
-
 $dates = $query->fetch(\PDO::FETCH_ASSOC);
+        if ($dates === false) {
+            echo '<h1>La demande n\'a pas été trouvée.</h1>';
+            echo '<button class="dark-button"><a href="index.php">Retour à la liste</a></button>';
+            exit;
+        }
+
 
     // Si je ne suis pas en POST, je n'ai pas besoin de traiter le formulaire.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -50,10 +60,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $answer_comment = $data['commentaire'];
         $answer_at = date("Y-m-d H:i:s");
         $query->execute();
+        $demande = $query->fetch(\PDO::FETCH_ASSOC);
+        var_dump($demande);
+        if ($demande === false) {
+            echo '<h1>La demande n\'a pas été trouvée.</h1>';
+            echo '<button class="dark-button"><a href="index.php">Retour à la liste</a></button>';
+            exit;
+        }
+        
     }
 }
+
 ?>
-<div class="History">
+
     <div class="Request">
         <h2>Demande de <?= $dates["first_name"]." ".$dates["last_name"]?></h2>
         <h3>Demande du  <?= date("d/m/Y H:i:s", strtotime($dates["created_at"]))?></h3>
@@ -79,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
                 <div class="side-menu-profile">
-                <div>
+                <div style="margin-right: 3%;">
                     <input type="submit" id="refuser" class="deny" name="refuser" value="Refuser la demande">
                 </div>
                 <div>
