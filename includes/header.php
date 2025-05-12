@@ -25,7 +25,7 @@ if (!isset($_SESSION)) {
         <div class="header">
                 <div class="header_marine_bar">
                         <div>
-                                <img src="includes/logo-mentalworks-blanc.png" />
+                                <img src="images/logo-mentalworks-blanc.png" />
                         </div>
                 </div>
                 <div class="header_blue_bar"></div>
