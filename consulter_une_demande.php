@@ -32,7 +32,7 @@ $query->execute();
 $dates = $query->fetch(\PDO::FETCH_ASSOC);
         if ($dates === false) {
             echo '<h1>La demande n\'a pas été trouvée.</h1>';
-            echo '<button class="dark-button"><a href="index.php">Retour à la liste</a></button>';
+            echo '<button class="dark-button"><a href="accueil.php">Retour à la liste</a></button>';
             exit;
         }
 
@@ -61,10 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $answer_at = date("Y-m-d H:i:s");
         $query->execute();
         $demande = $query->fetch(\PDO::FETCH_ASSOC);
-        var_dump($demande);
         if ($demande === false) {
-            echo '<h1>La demande n\'a pas été trouvée.</h1>';
-            echo '<button class="dark-button"><a href="index.php">Retour à la liste</a></button>';
+            echo '<h1>La demande à bien été répondue.</h1>';
+            echo '<button class="dark-button"><a href="accueil.php">Retour à la liste</a></button>';
             exit;
         }
         
