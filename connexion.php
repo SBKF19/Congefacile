@@ -1,6 +1,7 @@
 <?php
-include 'includes/login-menu.php';
+session_start();
 include 'includes/database.php';
+include 'includes/login-menu.php';
 
 $erreurs = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

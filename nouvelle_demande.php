@@ -1,7 +1,6 @@
 <?php
-include 'includes/collab-menu.php';
-include 'includes/database.php'; ?>
-<?php
+include 'includes/verify-connect.php';
+include 'includes/database.php';
 
 $requete = $connexion->prepare('SELECT name FROM request_type');
 $requete->execute();
