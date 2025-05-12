@@ -1,12 +1,25 @@
 <?php
-include 'includes/collab-menu.php';
+include 'includes/admin-menu.php';
 include 'includes/database.php';
 
-$query = $connexion->prepare('
-        SELECT first_name, last_name, email, position.name as Job, COUNT(request.Collaborator_id) as nbConges
-        FROM user, person, position, request, department
-        WHERE user.person_id = person.id AND position_id = position.id AND person.id = Collaborator_id AND department.id = person.department_id AND department.id = :department_id
-        GROUP BY first_name, last_name, email, position.name
+$query = $connexion->prepare(
+    
+    //J'ai fix ta requete sql NICO 
+    '
+SELECT 
+    person.first_name, 
+    person.last_name, 
+    user.email, 
+    position.name AS Job, 
+    COUNT(request.collaborator_id) AS nbConges
+FROM user
+JOIN person ON user.person_id = person.id
+JOIN position ON person.position_id = position.id
+LEFT JOIN request ON person.id = request.collaborator_id
+JOIN department ON person.department_id = department.id
+WHERE department.id = :department_id
+  AND person.manager_id IS NOT NULL
+GROUP BY person.first_name, person.last_name, user.email, position.name;
 ');
 $id = $_SESSION['utilisateur']['department'];
 $query->bindParam(':department_id', $id);
