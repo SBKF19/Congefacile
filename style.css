@@ -616,6 +616,8 @@ select {
 
 input[type="date"]::-webkit-calendar-picker-indicator {
         opacity: 0;
+        margin-left: -220px;
+        padding-left: 20px;
     }
 
 .select-input{
