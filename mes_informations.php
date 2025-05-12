@@ -1,6 +1,11 @@
 <?php
+session_start();
 include "includes/database.php";
-include "includes/collab-menu.php";
+if ($_SESSION['utilisateur']['role'] == 'Manager') {
+        include('includes/admin-menu.php');
+} else if ($_SESSION['utilisateur']['role'] == 'Collaborateur') {
+        include('includes/collab-menu.php');
+}
 ?>
 <?php
 

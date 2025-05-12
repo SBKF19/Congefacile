@@ -1,7 +1,6 @@
 <?php
 include 'includes/collab-menu.php';
-include 'includes/database.php';?>
-<script src="compteur.js"></script>
+include 'includes/database.php'; ?>
 <?php
 
 $requete = $connexion->prepare('SELECT name FROM request_type');
@@ -89,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $erreurs['empty'] = "<j class='erreur'>*Veuillez remplir tous les champs obligatoires.</j>";
             $aller = 'nouvelle_demande.php';
         } else {
-        // Si tous les champs sont remplis, on exécute la requête d'insertion et la requête d'alerte
+            // Si tous les champs sont remplis, on exécute la requête d'insertion et la requête d'alerte
             $aller = '';
             $erreurs['empty'] = '';
             $requeteInsertion->execute();
@@ -147,7 +146,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div>
             <label for="nbjour" class="label-fixed-value">Nombre de jours demandés</label>
             <br>
-            <input type="text" id="nbjours" readonly  class="defaultbox defaultbox-input fixed-value">
+            <input type="text" id="nbjours" readonly class="defaultbox defaultbox-input fixed-value">
         </div>
         <br>
         <div>

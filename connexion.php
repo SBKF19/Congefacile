@@ -33,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $requete->execute();
     $utilisateur = $requete->fetch(\PDO::FETCH_ASSOC);
 
-    var_dump($utilisateur['person_id']);
     $actif = $connexion->prepare('
         SELECT enabled
         FROM user
@@ -42,13 +41,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $actif->execute();
     $actif = $actif->fetch(\PDO::FETCH_ASSOC);
 
-    var_dump($actif);
     // Utilisateur non trouvé en base de données.
     if ($actif === false) {
         $erreurs['email'] = '*Votre compte est désactivé. Veuillez contacter votre administrateur.';
 
-    }elseif ($actif['enabled'] === 1) {
-        
+    } elseif ($actif['enabled'] === 1) {
+
         if ($utilisateur === false) {
             $erreurs['email'] = '*Compte non valide.';
 
