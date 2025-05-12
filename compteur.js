@@ -1,12 +1,20 @@
 function calculerDiff() {
-    const start = document.getElementById("date_debut").value;//selectionne la valeur de la date de début dans le document html
-    const end = document.getElementById("date_fin").value;
 
-    const date1 = new Date(start);//créé un objet de type date en js
+    const start = document.getElementById("date_debut").value;
+    const end = document.getElementById("date_fin").value;
+    const nbjoursField = document.getElementById("nbjours");
+
+    if (!start || !end) {
+        nbjoursField.value = "";
+        return;
+    }
+
+    const date1 = new Date(start);
     const date2 = new Date(end);
 
-    const time_diff = date2.getTime() - date1.getTime();// calcul la différence entre les dates en millisecondes
-    const days_diff = time_diff / (1000 * 3600 * 24);//conversion en jours
+    const time_diff = date2.getTime() - date1.getTime();
+    const days_diff = Math.ceil(time_diff / (1000 * 3600 * 24)) + 1;
 
-    document.getElementById("nbjours").value = days_diff; // affiche le résultat dans le input nbjours
-  }
+    nbjoursField.value = days_diff;
+    console.log("Nombre de jours calculé :", days_diff);
+}
