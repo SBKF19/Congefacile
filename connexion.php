@@ -8,8 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
 
     // Suppression des espaces avant/après pour les différentes données.
-    $data['email'] = trim($data['email'] ?? '');
-    $data['mot_de_passe'] = trim($data['mot_de_passe'] ?? '');
+    $data['email'] = trim($data['email']);
+    $data['mot_de_passe'] = trim($data['mot_de_passe']);
 
     // Vérification si l'email n'est pas vide.
     if (empty($data['email'])) {
@@ -25,38 +25,54 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     $requete = $connexion->prepare('
-        SELECT person_id, email, password, role
-        FROM user
-        WHERE email = :email');
+        SELECT person_id, email, password, role, department_id, manager_id
+        FROM user, person
+        WHERE person_id = person.id AND email = :email');
 
     $requete->bindParam('email', $data['email']);
     $requete->execute();
     $utilisateur = $requete->fetch(\PDO::FETCH_ASSOC);
 
+    $actif = $connexion->prepare('
+        SELECT enabled
+        FROM user
+        WHERE person_id = :id AND enabled = 1');
+    $actif->bindParam('id', $utilisateur['person_id']);
+    $actif->execute();
+    $actif = $actif->fetch(\PDO::FETCH_ASSOC);
 
     // Utilisateur non trouvé en base de données.
-    if ($utilisateur === false) {
-        $erreurs['email'] = '*Compte non valide.';
-    } else {
-        if (($data['mot_de_passe'] == $utilisateur['password'])) {
-            // OK l'utilisateur peut se connecter.
-            // On créé une session avec les données de l'utilisateur.
-            $_SESSION['utilisateur'] = [
-                'person_id' => $utilisateur['person_id'],
-                'email' => $utilisateur['email'],
-                'role' => $utilisateur['role'],
-            ];
+    if ($actif === false) {
+        $erreurs['email'] = '*Votre compte est désactivé. Veuillez contacter votre administrateur.';
 
-            // On créé un message de succès de connexion.
-            $_SESSION['message'] = [
-                'type' => 'success',
-                'message' => 'Vous êtes maintenant connecté.',
-            ];
+    } elseif ($actif['enabled'] === 1) {
 
-            // On redirige l'utilisateur sur la page d'accueil.
-            header('Location: accueil.php');
+        if ($utilisateur === false) {
+            $erreurs['email'] = '*Compte non valide.';
+
         } else {
-            $erreurs['mot_de_passe'] = '*Mot de passe invalide.';
+            if (password_verify($data['mot_de_passe'], $utilisateur['password'])) {
+                // OK l'utilisateur peut se connecter.
+                // On créé une session avec les données de l'utilisateur.
+                $_SESSION['utilisateur'] = [
+                    'person_id' => $utilisateur['person_id'],
+                    'email' => $utilisateur['email'],
+                    'role' => $utilisateur['role'],
+                    'department' => $utilisateur['department_id'],
+                    'manager_id' => $utilisateur['manager_id']
+                ];
+
+                // On créé un message de succès de connexion.
+                $_SESSION['message'] = [
+                    'type' => 'success',
+                    'message' => 'Vous êtes maintenant connecté.',
+                ];
+
+                // On redirige l'utilisateur sur la page d'accueil.
+                header('Location: accueil.php');
+            } else {
+                $erreurs['mot_de_passe'] = '*Mot de passe invalide.';
+            }
         }
     }
 
@@ -72,13 +88,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>Connectez-vous</h2>
     <form action="" method="POST">
         <div class="connexion">
-            <label for="email" class="label-input">Adresse email</label>
+            <label class="petit_texte" for="email">Adresse email</label>
             <?php
             if (!empty($erreurs['email'])) {
                 echo "<j class='erreur'>{$erreurs['email']}</j></br>";
             }
             ?>
-                <input type="email" id="email" name="email" class="email-input" required placeholder="****@mentalworks.fr">
+            <div class="mail-input">
+                <span class="icon">
+                    <img src="images/mail.png" alt="Icône email">
+                </span>
+                <input type="email" id="email" name="email" required placeholder="****@mentalworks.fr">
+            </div>
         </div>
 
         <div class="connexion password-container">
@@ -98,7 +119,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <div class="forgot-password">
-        <p>Vous avez oublié votre mot de passe ? <a href="#">Cliquez ici</a> pour le réinitialiser.</p>
+        <p>Vous avez oublié votre mot de passe ? <a href="motdepasseoublie.php">Cliquez ici</a> pour le réinitialiser.
+        </p>
     </div>
 </div>
 

@@ -23,7 +23,7 @@ $demande_en_attente = $requete->fetch(PDO::FETCH_ASSOC);
                                 </div>
                         </div>
                         <div class="onglet">
-                                <a href="">Historique des demandes</a>
+                                <a href="historique_des_demandes.php">Historique des demandes</a>
                         </div>
                         <div class="onglet">
                                 <a href="mon_equipe.php">Mon équipe</a>
