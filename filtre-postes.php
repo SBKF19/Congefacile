@@ -55,22 +55,22 @@ for ($i = 0; $i < Count($postes1); $i++){
                         <div class="Type1">
                             <?php
                             if( $i === Count($postes1)-1){ ?>
-                            <div class="filter-info-type">
+                            <div class="filter-info-large">
                                 <p class="break-details"><?= $postes1[$i]["name"];?></p>
                             </div>
                             <?php } else{ ?>
-                                <div class="filter-info-type filterBorderBottom">
+                                <div class="filter-info-large filterBorderBottom">
                                 <p class="break-details"><?= $postes1[$i]["name"];?></p>
                                 </div>
                             <?php }
                         ?>
-                            </div>
+                        </div>
                         <div class="Type2">
                             <?php
-                                    if( $i === Count($tab)-1){ ?>
-                                    <div class="filter-info-medium">
-                                        <p class="break-details"><?= $tab[$i]?></p>
-                                    </div>
+                            if( $i === Count($tab)-1){ ?>
+                            <div class="filter-info-medium">
+                                <p class="break-details"><?= $tab[$i]?></p>
+                            </div>
                                     <?php } else{ ?>
                                         <div class="filter-info-medium filterBorderBottom">
                                         <p class="break-details"><?= $tab[$i]?></p>
@@ -78,7 +78,7 @@ for ($i = 0; $i < Count($postes1); $i++){
                                     <?php }
                             ?>
                         </div>
-                        <div class="">
+                <div class="">
                 <?php
                     if( $i === Count($postes1)-1){ ?>
                     <div class="filter-info-details">
@@ -91,10 +91,10 @@ for ($i = 0; $i < Count($postes1); $i++){
                     <?php } ?>
                         </div>
                 </div>
-            <?php } ?>
+            
         </div>
-
-</div>
+        <?php } ?>
+    </div>
 </div>
 <script>
     const searchbarNomPoste = document.querySelector("#nomPoste");
