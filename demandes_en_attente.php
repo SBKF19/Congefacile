@@ -1,5 +1,5 @@
 <?php
-include 'includes/admin-menu.php';
+include 'includes/verify-connect.php';
 include 'includes/database.php';
 
 $query = $connexion->prepare('

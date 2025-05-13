@@ -1,7 +1,6 @@
 <?php
-        include "includes/admin-menu.php";
-        include "includes/database.php";
-
+include 'includes/database.php';
+include 'includes/verify-connect.php';
 
 $query = $connexion->prepare('
     SELECT DISTINCT (name), COUNT(position.id) as nbPostesPerson
