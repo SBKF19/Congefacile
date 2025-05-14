@@ -75,7 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="Request">
         <h2>Demande de <?= $dates["first_name"]." ".$dates["last_name"]?></h2>
         <h3>Demande du  <?= date("d/m/Y H:i:s", strtotime($dates["created_at"]))?></h3>
-        <p>Période : <?=date("d/m/Y H:i:s", strtotime($dates["start_at"])) ?> au <?= date("d/m/Y H:i:s",strtotime($dates["end_at"])) ?></p> 
+        <p>Période : <?=date("d/m/Y H:i:s", strtotime($dates["start_at"])) ?> au <?= date("d/m/Y H:i:s",strtotime($dates["end_at"])) ?></p>
+        <p>Type de demande : <?=$dates["name"] ?></p> 
         <p>Nombre de jours : <?= $dates["DateDiff"] ?> jours</p>
         <form method="POST" style = "Margin-Bottom: 5%">
             <div>
