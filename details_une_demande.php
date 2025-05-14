@@ -1,12 +1,12 @@
 <?php
-include "includes/collab-menu.php";
-include "includes/database.php";
+include 'includes/database.php';
+include 'includes/verify-connect.php';
 ?>
 
 <div class="History">
 
         <?php
-        $id_demande = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
+        $id_demande = $_GET["id"]; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
         $requete = $connexion->prepare('
 		SELECT d.request_type_id, d.created_at, d.start_at, DATEDIFF(start_at, end_at) as DateDiff, d.end_at, d.answer_comment, d.answer, d.id AS request, t.name AS request_type
 		FROM request d, request_type t
@@ -21,7 +21,7 @@ include "includes/database.php";
 
         if ($demande === false) {
                 echo '<h1>La demande n\'a pas été trouvée.</h1>';
-                echo '<button class="dark-button"><a href="index.php">Retour à la liste</a></button>';
+                echo '<button class="dark-button"><a href="historique_des_demandes.php">Retour à la liste</a></button>';
                 exit;
         }
 
@@ -48,7 +48,7 @@ include "includes/database.php";
                 } else {
                         echo $duree;
                 } /*Correction d'un bug qui met le nombre de jour en négatif si le statut est égal à 1 ou 0
-              à voir si vous arrivez à le réparer sans la boucle if*/
+    à voir si vous arrivez à le réparer sans la boucle if*/
                 ?>
         </p>
         <p>Statut de la demande :
@@ -67,10 +67,10 @@ include "includes/database.php";
         if (isset($reponse)) {
                 echo "<label class='label-field' for='commentaire'>Commentaire du manager :</label>
         <textarea name='commentaire' readonly class='placeholder textarea-comment' placeholder='" . $commentaire . "'></textarea>";
-                echo "<button class='light-button'><a>Retourner à la liste de mes demandes</a></button>";
+                echo "<button class='light-button'><a href='historique_des_demandes.php'>Retourner à la liste de mes demandes</a></button>";
         } elseif (!isset($reponse)) {
                 echo "<div class='title-with-button'>
-                <button class='light-button'><a>Retourner à la liste de mes demandes</a></button>
+                <button class='light-button'><a href='historique_des_demandes.php'>Retourner à la liste de mes demandes</a></button>
                 <button class='alt-dark-button'><a href='modifier-ma-demande.php?id=" . $id_demande . "'>Modifier ma demande</a></button>
         </div>";
         }
