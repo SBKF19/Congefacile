@@ -6,6 +6,7 @@ $query = $connexion->prepare('
     SELECT request.id, created_at, start_at, end_at, DATEDIFF( end_at, start_at) as DateDiff, name , comment , last_name, first_name
     FROM request, request_type, person
     WHERE request_type_id = request_type.id AND collaborator_id = person.id AND manager_id = :manager_id AND answer IS NULL
+    ORDER BY created_at ASC
 ');
 $id = $_SESSION['utilisateur']['person_id'];
 $query->bindParam(':manager_id', $id);

@@ -17,7 +17,7 @@ if($_SESSION['utilisateur']['role'] == "Manager"){
         WHERE request_type_id = request_type.id 
         AND collaborator_id = person.id 
         AND manager_id = :manager_id 
-        AND answer IS NULL
+        AND answer IS NOT NULL
 ');
         $id = $_SESSION['utilisateur']['person_id'];
         $query->bindParam(':manager_id', $id);
@@ -34,7 +34,6 @@ if($_SESSION['utilisateur']['role'] == "Manager"){
         WHERE request_type_id = request_type.id 
         AND collaborator_id = person.id 
         AND collaborator_id = :collaborator_id 
-        AND answer IS NULL
         ');
         $id = $_SESSION['utilisateur']['person_id'];
         $query->bindParam(':collaborator_id', $id);
@@ -72,7 +71,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
             <?php } else { ?>
                 <div class="filterMargin">
                 <label class="label-select" for="commentaire">Demandée le</label>
-                <input class ="filter medium-filter" type="text" name="dateDemande" id="dateDebut">
+                <input class ="filter medium-filter" type="text" name="dateDemande" id="Collaborateur">
             </div>
             <?php } ?>
             <div class="filterMargin">
@@ -212,20 +211,36 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                     </div>
                     <div class="">
                         <?php
-                            if( $i === Count($dates)-1){ ?>
-                            <div class="filter-info-details">
-                                <button class="details-button">
-                                <a href="/php/Congefacile/Demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
-                                </button>
-                            </div>
-                            <?php } else{ ?>
-                            <div class="filter-info-details filterBorderBottom">
-                                <button class="details-button">
-                                <a href="/php/Congefacile/Demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
-                                </button>
-                            </div>
-                    <?php }?>
-            </div>
+                            if($_SESSION['utilisateur']['role'] == "Manager"){
+                                if( $i === Count($dates)-1){ ?>
+                                <div class="filter-info-details">
+                                    <button class="details-button">
+                                    <a href="/php/Congefacile/consulter_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
+                                    </button>
+                                </div>
+                                <?php } else{ ?>
+                                <div class="filter-info-details filterBorderBottom">
+                                    <button class="details-button">
+                                    <a href="/php/Congefacile/consulter_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
+                                    </button>
+                                </div>
+                        <?php }
+                        } else {                             
+                        if( $i === Count($dates)-1){ ?>
+                                <div class="filter-info-details">
+                                    <button class="details-button">
+                                    <a href="/php/Congefacile/details_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
+                                    </button>
+                                </div>
+                                <?php } else{ ?>
+                                <div class="filter-info-details filterBorderBottom">
+                                    <button class="details-button">
+                                    <a href="/php/Congefacile/details_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
+                                    </button>
+                                </div>
+                        <?php } 
+                        }?>
+                </div>
             </div>
         </div>
         <?php
