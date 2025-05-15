@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
         <?php
         if(isset($dates["receipt_file"])){?>
-        <a class="details-button" style="text-decoration: none;" download="<?= $dates["receipt_file"] ?>.txt">Télécharger le justificatif</a>
+        <a class="details-button" style="text-decoration: none;" download="Justificatif.pdf" href = "<?= $dates["receipt_file"] ?>" >Télécharger le justificatif</a>
         <?php }
         ?>
         <h2>Répondre à la demande</h2>
