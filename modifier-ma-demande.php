@@ -1,7 +1,6 @@
 <?php
-        include "includes/collab-menu.php";
-        include "includes/database.php";
-
+include 'includes/database.php';
+include 'includes/verify-connect.php';
 
 $erreurs['date'] = '';
 $erreurs['justificatif'] = '';
@@ -54,41 +53,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $requeteInsertion->bindParam(':id_demande', $id_demande);
 
         try {
-                $requeteInsertion->execute();
-                header('Location: afficher-ma-demande.php?id_demande=' . $id_demande);
-                exit;
-            } catch (PDOException $e) {
-                echo "Error: " . $e->getMessage();
-            }
+            $requeteInsertion->execute();
+            header('Location: afficher-ma-demande.php?id_demande=' . $id_demande);
+            exit;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
 
     }
 }
 
-        $id_demande = $_GET["id"]; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
-        $requete = $connexion->prepare('
+$id_demande = $_GET["id"]; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
+$requete = $connexion->prepare('
 		SELECT d.request_type_id, d.start_at, DATEDIFF(start_at, end_at) as DateDiff, d.end_at, d.comment, d.id AS request, t.name AS request_type
 		FROM request d, request_type t
 		WHERE d.request_type_id = t.id
 		AND d.id = :id_demande
 	');
-        $requete->bindParam(":id_demande", $id_demande);
+$requete->bindParam(":id_demande", $id_demande);
 
-	$requete->execute();
+$requete->execute();
 
-	$demande = $requete->fetch(\PDO::FETCH_ASSOC);
+$demande = $requete->fetch(\PDO::FETCH_ASSOC);
 
-	if ($demande === false) {
-		echo '<h1>La demande n\'a pas été trouvée.</h1>';
-		echo '<button class="dark-button"><a href="index.php">Retour à la liste</a></button>';
-		exit;
-	}
+if ($demande === false) {
+    echo '<h1>La demande n\'a pas été trouvée.</h1>';
+    echo '<button class="dark-button"><a href="historique_des_demandes.php">Retour à la liste</a></button>';
+    exit;
+}
 
-        $type_demande = $demande["request_type"];
-        $debut = $demande["start_at"];
-        $fin = $demande["end_at"];
-        $duree = $demande["DateDiff"];
-        $infos_sup = $demande["comment"];
-        $types = $connexion->query('SELECT name FROM request_type')->fetchAll(PDO::FETCH_ASSOC);
+$type_demande = $demande["request_type"];
+$debut = $demande["start_at"];
+$fin = $demande["end_at"];
+$duree = $demande["DateDiff"];
+$infos_sup = $demande["comment"];
+$types = $connexion->query('SELECT name FROM request_type')->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -102,13 +101,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <option value="" class="placeholder">Sélectionner un type</option>
                 <?php foreach ($types as $typ): ?>
                     <option value="<?php echo htmlspecialchars($typ['name']);
-                    ?>"
-                    <?php
-                    if($typ['name'] == $type_demande){
+                    ?>" <?php
+                    if ($typ['name'] == $type_demande) {
                         echo htmlspecialchars('selected');
-                    };/*bug : reste en selected sur l'option avec l'ID 1, peu importe l'id de la demande*/
-                    ?>
-                    >
+                    }
+                    ;/*bug : reste en selected sur l'option avec l'ID 1, peu importe l'id de la demande*/
+                    ?>>
                         <?php echo htmlspecialchars($typ['name']); ?>
                     </option>
                 <?php endforeach; ?>
@@ -121,19 +119,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
                 <label for="date_debut" class="label-field">Date début - champ obligatoire</label>
                 <br>
-                <input type="date" id="date_debut" name="date_debut" class="label-select date-input"
-                value="<?php
-                echo date("Y", strtotime($debut)).'-'.date("m", strtotime($debut)).'-'.date("d", strtotime($debut));
+                <input type="date" id="date_debut" name="date_debut" class="label-select date-input" value="<?php
+                echo date("Y", strtotime($debut)) . '-' . date("m", strtotime($debut)) . '-' . date("d", strtotime($debut));
                 ?>">
             </div>
             <div>
                 <div>
                     <label for="date_fin" class="label-field">Date de fin - champ obligatoire</label>
                     <br>
-                    <input type="date" id="date_fin" name="date_fin" class="label-select date-input"
-                    value="<?php
-                        echo date("Y", strtotime($fin)).'-'.date("m", strtotime($fin)).'-'.date("d", strtotime($fin));
-                        ?>">
+                    <input type="date" id="date_fin" name="date_fin" class="label-select date-input" value="<?php
+                    echo date("Y", strtotime($fin)) . '-' . date("m", strtotime($fin)) . '-' . date("d", strtotime($fin));
+                    ?>">
 
                     <?php echo $erreurs['justificatif']; ?>
                 </div>
@@ -144,14 +140,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="nbjour" class="label-fixed-value">Nombre de jours demandés</label>
             <br>
             <input type="number" id="nbjour" name="nbjour" accept=".pdf" class="defaultbox defaultbox-input fixed-value"
-            value="<?php
-            if ($duree < 0) {
-                $duree *= -1;
-                echo $duree;
-            } else {
-                echo $duree;
-            }
-            ?>">
+                value="<?php
+                if ($duree < 0) {
+                    $duree *= -1;
+                    echo $duree;
+                } else {
+                    echo $duree;
+                }
+                ?>">
         </div>
         <br>
         <div>
@@ -180,5 +176,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php
 
-        include "includes/footer.php";
+include "includes/footer.php";
 ?>
