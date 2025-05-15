@@ -1,7 +1,7 @@
 <?php
 include "header.php";
 include 'database.php';
-$requete = $connexion->prepare('SELECT COUNT(collaborator_id) AS demande_en_attente FROM request JOIN user 
+$requete = $connexion->prepare('SELECT COUNT(collaborator_id) AS demande_en_attente FROM request JOIN user
 ON collaborator_id = user.person_id JOIN person ON user.person_id = person.id WHERE request.answer IS NULL AND person.manager_id = :id');
 
 $requete->bindParam(':id', $_SESSION['utilisateur']['person_id']);
@@ -44,7 +44,7 @@ $demande_en_attente = $requete->fetch(PDO::FETCH_ASSOC);
                         </div>
                         <div class="hidden-menu">
                                 <div>
-                                        <a>Types de demandes</a>
+                                        <a href="types_de_demandes.php">Types de demandes</a>
                                 </div>
                                 <div>
                                         <a>Directions/Services</a>
