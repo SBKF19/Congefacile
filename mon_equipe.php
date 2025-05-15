@@ -135,13 +135,13 @@ var_dump($dates);
                         if ($i === Count($dates) - 1) { ?>
                             <div class="filter-info-details details-padding">
                                 <button class="details-button">
-                                    <a href="modifier_un_collaborateur.php?id=<?php echo $dates["id"]; ?>">Détails</a>
+                                    <a href="modifier_un_collaborateur.php?id=<?php echo $dates[$i]["id"]; ?>">Détails</a>
                                 </button>
                             </div>
                         <?php } else { ?>
                             <div class="filter-info-details filterBorderBottom details-padding">
                                 <button class="details-button">
-                                    <a href="modifier_un_collaborateur.php?id=<?php echo $dates["id"]; ?>">Détails</a>
+                                    <a href="modifier_un_collaborateur.php?id=<?php echo $dates[$i]["id"]; ?>">Détails</a>
                                 </button>
                             </div>
                         <?php } ?>

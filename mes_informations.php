@@ -1,11 +1,7 @@
 <?php
 session_start();
-include "includes/database.php";
-if ($_SESSION['utilisateur']['role'] == 'Manager') {
-        include('includes/admin-menu.php');
-} else if ($_SESSION['utilisateur']['role'] == 'Collaborateur') {
-        include('includes/collab-menu.php');
-}
+include 'includes/verify-connect.php';
+include 'includes/database.php';
 ?>
 <?php
 
@@ -13,12 +9,12 @@ $id_collabo = $_SESSION['utilisateur']['person_id']; // A remplacer par $_SESSIO
 
 if ($_SESSION['utilisateur']['role'] == "Collaborateur") {
         $requete = $connexion->prepare('
-SELECT u.email, u.role, u.person_id, u.id AS user, p.first_name, p.last_name, p.department_id, p.position_id, 
-p.manager_id, p.id AS person, d.name, d.id AS department 
-FROM user u, person p, department d 
-WHERE u.id = :id_collabo 
-AND u.person_id = p.id 
-AND p.department_id = d.id 
+SELECT u.email, u.role, u.person_id, u.id AS user, p.first_name, p.last_name, p.department_id, p.position_id,
+p.manager_id, p.id AS person, d.name, d.id AS department
+FROM user u, person p, department d
+WHERE u.id = :id_collabo
+AND u.person_id = p.id
+AND p.department_id = d.id
 AND u.role = "Collaborateur"');
         $requete->bindParam(':id_collabo', $id_collabo);
         $requete->execute();
@@ -26,7 +22,7 @@ AND u.role = "Collaborateur"');
         $informations = $requete->fetch(\PDO::FETCH_ASSOC);
         if ($informations === false) {
                 echo '<h1>Les informations n\'ont pas été trouvées.</h1>';
-                echo '<button class="dark-button"><a href="index.php">Retour</a></button>';
+                echo '<a class="dark-button" href="index.php">Retour</a>';
                 exit;
         }
 
@@ -38,12 +34,12 @@ AND u.role = "Collaborateur"');
         $id_manager = $informations["manager_id"];
 } elseif ($_SESSION['utilisateur']['role'] == "Manager") {
         $requete = $connexion->prepare('
-SELECT u.email, u.role, u.person_id, u.id AS user, p.first_name, p.last_name, p.department_id, p.position_id, 
-p.id AS person, d.name, d.id AS department 
-FROM user u, person p, department d 
-WHERE u.id = :id_collabo 
-AND u.person_id = p.id 
-AND p.department_id = d.id 
+SELECT u.email, u.role, u.person_id, u.id AS user, p.first_name, p.last_name, p.department_id, p.position_id,
+p.id AS person, d.name, d.id AS department
+FROM user u, person p, department d
+WHERE u.id = :id_collabo
+AND u.person_id = p.id
+AND p.department_id = d.id
 AND u.role = "Manager"');
         $requete->bindParam(':id_collabo', $id_collabo);
         $requete->execute();
@@ -52,7 +48,7 @@ AND u.role = "Manager"');
 
         if ($informations === false) {
                 echo '<h1>Les informations n\'ont pas été trouvées.</h1>';
-                echo '<button class="dark-button"><a href="index.php">Retour</a></button>';
+                echo '<a class="dark-button" href="index.php">Retour</a>';
                 exit;
         }
 
@@ -66,15 +62,15 @@ AND u.role = "Manager"');
 
 if ($_SESSION['utilisateur']['role'] == "Collaborateur") {
         $requete = $connexion->prepare('
-SELECT pos.name, pos.id AS position, p.id, p.last_name, p.first_name 
-FROM position pos, person p 
+SELECT pos.name, pos.id AS position, p.id, p.last_name, p.first_name
+FROM position pos, person p
 WHERE pos.id = :id_position AND p.id = :id_manager');
         $requete->bindParam(':id_position', $id_position);
         $requete->bindParam(':id_manager', $id_manager);
 } elseif ($_SESSION['utilisateur']['role'] == "Manager") {
         $requete = $connexion->prepare('
-SELECT pos.name, pos.id AS position, p.id, p.last_name, p.first_name 
-FROM position pos, person p 
+SELECT pos.name, pos.id AS position, p.id, p.last_name, p.first_name
+FROM position pos, person p
 WHERE pos.id = :id_position AND p.id = :id_manager');
         $requete->bindParam(':id_position', $id_position);
         $requete->bindParam(':id_manager', $id_manager);
@@ -87,23 +83,77 @@ $nom_manager = $informations2["last_name"];
 $prenom_manager = $informations2["first_name"];
 
 ?>
-<div class="History">
-        <label for="nom de famille">Nom de famille</label>
-        <input type="text" id="nom de famille" name="nom de famille" value="<?php echo $nom; ?>" readonly>
-        <label for="prénom">Prénom</label>
-        <input type="text" id="prénom" name="prénom" value="<?php echo $prenom; ?>" readonly>
-        <label for="email">Adresse email</label>
-        <input type="text" id="email" name="email" value="<?php echo $email; ?>" readonly>
-        <label for="service">Direction/Service</label>
-        <input type="text" id="service" name="service" value="<?php echo $service; ?>" readonly>
-        <div><label for="poste">Poste</label>
-                <input type="text" id="poste" name="poste" value="<?php echo $poste; ?>" readonly>
-                <label for="nom_manager">Manager</label>
-                <input type="text" id="nom_manager" name="nom_manager"
-                        value="<?php echo $prenom_manager . " " . $nom_manager; ?>" readonly>
+
+<div class="demande">
+    <h1>Mes informations</h1>
+    <form action="post">
+        <div class="date">
+            <div>
+                <label for="nom" class="label-input">Nom de famille</label>
+                <input type="text" id="nom de famille" name="nom de famille" 
+                class="defaultbox-input defaultbox" value="<?php echo $nom; ?>" readonly>
+            </div>
+
+            <div>
+                <label for="prenom" class="label-input">Prénom</label>
+                <input type="text" id="prénom" name="prénom" 
+                class=" defaultbox-input defaultbox" value="<?php echo $prenom; ?>" readonly>
+            </div>
         </div>
+        <br>
+        <div>
+            <label for="mail" class="label-input">Adresse email</label>
+            <input type="text" id="email" name="email" 
+            class=" defaultbox-input defaultbox" value="<?php echo $email; ?>" readonly>
+        </div>
+        <br>
+        <div class="date">
+            <div>
+                <label for="direction" class="label-input">Direction/Service</label>
+                        <input type="text" id="service" name="service" 
+                        class="defaultbox-input defaultbox" value="<?php echo $service; ?>" readonly>
+                </select>
+            </div>
+            <br>
+
+            <div>
+                <label for="poste" class="label-input">Poste</label>
+                        <input type="text" id="poste" name="poste" 
+                        class="defaultbox-input defaultbox" value="<?php echo $poste; ?>" readonly>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div>
+            <label for="Manager" class="label-input">Manager</label>
+                <input type="text" id="nom_manager" name="nom_manager" 
+                class="defaultbox-input defaultbox" value="<?php echo $prenom_manager . " " . $nom_manager; ?>" readonly>
+            </select>
+        </div>
+    </form>
+    <br>
+    <h2>Réinitialiser mon mot de passe</h2>
+    <form>
+        <label for="password" class="label-input">Mot de passe actuel</label>
+        <input type="password" id="password" name="password" class="label-field"><br>
+        <div class="date">
+
+            <div>
+                <label for="newpass" class="label-input">Nouveau mot de passe</label>
+                <input type="password" id="newpass" name="newpass" class="label-fixed-value">
+            </div>
+            <div>
+                <label for="confirmpass" class="label-input">Confirmation du mot de passe</label>
+                <input type="password" id="confirmpass" name="confirmpass" class="label-field">
+            </div>
+        </div>
+        <br>
+        <br>
+        <button type="submit" class="dark-button">Réinitialiser le mot de passe</button>
+    </form>
 </div>
-</div>
+
+
 <?php
 include "includes/footer.php";
 ?>
