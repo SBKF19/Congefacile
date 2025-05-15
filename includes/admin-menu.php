@@ -1,8 +1,16 @@
 <?php
 include "header.php";
 include 'database.php';
-$requete = $connexion->prepare('SELECT COUNT(collaborator_id) AS demande_en_attente FROM request JOIN user
-ON collaborator_id = user.person_id JOIN person ON user.person_id = person.id WHERE request.answer IS NULL AND person.manager_id = :id');
+$requete = $connexion->prepare(
+        'SELECT COUNT(collaborator_id) 
+AS demande_en_attente 
+FROM request 
+JOIN user
+ON collaborator_id = user.person_id 
+JOIN person ON user.person_id = person.id 
+WHERE request.answer IS NULL 
+AND person.manager_id = :id'
+);
 
 $requete->bindParam(':id', $_SESSION['utilisateur']['person_id']);
 $requete->execute();

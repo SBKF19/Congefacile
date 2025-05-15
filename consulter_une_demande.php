@@ -1,6 +1,5 @@
-
 <?php
-include 'includes/collab-menu.php';
+include 'includes/verify-connect.php';
 include 'includes/database.php';
 
 $query = $connexion->prepare('
@@ -27,20 +26,20 @@ $query->execute();
 
 $dates = $query->fetch(\PDO::FETCH_ASSOC);
 
-    // Si je ne suis pas en POST, je n'ai pas besoin de traiter le formulaire.
+// Si je ne suis pas en POST, je n'ai pas besoin de traiter le formulaire.
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $data = $_POST;
 
     // Suppression des espaces avant/après pour les différentes données.
-    
-    
+
+
     $data['commentaire'] = trim($data['commentaire']);
-    if (isset($data['accepter']) && isset($data['commentaire']) && !isset($idpage['answer'])){
+    if (isset($data['accepter']) && isset($data['commentaire']) && !isset($idpage['answer'])) {
         $query = $connexion->prepare('UPDATE request SET answer = :answer, answer_comment = :answer_comment, answer_at = :answer_at WHERE id = :id');
-        $query->bindParam(':answer', $answer); 
+        $query->bindParam(':answer', $answer);
         $query->bindParam(':answer_comment', $answer_comment);
-        $query->bindParam(':answer_at', $answer_at); 
+        $query->bindParam(':answer_at', $answer_at);
         $query->bindParam(':id', $id);
         $answer = 1;
         $answer_comment = $data['commentaire'];
@@ -48,11 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $query->execute();
     }
 
-    if(isset($data['refuser'])&& isset($data['commentaire'])&& !isset($idpage['answer'])){
+    if (isset($data['refuser']) && isset($data['commentaire']) && !isset($idpage['answer'])) {
         $query = $connexion->prepare('UPDATE request SET answer = :answer, answer_comment = :answer_comment, answer_at = :answer_at WHERE id = :id');
-        $query->bindParam(':answer', $answer); 
+        $query->bindParam(':answer', $answer);
         $query->bindParam(':answer_comment', $answer_comment);
-        $query->bindParam(':answer_at', $answer_at); 
+        $query->bindParam(':answer_at', $answer_at);
         $query->bindParam(':id', $id);
         $answer = 0;
         $answer_comment = $data['commentaire'];
@@ -62,44 +61,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <div class="Request">
-    <h2>Demande de <?= $dates["first_name"]." ".$dates["last_name"]?></h2>
-    <h3>Demande du  <?= date("d/m/Y H:i:s", strtotime($dates["created_at"]))?></h3>
-    <p>Période : <?=date("d/m/Y H:i:s", strtotime($dates["start_at"])) ?> au <?= date("d/m/Y H:i:s",strtotime($dates["end_at"])) ?></p> 
+    <h2>Demande de <?= $dates["first_name"] . " " . $dates["last_name"] ?></h2>
+    <h3>Demande du <?= date("d/m/Y H:i:s", strtotime($dates["created_at"])) ?></h3>
+    <p>Période : <?= date("d/m/Y H:i:s", strtotime($dates["start_at"])) ?> au
+        <?= date("d/m/Y H:i:s", strtotime($dates["end_at"])) ?></p>
     <p>Nombre de jours : <?= $dates["DateDiff"] ?> jours</p>
-    <form method="POST" style = "Margin-Bottom: 5%">
+    <form method="POST" style="Margin-Bottom: 5%">
         <div>
             <label class="titreCommentaire" for="commentaire">Commentaire Supplémentaire</label>
             <textarea readonly="readonly" rows="3"><?= $dates["comment"] ?></textarea>
         </div>
     </form>
     <?php
-    if(isset($dates["receipt_file"])){?>
-    <a class="details-button" style="text-decoration: none;" download="<?= $dates["receipt_file"] ?>.txt">Télécharger le justificatif</a>
+    if (isset($dates["receipt_file"])) { ?>
+        <a class="details-button" style="text-decoration: none;" download="<?= $dates["receipt_file"] ?>.txt">Télécharger le
+            justificatif</a>
     <?php }
     ?>
     <h2>Répondre à la demande</h2>
-    <?php if (!isset($idpage["answer"])){ ?>
+    <?php if (!isset($idpage["answer"])) { ?>
         <form method="POST">
-        <div>
-            <label class="titreCommentaire" for="commentaire">Saisir un commentaire</label>
-            <textarea rows="3" name="commentaire" id="commentaire"></textarea>
-        </div>
+            <div>
+                <label class="titreCommentaire" for="commentaire">Saisir un commentaire</label>
+                <textarea rows="3" name="commentaire" id="commentaire"></textarea>
+            </div>
 
             <div class="side-menu-profile">
-            <div>
-                <input type="submit" id="refuser" class="deny" name="refuser" value="Refuser la demande">
+                <div>
+                    <input type="submit" id="refuser" class="deny" name="refuser" value="Refuser la demande">
+                </div>
+                <div>
+                    <input type="submit" id="accepter" class="confirm" name="accepter" value="Accepter la demande">
+                </div>
             </div>
-            <div>
-                <input type="submit" id="accepter" class="confirm" name="accepter" value="Accepter la demande">
-            </div>
-        </div>
         <?php } else { ?>
-        <div>
-            <label class="titreCommentaire" for="commentaire">Saisir un commentaire</label>
-            <textarea rows="3" name="commentaire" readonly id="commentaire"><?php echo $dates["answer_comment"] ?></textarea>
-        </div>
+            <div>
+                <label class="titreCommentaire" for="commentaire">Saisir un commentaire</label>
+                <textarea rows="3" name="commentaire" readonly
+                    id="commentaire"><?php echo $dates["answer_comment"] ?></textarea>
+            </div>
         <?php } ?>
-        
+
     </form>
 </div>
 <?php

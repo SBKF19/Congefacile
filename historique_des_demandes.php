@@ -9,13 +9,14 @@ if ($_SESSION['utilisateur']['role'] == "Manager") {
         WHERE request_type_id = request_type.id 
         AND collaborator_id = person.id 
         AND manager_id = :manager_id 
-        AND answer IS NULL
+        ORDER BY created_at DESC
 ');
     $id = $_SESSION['utilisateur']['person_id'];
     $query->bindParam(':manager_id', $id);
     $query->execute();
 
     $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
+    $redirect = "consulter_une_demande.php";
 
 } elseif ($_SESSION['utilisateur']['role'] == "Collaborateur") {
     $query = $connexion->prepare('
@@ -24,13 +25,14 @@ if ($_SESSION['utilisateur']['role'] == "Manager") {
         WHERE request_type_id = request_type.id 
         AND collaborator_id = person.id 
         AND collaborator_id = :collaborator_id 
-        AND answer IS NULL
+        ORDER BY created_at DESC
         ');
     $id = $_SESSION['utilisateur']['person_id'];
     $query->bindParam(':collaborator_id', $id);
     $query->execute();
 
     $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
+    $redirect = "details_une_demande.php";
 } else {
     header("Location: ../connexion.php");
 }
@@ -204,13 +206,13 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                         if ($i === Count($dates) - 1) { ?>
                             <div class="filter-info-details">
                                 <button class="details-button">
-                                    <a href="/php/Congefacile/details_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
+                                    <a href="/php/Congefacile/<?php echo $redirect ?>?id=<?= $dates[$i]['id'] ?>">Détails</a>
                                 </button>
                             </div>
                         <?php } else { ?>
                             <div class="filter-info-details filterBorderBottom">
                                 <button class="details-button">
-                                    <a href="/php/Congefacile/details_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
+                                    <a href="/php/Congefacile/<?php echo $redirect ?>?id=<?= $dates[$i]['id'] ?>">Détails</a>
                                 </button>
                             </div>
                         <?php } ?>
