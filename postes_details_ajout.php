@@ -1,0 +1,103 @@
+<?php
+ob_start();
+        include "includes/admin-menu.php";
+        include "includes/database.php";
+
+
+        if (isset($_GET['id'])){
+                $id_poste = $_GET['id'];
+                $query = $connexion->prepare('
+                SELECT name, id
+                FROM position
+                WHERE id = :id');
+                $query->bindParam(':id', $id_poste);
+                $query->execute();
+                $postes = $query->fetchAll(\PDO::FETCH_ASSOC);
+                $nom_poste = $postes[0]['name'];
+
+                $query = $connexion->prepare('
+                SELECT COUNT(*) as count
+                FROM person
+                WHERE position_id = :id');
+                $query->bindParam(':id', $id_poste);
+                $query->execute();
+                $nb_postes = $query->fetchAll(\PDO::FETCH_ASSOC);
+                $nb_postes = $nb_postes[0]['count'];
+        }
+
+
+
+if (isset($_POST['supprimer'])) {
+    if ($nb_postes > 0) {
+        $error_message = "Impossible de supprimer ce poste car il est associé à $nb_postes personne(s).";
+    } else {
+        $requete = $connexion->prepare('DELETE FROM position WHERE id = :id');
+        $requete->bindParam(':id', $id_poste);
+        $requete->execute();
+        header('Location: postes.php');
+        exit();
+    }
+}
+if (isset($_POST['modifier'])) {
+    $nom_poste = $_POST['name'];
+    $requete = $connexion->prepare('UPDATE position SET name = :name WHERE id = :id');
+    $requete->bindParam(':name', $nom_poste);
+    $requete->bindParam(':id', $id_poste);
+    $requete->execute();
+    header('Location: postes.php');
+    exit();
+}
+
+if (isset($_POST['ajouter'])) {
+    $nom_poste = $_POST['name'];
+    $requete = $connexion->prepare('INSERT INTO position (name) VALUES (:name)');
+    $requete->bindParam(':name', $nom_poste);
+    $requete->execute();
+    header('Location: postes.php');
+    exit();
+}
+
+?>
+<div class="History">
+        <h1><?php if(isset($_GET['id'])){
+                        echo $nom_poste;
+                } else {
+                        echo "Ajouter un poste";
+                } ?></h1>
+        <form method="POST" action="">
+        <label for="name">
+                Nom du poste
+        </label>
+        <input type="text" id="name" name="name" value="<?php if(isset($_GET['id'])){
+                        echo $nom_poste;
+                } else {
+                        echo "";
+                } ?>" class="large-filter filter" required>
+        <div class="date">
+                <?php if (isset($_GET['id'])){
+                        echo '<div>
+                <input type="submit" id="supprimer" name="supprimer" value="Supprimer" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer ce poste ?\');"/>
+                </div>
+                <div>
+                <input type="submit" id="modifier" name="modifier" value="Mettre à jour"/>
+                </div>';
+                } else{
+                        echo '<div>
+                <input type="submit" id="ajouter" name="ajouter" value="Ajouter le poste"/>
+                </div>';
+                }
+
+                ?>
+        </div>
+        <?php if (!empty($error_message)): ?>
+    <p style="color: red;"><?php echo htmlspecialchars($error_message); ?></p>
+<?php endif; ?>
+        </form>
+
+
+</div>
+</div>
+<?php
+include "includes/footer.php";
+ob_end_flush();
+?>
