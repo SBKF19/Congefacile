@@ -2,15 +2,25 @@
 include "includes/admin-menu.php";
 include "includes/database.php";
 
-$id_collabo = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
+if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+    $id_collabo = intval($_GET['id']); // Convert to integer for safety
+} else {
+    die("Error: Invalid or missing collaborator ID.");
+}
+
 $requete = $connexion->prepare('
-        SELECT u.email, u.enabled, u.created_at, u.role, u.person_id, u.id AS user, p.last_name, p.first_name, p.manager_id, p.department_id, p.position_id, p.id AS person, d.name, d.id AS department FROM user u, person p, department d WHERE u.id = :id_collabo AND u.role = "Collaborateur" AND u.person_id = p.id AND p.department_id = d.id
+        SELECT u.email, u.enabled, u.created_at, u.role, u.person_id, u.id AS user, p.last_name, p.first_name, p.manager_id, p.department_id, p.position_id, p.id AS person, d.name, d.id AS department
+        FROM user u, person p, department d
+        WHERE u.id = :id_collabo AND u.role = "Collaborateur" AND u.person_id = p.id AND p.department_id = d.id
 ');
 $requete->bindParam(":id_collabo", $id_collabo);
-
 $requete->execute();
-
 $demande = $requete->fetch(\PDO::FETCH_ASSOC);
+
+// Check if $demande contains valid data
+if (!$demande) {
+    die("Error: Collaborator not found.");
+}
 
 $nom = $demande["last_name"];
 $prenom = $demande["first_name"];
@@ -20,28 +30,65 @@ $service = $demande["name"];
 $id_manager = $demande["manager_id"];
 $id_position = $demande["position_id"];
 $personne = $demande["person_id"];
+
+
+// Fetch departments
 $departments = $connexion->query('SELECT name FROM department')->fetchAll(PDO::FETCH_ASSOC);
+if (!$departments) {
+    $departments = []; // Default to an empty array if no departments are found
+}
+
+// Fetch positions
 $positions = $connexion->query('SELECT name FROM position')->fetchAll(PDO::FETCH_ASSOC);
+if (!$positions) {
+    $positions = []; // Default to an empty array if no positions are found
+}
+
+// Fetch manager names
 $manager_first_name = $connexion->query('SELECT first_name, last_name FROM person WHERE manager_id IS NULL')->fetchAll(PDO::FETCH_ASSOC);
 $manager_last_name = $connexion->query('SELECT last_name FROM person WHERE manager_id IS NULL')->fetchAll(PDO::FETCH_ASSOC);
 
+if (!$manager_first_name || !$manager_last_name) {
+    $manager_first_name = [];
+    $manager_last_name = [];
+}
+
+// Fetch position name
 $position = $connexion->prepare('SELECT name FROM position WHERE id = :id_position');
 $position->bindParam(':id_position', $id_position);
 $position->execute();
 $position = $position->fetchAll(PDO::FETCH_ASSOC);
-$poste = $position[0]['name'];
 
+if (!empty($position) && isset($position[0]['name'])) {
+    $poste = $position[0]['name'];
+} else {
+    $poste = ''; // Default value if no position is found
+}
+// Fetch department ID
 $requete = $connexion->prepare('SELECT id FROM department WHERE name = :service');
 $requete->bindParam(':service', $service);
 $requete->execute();
 $serviceID = $requete->fetchAll(PDO::FETCH_ASSOC);
 
-$manager_name = [];
-for($i=0; $i < count($manager_first_name); $i++){
-        array_push($manager_name, $manager_first_name[$i]['first_name']." ".$manager_last_name[$i]['last_name']);
+if (!empty($serviceID) && isset($serviceID[0]['id'])) {
+    $serviceIDValue = $serviceID[0]['id'];
+} else {
+    $serviceIDValue = null; // Default value if no department is found
 }
 
+// Build manager names
+$manager_name = [];
+for ($i = 0; $i < count($manager_first_name); $i++) {
+    if (isset($manager_first_name[$i]['first_name'], $manager_last_name[$i]['last_name'])) {
+        array_push($manager_name, $manager_first_name[$i]['first_name'] . " " . $manager_last_name[$i]['last_name']);
+    }
+}
 
+// Handle manager display name
+$manager_display_name = '';
+if (!empty($manager_name) && isset($manager_name[$id_manager - 1])) {
+    $manager_display_name = htmlspecialchars($manager_name[$id_manager - 1]);
+}
 
 ?>
 <div class="History">

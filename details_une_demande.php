@@ -48,7 +48,7 @@ include 'includes/verify-connect.php';
                 } else {
                         echo $duree;
                 } /*Correction d'un bug qui met le nombre de jour en négatif si le statut est égal à 1 ou 0
-    à voir si vous arrivez à le réparer sans la boucle if*/
+               à voir si vous arrivez à le réparer sans la boucle if*/
                 ?>
         </p>
         <p>Statut de la demande :
@@ -67,11 +67,11 @@ include 'includes/verify-connect.php';
         if (isset($reponse)) {
                 echo "<label class='label-field' for='commentaire'>Commentaire du manager :</label>
         <textarea name='commentaire' readonly class='placeholder textarea-comment' placeholder='" . $commentaire . "'></textarea>";
-                echo "<button class='light-button'><a href='historique_des_demandes.php'>Retourner à la liste de mes demandes</a></button>";
+                echo "<a class='light-button' href= 'historique_des_demandes.php'>Retourner à la liste de mes demandes</a>";
         } elseif (!isset($reponse)) {
                 echo "<div class='title-with-button'>
-                <button class='light-button'><a href='historique_des_demandes.php'>Retourner à la liste de mes demandes</a></button>
-                <button class='alt-dark-button'><a href='modifier-ma-demande.php?id=" . $id_demande . "'>Modifier ma demande</a></button>
+                <a class='light-button' href= 'historique_des_demandes.php'>Retourner à la liste de mes demandes</a>
+                <a class='alt-dark-button' href='modifier-ma-demande.php?id=" . $id_demande . "'>Modifier ma demande</a>
         </div>";
         }
         ;

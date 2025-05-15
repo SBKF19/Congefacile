@@ -55,7 +55,7 @@ $demande_en_attente = $requete->fetch(PDO::FETCH_ASSOC);
                                         <a href="types_de_demandes.php">Types de demandes</a>
                                 </div>
                                 <div>
-                                        <a>Directions/Services</a>
+                                        <a href="directions_services.php">Directions/Services</a>
                                 </div>
                                 <div>
                                         <a>Managers</a>

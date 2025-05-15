@@ -118,14 +118,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="date_debut" class="label-field">Date début-champ obligatoire</label>
                 <br>
                 <input type="date" id="date_debut" name="date_debut" class="label-select date-input"
-                    value="<?php echo htmlspecialchars($date_debut ?? ''); ?>">
+                    onchange="calculerDiff()" value="<?php echo htmlspecialchars($date_debut ?? ''); ?>">
             </div>
             <div>
                 <div>
                     <label for="date_fin" class="label-field">Date de fin-champ obligatoire</label>
                     <br>
                     <input type="date" id="date_fin" name="date_fin" class="label-select date-input"
-                        value="<?php echo htmlspecialchars($date_fin ?? ''); ?>">
+                        onchange="calculerDiff()" value="<?php echo htmlspecialchars($date_fin ?? ''); ?>">
 
                     <j class='erreur'><?php echo $erreurs['justificatif']; ?></j>
 
@@ -134,7 +134,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div>
-            <label for="nbjour" class="label-fixed-value">Nombre de jours demandés</label>
+            <label for="nbjours" class="label-fixed-value">Nombre de jours demandés</label>
             <br>
             <input type="text" id="nbjours" readonly class="defaultbox defaultbox-input fixed-value">
         </div>
@@ -159,6 +159,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         validée par le manager
     </p>
 </div>
+
+<script src="compteur.js"></script>
+
 <?php
 include 'includes/footer.php'
     ?>
