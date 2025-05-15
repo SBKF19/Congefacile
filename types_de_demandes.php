@@ -35,7 +35,7 @@ for ($i = 0; $i < Count($postes1); $i++){
 <div class="History">
         <div class="title-with-dark-button">
         <h1>Types de demandes</h1>
-        <button class="large-dark-button"><a>Ajouter un type de demande</a></button>
+        <a class="large-dark-button" href="types_de_demandes_ajout.php">Ajouter un type de demande</a>
         </div>
         <div class="containerFilter">
                 <div class="side-menu-profile filterBar">
@@ -84,11 +84,11 @@ for ($i = 0; $i < Count($postes1); $i++){
                 for ($i = 0; $i < Count($postes1); $i++){
                     if( $i === Count($postes1)-1){ ?>
                     <div class="filter-info-details">
-                        <button class="details-button" href="*"><a>Détails</a></button>
+                        <button class="details-button"><a href="types_de_demandes_ajout.php?id=<?= $postes1[$i]["id"] ?>">Détails</a></button>
                     </div>
                     <?php } else{ ?>
                     <div class="filter-info-details filterBorderBottom">
-                        <button class="details-button" href="*"><a>Détails</a></button>
+                        <button class="details-button"><a href="types_de_demandes_ajout.php?id=<?= $postes1[$i]["id"] ?>">Détails</a></button>
                     </div>
                     <?php }
                 } ?>

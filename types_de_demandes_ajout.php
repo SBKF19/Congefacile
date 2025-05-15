@@ -5,62 +5,62 @@ ob_start();
 
 
         if (isset($_GET['id'])){
-                $id_poste = $_GET['id'];
+                $id_type = $_GET['id'];
                 $query = $connexion->prepare('
                 SELECT name, id
-                FROM position
+                FROM request_type
                 WHERE id = :id');
-                $query->bindParam(':id', $id_poste);
+                $query->bindParam(':id', $id_type);
                 $query->execute();
-                $postes = $query->fetchAll(\PDO::FETCH_ASSOC);
-                $nom_poste = $postes[0]['name'];
+                $types = $query->fetchAll(\PDO::FETCH_ASSOC);
+                $nom_type = $types[0]['name'];
 
                 $query = $connexion->prepare('
                 SELECT COUNT(*) as count
-                FROM person
-                WHERE position_id = :id');
-                $query->bindParam(':id', $id_poste);
+                FROM request
+                WHERE request_type_id = :id');
+                $query->bindParam(':id', $id_type);
                 $query->execute();
-                $nb_postes = $query->fetchAll(\PDO::FETCH_ASSOC);
-                $nb_postes = $nb_postes[0]['count'];
+                $nb_types = $query->fetchAll(\PDO::FETCH_ASSOC);
+                $nb_types = $nb_types[0]['count'];
         }
 
 
 
 if (isset($_POST['supprimer'])) {
-    if ($nb_postes > 0) {
-        $error_message = "Impossible de supprimer ce poste car il est associé à $nb_postes personne(s).";
+    if ($nb_types > 0) {
+        $error_message = "Impossible de supprimer ce type de demande car il est associé à $nb_types demande(s).";
     } else {
-        $requete = $connexion->prepare('DELETE FROM position WHERE id = :id');
-        $requete->bindParam(':id', $id_poste);
+        $requete = $connexion->prepare('DELETE FROM request_type WHERE id = :id');
+        $requete->bindParam(':id', $id_type);
         $requete->execute();
-        header('Location: postes.php');
+        header('Location: types_de_demandes.php');
         exit();
     }
 }
 if (isset($_POST['modifier'])) {
-    $nom_poste = $_POST['name'];
-    $requete = $connexion->prepare('UPDATE position SET name = :name WHERE id = :id');
-    $requete->bindParam(':name', $nom_poste);
-    $requete->bindParam(':id', $id_poste);
+    $nom_type = $_POST['name'];
+    $requete = $connexion->prepare('UPDATE request_type SET name = :name WHERE id = :id');
+    $requete->bindParam(':name', $nom_type);
+    $requete->bindParam(':id', $id_type);
     $requete->execute();
-    header('Location: postes.php');
+    header('Location: types_de_demandes.php');
     exit();
 }
 
 if (isset($_POST['ajouter'])) {
-    $nom_poste = $_POST['name'];
-    $requete = $connexion->prepare('INSERT INTO position (name) VALUES (:name)');
-    $requete->bindParam(':name', $nom_poste);
+    $nom_type = $_POST['name'];
+    $requete = $connexion->prepare('INSERT INTO request_type (name) VALUES (:name)');
+    $requete->bindParam(':name', $nom_type);
     $requete->execute();
-    header('Location: postes.php');
+    header('Location: types_de_demandes.php');
     exit();
 }
 
 ?>
 <div class="History">
         <h1><?php if(isset($_GET['id'])){
-                        echo $nom_poste;
+                        echo $nom_type;
                 } else {
                         echo "Ajouter un poste";
                 } ?></h1>
@@ -70,21 +70,21 @@ if (isset($_POST['ajouter'])) {
                 Nom du poste
         </label>
         <input type="text" id="name" name="name" class="label-input defaultbox-input" value="<?php if(isset($_GET['id'])){
-                        echo $nom_poste;
+                        echo $nom_type;
                 } else {
                         echo "";
                 } ?>" class="large-filter filter" required>
         <div class="date">
                 <?php if (isset($_GET['id'])){
                         echo '<div>
-                <input type="submit" id="supprimer" name="supprimer" class="deny" value="Supprimer" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer ce poste ?\');"/>
+                <input type="submit" id="supprimer" name="supprimer" class="deny" value="Supprimer" onclick="return confirm(\'Êtes-vous sûr de vouloir supprimer ce type de demande ?\');"/>
                 </div>
                 <div>
                 <input type="submit" id="modifier" name="modifier" class="alt-dark-button" value="Mettre à jour"/>
                 </div>';
                 } else{
                         echo '<div>
-                <input type="submit" id="ajouter" name="ajouter" class="alt-dark-button" value="Ajouter le poste"/>
+                <input type="submit" id="ajouter" name="ajouter" class="alt-dark-button" value="Ajouter le type de demande"/>
                 </div>';
                 }
 

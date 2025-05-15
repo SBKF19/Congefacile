@@ -210,18 +210,12 @@ button {
 .deny {
     width: fit-content;
     border: none;
-    padding: 13px 28px;
+    padding: 10px 28px;
     border-radius: 6px;
-    height: 40px;
-}
-
-.confirm a,
-.deny a {
     font-family: "Inter", sans-serif;
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-    letter-spacing: 0px;
     color: white;
     text-decoration: none;
 }
@@ -268,7 +262,7 @@ button:hover {
     line-height: 24px;
     letter-spacing: 0px;
     text-decoration: none;
-    padding: 10px 20px 10px 20px;
+    padding: 10px 28px;
     border-radius: 7px;
 }
 
