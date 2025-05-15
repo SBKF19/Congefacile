@@ -35,7 +35,7 @@ var_dump($dates);
 <div class="History">
     <div class="title-with-dark-button">
         <h1>Mon équipe</h1>
-        <button class="large-dark-button"><a>Ajouter un collaborateur</a></button>
+        <a class="large-dark-button">Ajouter un collaborateur</a>
     </div>
     <div class="containerFilter">
         <div class="side-menu-profile filterBar">
@@ -133,15 +133,11 @@ var_dump($dates);
                         <?php
                             if( $i === Count($dates)-1){ ?>
                             <div class="filter-info-details details-padding">
-                                <button class="details-button">
-                                <a href="modifier_un_collaborateur.php?id=<?php echo $dates["id"]; ?>">Détails</a>
-                                </button>
+                                <a class="details-button" href="modifier_un_collaborateur.php?id=<?php echo $dates["id"]; ?>">Détails</a>
                             </div>
                             <?php } else{ ?>
                             <div class="filter-info-details filterBorderBottom details-padding">
-                                <button class="details-button">
-                                <a href="modifier_un_collaborateur.php?id=<?php echo $dates["id"]; ?>">Détails</a>
-                                </button>
+                                <a class="details-button" href="modifier_un_collaborateur.php?id=<?php echo $dates["id"]; ?>">Détails</a>
                             </div>
                     <?php }?>
                 </div>

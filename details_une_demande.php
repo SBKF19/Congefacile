@@ -21,7 +21,7 @@
 
 	if ($demande === false) {
 		echo '<h1>La demande n\'a pas été trouvée.</h1>';
-		echo '<button class="dark-button"><a href="index.php">Retour à la liste</a></button>';
+		echo '<a class="dark-button" href="index.php">Retour à la liste</a>';
 		exit;
 	}
 

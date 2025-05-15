@@ -297,8 +297,12 @@ button:hover {
 
 .details-button {
     background-color: rgba(0, 76, 108, 0.08);
-    height: 40px;
-    height: 40px;
+    color: #475467;
+    text-decoration: none;
+        font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 .details-button,
@@ -315,8 +319,7 @@ button:hover {
     border: none;
 }
 
-.light-button a,
-.details-button a {
+.light-button a{
     color: #475467;
 }
 
@@ -325,8 +328,7 @@ button:hover {
 }
 
 .dark-button a,
-.light-button a,
-.details-button a {
+.light-button a{
     font-family: "Inter", sans-serif;
     font-weight: 500;
     font-size: 16px;

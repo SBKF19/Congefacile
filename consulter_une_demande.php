@@ -32,7 +32,7 @@ $query->execute();
 $dates = $query->fetch(\PDO::FETCH_ASSOC);
         if ($dates === false) {
             echo '<h1>La demande n\'a pas été trouvée.</h1>';
-            echo '<button class="dark-button"><a href="accueil.php">Retour à la liste</a></button>';
+            echo '<a class="dark-button" href="accueil.php">Retour à la liste</a>';
             exit;
         }
 
@@ -43,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = $_POST;
 
     // Suppression des espaces avant/après pour les différentes données.
-    
-    
+
+
     $data['commentaire'] = trim($data['commentaire']);
     if (isset($data['commentaire']) && !isset($idpage['answer'])){
         $query = $connexion->prepare('UPDATE request SET answer = :answer, answer_comment = :answer_comment, answer_at = :answer_at WHERE id = :id');
-        $query->bindParam(':answer', $answer); 
+        $query->bindParam(':answer', $answer);
         $query->bindParam(':answer_comment', $answer_comment);
-        $query->bindParam(':answer_at', $answer_at); 
+        $query->bindParam(':answer_at', $answer_at);
         $query->bindParam(':id', $id);
         if(isset($data['refuser'])){
             $answer = 0;
@@ -63,10 +63,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $demande = $query->fetch(\PDO::FETCH_ASSOC);
         if ($demande === false) {
             echo '<h1>La demande à bien été répondue.</h1>';
-            echo '<button class="dark-button"><a href="accueil.php">Retour à la liste</a></button>';
+            echo '<a class="dark-button" href="accueil.php">Retour à la liste</a>';
             exit;
         }
-        
+
     }
 }
 
@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2>Demande de <?= $dates["first_name"]." ".$dates["last_name"]?></h2>
         <h3>Demande du  <?= date("d/m/Y H:i:s", strtotime($dates["created_at"]))?></h3>
         <p>Période : <?=date("d/m/Y H:i:s", strtotime($dates["start_at"])) ?> au <?= date("d/m/Y H:i:s",strtotime($dates["end_at"])) ?></p>
-        <p>Type de demande : <?=$dates["name"] ?></p> 
+        <p>Type de demande : <?=$dates["name"] ?></p>
         <p>Nombre de jours : <?= $dates["DateDiff"] ?> jours</p>
         <form method="POST" style = "Margin-Bottom: 5%">
             <div>
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <textarea rows="3" name="commentaire" readonly id="commentaire"><?php echo $dates["answer_comment"] ?></textarea>
             </div>
             <?php } ?>
-            
+
         </form>
     </div>
 </div>
