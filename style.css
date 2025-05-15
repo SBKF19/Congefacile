@@ -758,11 +758,18 @@ textarea {
         padding-left: 27px;
 }
 
+.filter-info-larger{
+        width: 589px;
+        padding-left: 27px;
+        padding-right: 24px;
+}
+
 .filter-info-details,
 .filter-info-medium,
 .filter-info-small,
 .filter-info-type,
-.filter-info-large{
+.filter-info-large,
+.filter-info-larger{
         display: flex;
         align-items: center;
         height: 72px;
@@ -820,6 +827,10 @@ CAR ELLE EST DEJA OUVERTE DANS LE FICHIER DU MENU LATERAL :
 
 .title-with-dark-button h1{
         margin: 0;
+}
+
+.larger-filter{
+        width: 558px;
 }
 
 .large-filter {

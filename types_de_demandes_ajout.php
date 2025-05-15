@@ -59,15 +59,11 @@ if (isset($_POST['ajouter'])) {
 
 ?>
 <div class="History">
-        <h1><?php if(isset($_GET['id'])){
-                        echo $nom_type;
-                } else {
-                        echo "Ajouter un poste";
-                } ?></h1>
+        <h1>Types de demandes</h1>
                 <br>
         <form method="POST" action="">
         <label for="name" class="label-field">
-                Nom du poste
+                Nom du type
         </label>
         <input type="text" id="name" name="name" class="label-input defaultbox-input" value="<?php if(isset($_GET['id'])){
                         echo $nom_type;
