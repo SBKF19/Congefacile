@@ -210,9 +210,10 @@ button {
 .deny {
     width: fit-content;
     border: none;
-    padding: 13px 28px;
     border-radius: 6px;
-    height: 40px;
+    color: white;
+    padding: 13px 34px;
+    height: 45px;
 }
 
 .confirm a,

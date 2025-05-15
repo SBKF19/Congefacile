@@ -6,7 +6,7 @@
 <div class="History">
 
 <?php
-        $id_demande = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
+        $id_demande = $_GET["id"]; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
         $requete = $connexion->prepare('
 		SELECT d.request_type_id, d.created_at, d.start_at, DATEDIFF(start_at, end_at) as DateDiff, d.end_at, d.answer_comment, d.answer, d.id AS request, t.name AS request_type
 		FROM request d, request_type t
@@ -61,11 +61,11 @@ if (!isset($reponse)){
 if(isset($reponse)){
         echo "<label class='label-field' for='commentaire'>Commentaire du manager :</label>
         <textarea name='commentaire' readonly class='placeholder textarea-comment' placeholder='".$commentaire."'></textarea>";
-        echo "<button class='light-button'><a>Retourner à la liste de mes demandes</a></button>";
+        echo "<a class='light-button' href= 'historique_des_demandes.php'>Retourner à la liste de mes demandes</a>";
 } elseif(!isset($reponse)){
         echo "<div class='title-with-button'>
-                <button class='light-button'><a>Retourner à la liste de mes demandes</a></button>
-                <button class='alt-dark-button'><a href='modifier-ma-demande.php?id=".$id_demande."'>Modifier ma demande</a></button>
+                <a class='light-button' href= 'historique_des_demandes.php'>Retourner à la liste de mes demandes</a>
+                <a class='alt-dark-button' href='modifier-ma-demande.php?id=".$id_demande."'>Modifier ma demande</a>
         </div>";
 };
 ?>
