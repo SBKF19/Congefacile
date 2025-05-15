@@ -23,6 +23,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $requeteInsertion->bindParam(':id_collaborateur', $id_collaborateur);
         try{
                 $requeteInsertion->execute();
+                header("Location:mon_equipe.php");
+                exit();
         }
                 catch (PDOException $e) {
                         echo "Error: " . $e->getMessage();

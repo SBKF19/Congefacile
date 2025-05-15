@@ -3,14 +3,15 @@ include 'includes/admin-menu.php';
 include 'includes/database.php';
 
 $query = $connexion->prepare(
-    
-    //J'ai fix ta requete sql NICO 
+
+    //J'ai fix ta requete sql NICO
     '
-SELECT 
-    person.first_name, 
-    person.last_name, 
-    user.email, 
-    position.name AS Job, 
+SELECT
+    person.first_name,
+    person.last_name,
+    user.email,
+    user.id,
+    position.name AS Job,
     COUNT(request.collaborator_id) AS nbConges
 FROM user
 JOIN person ON user.person_id = person.id
@@ -26,6 +27,9 @@ $query->bindParam(':department_id', $id);
 $query->execute();
 
 $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
+
+var_dump($dates);
+
 ?>
 
 <div class="History">
@@ -130,13 +134,13 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                             if( $i === Count($dates)-1){ ?>
                             <div class="filter-info-details details-padding">
                                 <button class="details-button">
-                                <a href="*">Détails</a>
+                                <a href="modifier_un_collaborateur.php?id=<?php echo $dates["id"]; ?>">Détails</a>
                                 </button>
                             </div>
                             <?php } else{ ?>
                             <div class="filter-info-details filterBorderBottom details-padding">
                                 <button class="details-button">
-                                <a href="*">Détails</a>
+                                <a href="modifier_un_collaborateur.php?id=<?php echo $dates["id"]; ?>">Détails</a>
                                 </button>
                             </div>
                     <?php }?>
@@ -154,7 +158,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
     const searchbarMailEquipe = document.querySelector("#mailEquipe");
     const searchbarPosteEquipe = document.querySelector("#posteEquipe");
     const searchbarNbConges = document.querySelector("#nbConges");
-        
+
     searchbarNomEquipe.addEventListener("keyup", (e) =>{
         const searchedLetters = e.target.value;
         const typeElement = document.querySelectorAll(".Type1");
