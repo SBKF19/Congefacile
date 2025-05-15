@@ -19,11 +19,11 @@ include 'includes/verify-connect.php';
 
         $demande = $requete->fetch(\PDO::FETCH_ASSOC);
 
-        if ($demande === false) {
-                echo '<h1>La demande n\'a pas été trouvée.</h1>';
-                echo '<button class="dark-button"><a href="historique_des_demandes.php">Retour à la liste</a></button>';
-                exit;
-        }
+	if ($demande === false) {
+		echo '<h1>La demande n\'a pas été trouvée.</h1>';
+		echo '<a class="dark-button" href="index.php">Retour à la liste</a>';
+		exit;
+	}
 
         $type_demande = $demande["request_type"];
         $date_creation = $demande["created_at"];

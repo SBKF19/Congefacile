@@ -13,12 +13,12 @@ $id_collabo = $_SESSION['utilisateur']['person_id']; // A remplacer par $_SESSIO
 
 if ($_SESSION['utilisateur']['role'] == "Collaborateur") {
         $requete = $connexion->prepare('
-SELECT u.email, u.role, u.person_id, u.id AS user, p.first_name, p.last_name, p.department_id, p.position_id, 
-p.manager_id, p.id AS person, d.name, d.id AS department 
-FROM user u, person p, department d 
-WHERE u.id = :id_collabo 
-AND u.person_id = p.id 
-AND p.department_id = d.id 
+SELECT u.email, u.role, u.person_id, u.id AS user, p.first_name, p.last_name, p.department_id, p.position_id,
+p.manager_id, p.id AS person, d.name, d.id AS department
+FROM user u, person p, department d
+WHERE u.id = :id_collabo
+AND u.person_id = p.id
+AND p.department_id = d.id
 AND u.role = "Collaborateur"');
         $requete->bindParam(':id_collabo', $id_collabo);
         $requete->execute();
@@ -26,7 +26,7 @@ AND u.role = "Collaborateur"');
         $informations = $requete->fetch(\PDO::FETCH_ASSOC);
         if ($informations === false) {
                 echo '<h1>Les informations n\'ont pas été trouvées.</h1>';
-                echo '<button class="dark-button"><a href="index.php">Retour</a></button>';
+                echo '<a class="dark-button" href="index.php">Retour</a>';
                 exit;
         }
 
@@ -38,12 +38,12 @@ AND u.role = "Collaborateur"');
         $id_manager = $informations["manager_id"];
 } elseif ($_SESSION['utilisateur']['role'] == "Manager") {
         $requete = $connexion->prepare('
-SELECT u.email, u.role, u.person_id, u.id AS user, p.first_name, p.last_name, p.department_id, p.position_id, 
-p.id AS person, d.name, d.id AS department 
-FROM user u, person p, department d 
-WHERE u.id = :id_collabo 
-AND u.person_id = p.id 
-AND p.department_id = d.id 
+SELECT u.email, u.role, u.person_id, u.id AS user, p.first_name, p.last_name, p.department_id, p.position_id,
+p.id AS person, d.name, d.id AS department
+FROM user u, person p, department d
+WHERE u.id = :id_collabo
+AND u.person_id = p.id
+AND p.department_id = d.id
 AND u.role = "Manager"');
         $requete->bindParam(':id_collabo', $id_collabo);
         $requete->execute();
@@ -52,7 +52,7 @@ AND u.role = "Manager"');
 
         if ($informations === false) {
                 echo '<h1>Les informations n\'ont pas été trouvées.</h1>';
-                echo '<button class="dark-button"><a href="index.php">Retour</a></button>';
+                echo '<a class="dark-button" href="index.php">Retour</a>';
                 exit;
         }
 
@@ -66,15 +66,15 @@ AND u.role = "Manager"');
 
 if ($_SESSION['utilisateur']['role'] == "Collaborateur") {
         $requete = $connexion->prepare('
-SELECT pos.name, pos.id AS position, p.id, p.last_name, p.first_name 
-FROM position pos, person p 
+SELECT pos.name, pos.id AS position, p.id, p.last_name, p.first_name
+FROM position pos, person p
 WHERE pos.id = :id_position AND p.id = :id_manager');
         $requete->bindParam(':id_position', $id_position);
         $requete->bindParam(':id_manager', $id_manager);
 } elseif ($_SESSION['utilisateur']['role'] == "Manager") {
         $requete = $connexion->prepare('
-SELECT pos.name, pos.id AS position, p.id, p.last_name, p.first_name 
-FROM position pos, person p 
+SELECT pos.name, pos.id AS position, p.id, p.last_name, p.first_name
+FROM position pos, person p
 WHERE pos.id = :id_position AND p.id = :id_manager');
         $requete->bindParam(':id_position', $id_position);
         $requete->bindParam(':id_manager', $id_manager);
