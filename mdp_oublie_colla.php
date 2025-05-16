@@ -56,7 +56,7 @@
 			SET password = :password
 			WHERE email = :email;
         ');
-        $mail="j.martins@mentalworks.fr";
+        $mail= $_SESSION['utilisateur']['email'];
         $requeteInsertion->bindParam('password', $motDePasseHashe);
         $requeteInsertion->bindParam('password', $data['newpass']);
         $requeteInsertion->bindParam('email', $mail);
