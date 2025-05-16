@@ -1,7 +1,7 @@
 <?php
 ob_start();
-        include "includes/admin-menu.php";
-        include "includes/database.php";
+include 'includes/verify-connect.php';
+include 'includes/database.php';
 
 
         if (isset($_GET['id'])){

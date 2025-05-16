@@ -1,5 +1,6 @@
 <?php
-include 'includes/collab-menu.php'
+include 'includes/verify-connect.php';
+include 'includes/database.php';
     ?>
 
 <div class="demande">

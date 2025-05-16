@@ -61,7 +61,7 @@ $demande_en_attente = $requete->fetch(PDO::FETCH_ASSOC);
                                         <a>Managers</a>
                                 </div>
                                 <div>
-                                        <a href="ajout_poste.php">Postes</a>
+                                        <a href="postes.php">Postes</a>
                                 </div>
                         </div>
                         <div class="onglet">
