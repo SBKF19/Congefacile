@@ -29,8 +29,6 @@ $query->execute();
 
 $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
 
-var_dump($dates);
-
 ?>
 
 <div class="History">
