@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </form>
 
     <div class="forgot-password">
-        <p>Vous avez oublié votre mot de passe ? <a href="mot_de_passe_oublie.php">Cliquez ici</a> pour le réinitialiser.
+        <p>Vous avez oublié votre mot de passe ? <a href="mot_de_passe_oublie.php" class="click-link">Cliquez ici</a> pour le réinitialiser.
         </p>
     </div>
 </div>

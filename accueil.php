@@ -32,7 +32,7 @@ include 'includes/verify-connect.php';
         </div>
     </div>
     <div class="bottomAccueil">
-        <p>En cas de difficulté avec l’application, veuillez envoyer un email à <a
+        <p>En cas de difficulté avec l’application, veuillez envoyer un email à <a class="email-link"
                 href="mailto:contact@mentalworks.fr">contact@mentalworks.fr</a>.</p>
     </div>
 </div>
