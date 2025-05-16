@@ -7,6 +7,16 @@ body {
     flex-direction: column;
 }
 
+.direction-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.direction-row {
+    display: flex;
+    flex-direction: row;
+}
+
 /*Header et menus*/
 
 .header {
