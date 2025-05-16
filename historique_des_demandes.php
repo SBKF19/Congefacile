@@ -6,9 +6,9 @@ if ($_SESSION['utilisateur']['role'] == "Manager") {
     $query = $connexion->prepare('
         SELECT request.id as id, answer, start_at, end_at, DATEDIFF( end_at, start_at) as DateDiff, name , last_name, first_name
         FROM request, request_type, person
-        WHERE request_type_id = request_type.id 
-        AND collaborator_id = person.id 
-        AND manager_id = :manager_id 
+        WHERE request_type_id = request_type.id
+        AND collaborator_id = person.id
+        AND manager_id = :manager_id
         ORDER BY created_at DESC
 ');
     $id = $_SESSION['utilisateur']['person_id'];
@@ -22,9 +22,9 @@ if ($_SESSION['utilisateur']['role'] == "Manager") {
     $query = $connexion->prepare('
         SELECT request.id as id, answer, created_at, start_at, end_at, DATEDIFF( end_at, start_at) as DateDiff, name
         FROM request, request_type, person
-        WHERE request_type_id = request_type.id 
-        AND collaborator_id = person.id 
-        AND collaborator_id = :collaborator_id 
+        WHERE request_type_id = request_type.id
+        AND collaborator_id = person.id
+        AND collaborator_id = :collaborator_id
         ORDER BY created_at DESC
         ');
     $id = $_SESSION['utilisateur']['person_id'];
@@ -206,29 +206,21 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                         if ($_SESSION['utilisateur']['role'] == "Manager") {
                             if ($i === Count($dates) - 1) { ?>
                                 <div class="filter-info-details">
-                                    <button class="details-button">
-                                        <a href="/php/Congefacile/consulter_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
-                                    </button>
+                                    <a class="details-button" href="/php/Congefacile/consulter_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
                                 </div>
                             <?php } else { ?>
                                 <div class="filter-info-details filterBorderBottom">
-                                    <button class="details-button">
-                                        <a href="/php/Congefacile/consulter_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
-                                    </button>
+                                    <a class="details-button" href="/php/Congefacile/consulter_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
                                 </div>
-                            <?php }
+                        <?php }
                         } else {
-                            if ($i === Count($dates) - 1) { ?>
+                        if( $i === Count($dates)-1){ ?>
                                 <div class="filter-info-details">
-                                    <button class="details-button">
-                                        <a href="/php/Congefacile/details_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
-                                    </button>
+                                    <a class="details-button" href="/php/Congefacile/details_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
                                 </div>
                             <?php } else { ?>
                                 <div class="filter-info-details filterBorderBottom">
-                                    <button class="details-button">
-                                        <a href="/php/Congefacile/details_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
-                                    </button>
+                                    <a class="details-button" href="/php/Congefacile/details_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
                                 </div>
                             <?php }
                         } ?>

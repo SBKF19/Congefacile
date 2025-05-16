@@ -95,12 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "<j class='erreur'>{$erreurs['email']}</j></br>";
             }
             ?>
-            <div class="mail-input">
-                <span class="icon">
-                    <img src="images/mail.png" alt="Icône email">
-                </span>
-                <input type="email" id="email" name="email" required placeholder="****@mentalworks.fr">
-            </div>
+                <input type="email" id="email" name="email" class="email-input" required placeholder="****@mentalworks.fr">
         </div>
 
         <div class="connexion password-container">

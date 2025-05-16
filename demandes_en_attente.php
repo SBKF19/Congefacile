@@ -130,15 +130,11 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                         <?php
                         if ($i === Count($dates) - 1) { ?>
                             <div class="filter-info-details">
-                                <button class="details-button">
-                                    <a href="consulter_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
-                                </button>
+                                    <a class="details-button" href="consulter_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
                             </div>
                         <?php } else { ?>
                             <div class="filter-info-details filterBorderBottom">
-                                <button class="details-button">
-                                    <a href="consulter_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
-                                </button>
+                                    <a class="details-button" href="consulter_une_demande.php?id=<?= $dates[$i]['id'] ?>">Détails</a>
                             </div>
                         <?php } ?>
                     </div>

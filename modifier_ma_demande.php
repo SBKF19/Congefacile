@@ -5,7 +5,7 @@
 
 $erreurs['date'] = '';
 $erreurs['justificatif'] = '';
-$id_demande = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
+$id_demande = $_GET["id"];
 $type_demande = '';
 $debut = '';
 $fin = '';
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-        $id_demande = 1; /*à changer une fois que vous aurez fait la redirection depuis le bouton "détails" */
+        $id_demande = $_GET["id"];
         $requete = $connexion->prepare('
 		SELECT d.request_type_id, d.start_at, DATEDIFF(start_at, end_at) as DateDiff, d.end_at, d.comment, d.id AS request, t.name AS request_type
 		FROM request d, request_type t
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	if ($demande === false) {
 		echo '<h1>La demande n\'a pas été trouvée.</h1>';
-		echo '<button class="dark-button"><a href="index.php">Retour à la liste</a></button>';
+		echo '<a class="dark-button" href="index.php">Retour à la liste</a>';
 		exit;
 	}
 

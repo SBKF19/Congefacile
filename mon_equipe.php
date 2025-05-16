@@ -36,7 +36,7 @@ var_dump($dates);
 <div class="History">
     <div class="title-with-dark-button">
         <h1>Mon équipe</h1>
-        <button class="large-dark-button"><a>Ajouter un collaborateur</a></button>
+        <a class="large-dark-button">Ajouter un collaborateur</a>
     </div>
     <div class="containerFilter">
         <div class="side-menu-profile filterBar">

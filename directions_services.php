@@ -46,11 +46,11 @@ $postes1 = $query->fetchAll(\PDO::FETCH_ASSOC);
                 for ($i = 0; $i < Count($postes1); $i++){
                     if( $i === Count($postes1)-1){ ?>
                     <div class="filter-info-details">
-                        <button class="details-button"><a href="directions_services_ajout.php?id=<?= $postes1[$i]["id"] ?>">Détails</a></button>
+                        <a class="details-button" href="directions_services_ajout.php?id=<?= $postes1[$i]["id"] ?>">Détails</a>
                     </div>
                     <?php } else{ ?>
                     <div class="filter-info-details filterBorderBottom">
-                        <button class="details-button"><a href="directions_services_ajout.php?id=<?= $postes1[$i]["id"] ?>">Détails</a></button>
+                        <a class="details-button" href="directions_services_ajout.php?id=<?= $postes1[$i]["id"] ?>">Détails</a>
                     </div>
                     <?php }
                 } ?>
