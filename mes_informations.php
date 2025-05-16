@@ -85,72 +85,54 @@ $prenom_manager = $informations2["first_name"];
 ?>
 
 <div class="demande">
-    <h1>Mes informations</h1>
-    <form action="post">
-        <div class="date">
-            <div>
-                <label for="nom" class="label-input">Nom de famille</label>
-                <input type="text" id="nom de famille" name="nom de famille" 
-                class="defaultbox-input defaultbox" value="<?php echo $nom; ?>" readonly>
-            </div>
+        <h1>Mes informations</h1>
+        <form action="post">
+                <div class="date">
+                        <div>
+                                <label for="nom" class="label-input">Nom de famille</label>
+                                <input type="text" id="nom de famille" name="nom de famille"
+                                        class="defaultbox-input defaultbox" value="<?php echo $nom; ?>" readonly>
+                        </div>
 
-            <div>
-                <label for="prenom" class="label-input">Prénom</label>
-                <input type="text" id="prénom" name="prénom" 
-                class=" defaultbox-input defaultbox" value="<?php echo $prenom; ?>" readonly>
-            </div>
-        </div>
-        <br>
-        <div>
-            <label for="mail" class="label-input">Adresse email</label>
-            <input type="text" id="email" name="email" 
-            class=" defaultbox-input defaultbox" value="<?php echo $email; ?>" readonly>
-        </div>
-        <br>
-        <div class="date">
-            <div>
-                <label for="direction" class="label-input">Direction/Service</label>
-                        <input type="text" id="service" name="service" 
-                        class="defaultbox-input defaultbox" value="<?php echo $service; ?>" readonly>
-                </select>
-            </div>
-            <br>
+                        <div>
+                                <label for="prenom" class="label-input">Prénom</label>
+                                <input type="text" id="prénom" name="prénom" class=" defaultbox-input defaultbox"
+                                        value="<?php echo $prenom; ?>" readonly>
+                        </div>
+                </div>
+                <br>
+                <div>
+                        <label for="mail" class="label-input">Adresse email</label>
+                        <input type="text" id="email" name="email" class=" defaultbox-input defaultbox"
+                                value="<?php echo $email; ?>" readonly>
+                </div>
+                <br>
+                <div class="date">
+                        <div>
+                                <label for="direction" class="label-input">Direction/Service</label>
+                                <input type="text" id="service" name="service" class="defaultbox-input defaultbox"
+                                        value="<?php echo $service; ?>" readonly>
+                                </select>
+                        </div>
+                        <br>
 
-            <div>
-                <label for="poste" class="label-input">Poste</label>
-                        <input type="text" id="poste" name="poste" 
-                        class="defaultbox-input defaultbox" value="<?php echo $poste; ?>" readonly>
-                </select>
-            </div>
-        </div>
+                        <div>
+                                <label for="poste" class="label-input">Poste</label>
+                                <input type="text" id="poste" name="poste" class="defaultbox-input defaultbox"
+                                        value="<?php echo $poste; ?>" readonly>
+                                </select>
+                        </div>
+                </div>
+                <br>
+                <div>
+                        <label for="Manager" class="label-input">Manager</label>
+                        <input type="text" id="nom_manager" name="nom_manager" class="defaultbox-input defaultbox"
+                                value="<?php echo $prenom_manager . " " . $nom_manager; ?>" readonly>
+                        </select>
+                </div>
+        </form>
         <br>
-        <div>
-            <label for="Manager" class="label-input">Manager</label>
-                <input type="text" id="nom_manager" name="nom_manager" 
-                class="defaultbox-input defaultbox" value="<?php echo $prenom_manager . " " . $nom_manager; ?>" readonly>
-            </select>
-        </div>
-    </form>
-    <br>
-    <h2>Réinitialiser mon mot de passe</h2>
-    <form>
-        <label for="password" class="label-input">Mot de passe actuel</label>
-        <input type="password" id="password" name="password" class="label-field"><br>
-        <div class="date">
-
-            <div>
-                <label for="newpass" class="label-input">Nouveau mot de passe</label>
-                <input type="password" id="newpass" name="newpass" class="label-fixed-value">
-            </div>
-            <div>
-                <label for="confirmpass" class="label-input">Confirmation du mot de passe</label>
-                <input type="password" id="confirmpass" name="confirmpass" class="label-field">
-            </div>
-        </div>
-        <br>
-        <br>
-        <button type="submit" class="dark-button">Réinitialiser le mot de passe</button>
-    </form>
+        <?php include('mdp_oublie_collab.php') ?>
 </div>
 
 
