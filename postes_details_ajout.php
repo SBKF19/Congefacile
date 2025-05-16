@@ -1,8 +1,7 @@
 <?php
-ob_start();
+ob_start(); //Permet de ne
 include 'includes/verify-connect.php';
 include 'includes/database.php';
-
 
         if (isset($_GET['id'])){
                 $id_poste = $_GET['id'];
@@ -25,8 +24,7 @@ include 'includes/database.php';
                 $nb_postes = $nb_postes[0]['count'];
         }
 
-
-
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_POST['supprimer'])) {
     if ($nb_postes > 0) {
         $error_message = "Impossible de supprimer ce poste car il est associé à $nb_postes personne(s).";
@@ -38,7 +36,7 @@ if (isset($_POST['supprimer'])) {
         exit();
     }
 }
-if (isset($_POST['modifier'])) {
+if (isset($_POST['modifier']) && isset ($nom_poste) && $nom_poste != "") {
     $nom_poste = $_POST['name'];
     $requete = $connexion->prepare('UPDATE position SET name = :name WHERE id = :id');
     $requete->bindParam(':name', $nom_poste);
@@ -46,15 +44,20 @@ if (isset($_POST['modifier'])) {
     $requete->execute();
     header('Location: postes.php');
     exit();
+} else {
+    $error_message = "Veuillez remplir le champ du nom du poste.";
 }
 
-if (isset($_POST['ajouter'])) {
+if (isset($_POST['ajouter']) && isset ($nom_poste) && $nom_poste != "") {
     $nom_poste = $_POST['name'];
     $requete = $connexion->prepare('INSERT INTO position (name) VALUES (:name)');
     $requete->bindParam(':name', $nom_poste);
     $requete->execute();
     header('Location: postes.php');
     exit();
+} else {
+    $error_message = "Veuillez remplir le champ du nom du poste.";
+}
 }
 
 ?>
