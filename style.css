@@ -570,7 +570,7 @@ p a,
     cursor: pointer;
 }
 
-² .mail-input {
+.mail-input {
     position: relative;
     width: 100%;
     max-width: 350px;
