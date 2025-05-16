@@ -2,13 +2,13 @@
 include "header.php";
 include 'database.php';
 $requete = $connexion->prepare(
-        'SELECT COUNT(collaborator_id) 
-AS demande_en_attente 
-FROM request 
+        'SELECT COUNT(collaborator_id)
+AS demande_en_attente
+FROM request
 JOIN user
-ON collaborator_id = user.person_id 
-JOIN person ON user.person_id = person.id 
-WHERE request.answer IS NULL 
+ON collaborator_id = user.person_id
+JOIN person ON user.person_id = person.id
+WHERE request.answer IS NULL
 AND person.manager_id = :id'
 );
 
@@ -61,7 +61,7 @@ $demande_en_attente = $requete->fetch(PDO::FETCH_ASSOC);
                                         <a>Managers</a>
                                 </div>
                                 <div>
-                                        <a href="ajout_poste.php">Postes</a>
+                                        <a href="postes.php">Postes</a>
                                 </div>
                         </div>
                         <div class="onglet">
