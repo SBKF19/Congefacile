@@ -224,15 +224,9 @@ button {
     color: white;
     padding: 13px 34px;
     height: 45px;
-}
-
-.confirm a,
-.deny a {
     font-family: "Inter", sans-serif;
     font-weight: 500;
     font-size: 16px;
-    line-height: 24px;
-    color: white;
     text-decoration: none;
 }
 
