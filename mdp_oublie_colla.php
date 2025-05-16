@@ -1,10 +1,14 @@
 <?php
+include 'includes/database.php';
+
 $erreurs = [];
 $data = [];
+$redirige = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $data = $_POST;
+    $mail = $_SESSION['utilisateur']['email'];
 
     // Suppression des espaces avant/après pour les différentes données.
     $data['password'] = trim($data['password'] ?? '');
@@ -16,18 +20,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erreurs['password'] = 'Veuillez saisir votre mot de passe.';
     } else {
         $requete = $connexion->prepare('
-            SELECT COUNT(*)
+            SELECT password
             FROM user
-            WHERE password = :password
-        ');
+           WHERE person_id = :id');
 
-        $requete->bindParam('password', $data['password']);
+        $requete->bindParam('id', $_SESSION['utilisateur']['person_id']);
         $requete->execute();
-        $motdepasseExistant = $requete->fetchColumn();
+        $motdepasseExistant = $requete->fetch(\PDO::FETCH_ASSOC);
 
-        if ($motdepasseExistant == 0) {
+        if ($motdepasseExistant && password_verify($data['password'], $motdepasseExistant['password'])) {
+            $erreurs['password'] = '';
+        } else {
             $erreurs['password'] = 'le mot de passe actuel ne correspond pas';
-
         }
 
     }
@@ -42,33 +46,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $erreurs['confirmpass'] = 'Veuillez saisir votre nouveau mot de passe.';
     }
 
+    if (empty($data['newpass'])) {
+        $erreurs['confirmpass'] = 'Veuillez saisir un nouveau mot de passe.';
+    }
 
-    if (empty($erreurs)) {
-        $motDePasseHashe = password_hash($data['password'], PASSWORD_DEFAULT);
-
+    if ($erreurs['password'] === '' && !isset($erreurs['confirmpass'])) {
+        $motDePasseHashe = password_hash($data['newpass'], PASSWORD_DEFAULT);
 
         $requeteInsertion = $connexion->prepare('
         	UPDATE user
 			SET password = :password
-			WHERE email = :email;
+			WHERE person_id = :id;
         ');
-        $mail = $_SESSION['utilisateur']['email'];
         $requeteInsertion->bindParam('password', $motDePasseHashe);
-        $requeteInsertion->bindParam('password', $data['newpass']);
-        $requeteInsertion->bindParam('email', $mail);
+        $requeteInsertion->bindParam('id', $_SESSION['utilisateur']['person_id']);
         $requeteInsertion->execute();
-        try {
-            $requeteInsertion->execute();
 
-            // On redirige l'utilisateur vers la connexion.
-            header('Location: index.php');
-            exit();
-        } catch (\Exception $exception) {
-            $erreurs['global'] = 'Une erreur s\'est produite lors de votre inscription. Veuillez réessayer.';
+        // On redirige l'utilisateur vers la connexion.
 
-        }
-        $data['password'] = '';
-        $data['confirmpass'] = '';
+        header("Location: includes/deco.php"); // Fonctionne !
+        ob_end_flush();
     }
 }
 
@@ -76,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 function afficheErreur(string $nomDuChamp, array $erreurs): string
 {
 
-    if (isset($erreurs[$nomDuChamp])) {
+    if (isset($erreurs[$nomDuChamp]) && $_SERVER['REQUEST_METHOD'] === 'POST') {
         return '<span class="error" style="color:red;">' . $erreurs[$nomDuChamp] . '</span>';
     }
     return "";
@@ -84,27 +81,25 @@ function afficheErreur(string $nomDuChamp, array $erreurs): string
 }
 function verifierMotDePasse(string $pass): string
 {
-
-
-
     // Vérification de la présence d'une majuscule
     if (
-        !preg_match('/[A-Z]/', $pass)
-        || !preg_match('/[a-z]/', $pass)
-        || !preg_match('/[0-9]/', $pass)
-        || !preg_match('/[\W]/', $pass)
-        || strlen($pass) < 12
-    )
-        ; {
-
+        (
+            !preg_match('/[A-Z]/', $pass)
+            || !preg_match('/[a-z]/', $pass)
+            || !preg_match('/[0-9]/', $pass)
+            || !preg_match('/[\W]/', $pass)
+            || strlen($pass) < 12)
+        && $_SERVER['REQUEST_METHOD'] === 'POST'
+    ) {
         return '<span class="error" style="color:red;">Le mot de passe doit contenir au moins 12 caractères dont 1 lettre  majuscule,une lettre minuscule, 1 caractère spécial et 1 chiffre</span> ';
     }
+    return "";
 }
 
 ?>
 
 <h2>Réinitialiser mon mot de passe</h2>
-<form action="#" method="POST">
+<form action="<?php echo $redirige ?>" method="POST">
 
     <div>
         <label for="password" class="label-input">Mot de passe actuel</label>
@@ -112,25 +107,26 @@ function verifierMotDePasse(string $pass): string
         <?php echo afficheErreur('password', $erreurs); ?>
         <br>
     </div>
-    <div class="date">
-        <div>
-            <label for="newpass" class="label-input">Nouveau mot de passe</label>
-            <input type="password" id="newpass" name="newpass" class="label-fixed-value">
-            <?php echo afficheErreur('newpass', $erreurs);
-            ?>
+    <div class="direction-column">
+        <div class="date">
+            <div>
+                <label for="newpass" class="label-input">Nouveau mot de passe</label>
+                <input type="password" id="newpass" name="newpass" class="label-fixed-value">
+                <?php echo afficheErreur('newpass', $erreurs);
+                ?>
+            </div>
 
+            <div>
+                <label for="confirmpass" class="label-input">Confirmation du mot de passe</label>
+                <input type="password" id="confirmpass" name="confirmpass" class="label-field">
+                <?php echo afficheErreur('confirmpass', $erreurs);
+                ?>
+            </div>
         </div>
-
-        <div>
-            <label for="confirmpass" class="label-input">Confirmation du mot de passe</label>
-            <input type="password" id="confirmpass" name="confirmpass" class="label-field">
-            <?php echo afficheErreur('confirmpass', $erreurs);
-            echo verifierMotDePasse('confirmpass');
-            ?>
-        </div>
+        <?php echo verifierMotDePasse($data['newpass'] ?? ''); ?>
     </div>
 
     <br>
-    <button type="submit" class="dark-button">Réinitialiser le mot de passe</button>
+    <button type="submit" class="dark-button" >Réinitialiser le mot de passe</button>
     </div>
 </form>
