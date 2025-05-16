@@ -1,6 +1,6 @@
 <?php
-        include "includes/admin-menu.php";
-        include "includes/database.php";
+include 'includes/verify-connect.php';
+include 'includes/database.php';
 
 
 $query = $connexion->prepare('
@@ -14,51 +14,53 @@ $postes1 = $query->fetchAll(\PDO::FETCH_ASSOC);
 ?>
 
 <div class="History">
-        <div class="title-with-dark-button">
+    <div class="title-with-dark-button">
         <h1>Directions/Services</h1>
         <a class="large-dark-button" href="directions_services_ajout.php">Ajouter une direction/service</a>
+    </div>
+    <div class="containerFilter">
+        <div class="side-menu-profile filterBar">
+            <div class="filterMargin">
+                <label class="label-select">Nom de la direction ou du service</label>
+                <input class="larger-filter filter" type="text">
+            </div>
         </div>
-        <div class="containerFilter">
-                <div class="side-menu-profile filterBar">
-                        <div class="filterMargin">
-                                <label class="label-select">Nom de la direction ou du service</label>
-                                <input class="larger-filter filter" type="text">
-                        </div>
-                </div>
-                <div class="list_conge">
-                        <div class="congeType">
-                            <?php
-                                for ($i = 0; $i < Count($postes1); $i++){
-                                    if( $i === Count($postes1)-1){ ?>
-                                    <div class="filter-info-larger">
-                                        <p class="break-details"><?= $postes1[$i]['name']?></p>
-                                    </div>
-                                    <?php } else{ ?>
-                                        <div class="filter-info-larger filterBorderBottom">
-                                        <p class="break-details"><?= $postes1[$i]['name']?></p>
-                                        </div>
-                                    <?php }
-                                }
-                            ?>
-                        </div>
-                        <div class="congeType">
+        <div class="list_conge">
+            <div class="congeType">
                 <?php
-                for ($i = 0; $i < Count($postes1); $i++){
-                    if( $i === Count($postes1)-1){ ?>
-                    <div class="filter-info-details">
-                        <a class="details-button" href="directions_services_ajout.php?id=<?= $postes1[$i]["id"] ?>">Détails</a>
-                    </div>
-                    <?php } else{ ?>
-                    <div class="filter-info-details filterBorderBottom">
-                        <a class="details-button" href="directions_services_ajout.php?id=<?= $postes1[$i]["id"] ?>">Détails</a>
-                    </div>
+                for ($i = 0; $i < Count($postes1); $i++) {
+                    if ($i === Count($postes1) - 1) { ?>
+                        <div class="filter-info-larger">
+                            <p class="break-details"><?= $postes1[$i]['name'] ?></p>
+                        </div>
+                    <?php } else { ?>
+                        <div class="filter-info-larger filterBorderBottom">
+                            <p class="break-details"><?= $postes1[$i]['name'] ?></p>
+                        </div>
+                    <?php }
+                }
+                ?>
+            </div>
+            <div class="congeType">
+                <?php
+                for ($i = 0; $i < Count($postes1); $i++) {
+                    if ($i === Count($postes1) - 1) { ?>
+                        <div class="filter-info-details">
+                            <a class="details-button"
+                                href="directions_services_ajout.php?id=<?= $postes1[$i]["id"] ?>">Détails</a>
+                        </div>
+                    <?php } else { ?>
+                        <div class="filter-info-details filterBorderBottom">
+                            <a class="details-button"
+                                href="directions_services_ajout.php?id=<?= $postes1[$i]["id"] ?>">Détails</a>
+                        </div>
                     <?php }
                 } ?>
+            </div>
+
         </div>
 
-</div>
-
-</div>
-<?php
-        include "includes/footer.php";
-?>
+    </div>
+    <?php
+    include "includes/footer.php";
+    ?>

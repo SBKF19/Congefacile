@@ -132,7 +132,7 @@ $prenom_manager = $informations2["first_name"];
                 </div>
         </form>
         <br>
-        <?php include('mdp_oublie_collab.php') ?>
+        <?php include('mdp_oublie_colla.php') ?>
 </div>
 
 
