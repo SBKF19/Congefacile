@@ -1,6 +1,6 @@
 <?php
-include "includes/admin-menu.php";
-include "includes/database.php";
+include 'includes/verify-connect.php';
+include 'includes/database.php';
 
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id_collabo = intval($_GET['id']); // Convert to integer for safety

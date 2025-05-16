@@ -1,11 +1,7 @@
 <?php
 session_start();
-include "includes/database.php";
-if ($_SESSION['utilisateur']['role'] == 'Manager') {
-        include('includes/admin-menu.php');
-} else if ($_SESSION['utilisateur']['role'] == 'Collaborateur') {
-        include('includes/collab-menu.php');
-}
+include 'includes/verify-connect.php';
+include 'includes/database.php';
 ?>
 <?php
 
@@ -87,23 +83,59 @@ $nom_manager = $informations2["last_name"];
 $prenom_manager = $informations2["first_name"];
 
 ?>
-<div class="History">
-        <label for="nom de famille">Nom de famille</label>
-        <input type="text" id="nom de famille" name="nom de famille" value="<?php echo $nom; ?>" readonly>
-        <label for="prénom">Prénom</label>
-        <input type="text" id="prénom" name="prénom" value="<?php echo $prenom; ?>" readonly>
-        <label for="email">Adresse email</label>
-        <input type="text" id="email" name="email" value="<?php echo $email; ?>" readonly>
-        <label for="service">Direction/Service</label>
-        <input type="text" id="service" name="service" value="<?php echo $service; ?>" readonly>
-        <div><label for="poste">Poste</label>
-                <input type="text" id="poste" name="poste" value="<?php echo $poste; ?>" readonly>
-                <label for="nom_manager">Manager</label>
-                <input type="text" id="nom_manager" name="nom_manager"
-                        value="<?php echo $prenom_manager . " " . $nom_manager; ?>" readonly>
-        </div>
+
+<div class="demande">
+        <h1>Mes informations</h1>
+        <form action="post">
+                <div class="date">
+                        <div>
+                                <label for="nom" class="label-input">Nom de famille</label>
+                                <input type="text" id="nom de famille" name="nom de famille"
+                                        class="defaultbox-input defaultbox" value="<?php echo $nom; ?>" readonly>
+                        </div>
+
+                        <div>
+                                <label for="prenom" class="label-input">Prénom</label>
+                                <input type="text" id="prénom" name="prénom" class=" defaultbox-input defaultbox"
+                                        value="<?php echo $prenom; ?>" readonly>
+                        </div>
+                </div>
+                <br>
+                <div>
+                        <label for="mail" class="label-input">Adresse email</label>
+                        <input type="text" id="email" name="email" class=" defaultbox-input defaultbox"
+                                value="<?php echo $email; ?>" readonly>
+                </div>
+                <br>
+                <div class="date">
+                        <div>
+                                <label for="direction" class="label-input">Direction/Service</label>
+                                <input type="text" id="service" name="service" class="defaultbox-input defaultbox"
+                                        value="<?php echo $service; ?>" readonly>
+                                </select>
+                        </div>
+                        <br>
+
+                        <div>
+                                <label for="poste" class="label-input">Poste</label>
+                                <input type="text" id="poste" name="poste" class="defaultbox-input defaultbox"
+                                        value="<?php echo $poste; ?>" readonly>
+                                </select>
+                        </div>
+                </div>
+                <br>
+                <div>
+                        <label for="Manager" class="label-input">Manager</label>
+                        <input type="text" id="nom_manager" name="nom_manager" class="defaultbox-input defaultbox"
+                                value="<?php echo $prenom_manager . " " . $nom_manager; ?>" readonly>
+                        </select>
+                </div>
+        </form>
+        <br>
+        <?php include('mdp_oublie_collab.php') ?>
 </div>
-</div>
+
+
 <?php
 include "includes/footer.php";
 ?>
