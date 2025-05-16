@@ -10,16 +10,11 @@ include 'includes/database.php';
     <form action="" method="POST">
         <div class="connexion">
             <label class="petit_texte" for="email">Adresse email</label>
-            <div class="mail-input">
-                <span class="icon">
-                    <img src="images/mail.png" alt="Icône email">
-                </span>
-                <input type="email" id="email" name="email" required placeholder="****@mentalworks.fr">
-            </div>
+                <input type="email" id="email" name="email" class="email-input" required placeholder="****@mentalworks.fr">
         </div>
         <button type="submit" class="dark-button" name="submit">Demander à réinitialiser votre mot de passe</button>
     </form>
-    <p><a href="connexion.php">Cliquez ici</a> pour retourner à la page de connexion</p>
+    <p><a href="connexion.php" class="click-link">Cliquez ici</a> pour retourner à la page de connexion</p>
 
 </div>
 <?php

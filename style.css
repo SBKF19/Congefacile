@@ -147,7 +147,7 @@ body {
 /*--------------------------------------COMPTEUR DE DEMANDES------------------------------------*/
 
 .side-menu-counter {
-    width: 38px;
+    padding: 0px 14px;
     height: 34px;
     background-color: rgba(0, 76, 108, 0.05);
     display: flex;
@@ -419,13 +419,27 @@ p {
     margin: 25px 0;
 }
 
-.petit_texte a,
-p a {
+.petit_texte a{
     font-weight: 700;
     font-size: 16px;
     line-height: 24.57px;
     color: #004C6C;
     text-decoration: none;
+}
+
+.click-link{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24.57px;
+    color: #004C6C;
+    text-decoration: none;
+}
+
+.email-link{
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24.57px;
+    color: #004C6C;
 }
 
 a:hover {
