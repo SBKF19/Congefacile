@@ -93,12 +93,7 @@ $prenom_manager = $informations2["first_name"];
 <div class="demande">
         <h1>Mes informations</h1>
         <form action="" method="post">
-                <div>
-                        <label for="mail" class="label-input">Adresse email</label>
-                        <input type="text" id="email" name="email" class=" defaultbox-input defaultbox"
-                                value="<?php echo $email; ?>" readonly>
-                </div>
-                <br>
+
                 <div class="date">
                         <div>
                                 <label for="nom" class="label-input">Nom de famille</label>
@@ -113,10 +108,16 @@ $prenom_manager = $informations2["first_name"];
                         </div>
                 </div>
                 <br>
+                <div>
+                        <label for="mail" class="label-input">Adresse email</label>
+                        <input type="text" id="email" name="email" class=" default-email"
+                                value="<?php echo $email; ?>" readonly>
+                </div>
+                <br>
                 <div class="date">
                         <div>
                                 <label for="direction" class="label-input">Direction/Service</label>
-                                <input type="text" id="service" name="service" class="defaultbox-input defaultbox"
+                                <input type="text" id="service" name="service" class="default-select"
                                         value="<?php echo $service; ?>" readonly>
                                 </select>
                         </div>
@@ -124,7 +125,7 @@ $prenom_manager = $informations2["first_name"];
 
                         <div style="display: <?php echo $snake ?>;">
                                 <label for="poste" class="label-input">Poste</label>
-                                <input type="text" id="poste" name="poste" class="defaultbox-input defaultbox"
+                                <input type="text" id="poste" name="poste" class="default-select"
                                         value="<?php echo $poste; ?>" readonly>
                                 </select>
                         </div>
@@ -132,7 +133,7 @@ $prenom_manager = $informations2["first_name"];
                 <br>
                 <div style="display: <?php echo $snake ?>;">
                         <label for="Manager" class="label-input">Manager</label>
-                        <input type="text" id="nom_manager" name="nom_manager" class="defaultbox-input defaultbox"
+                        <input type="text" id="nom_manager" name="nom_manager" class="default-select"
                                 value="<?php echo $prenom_manager . " " . $nom_manager; ?>" readonly>
                         </select>
                 </div>
