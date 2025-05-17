@@ -64,7 +64,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
     <?php } ?>
     <div class="containerFilter">
         <div class="side-menu-profile filterBar">
-            <div class="filterMargin">
+            <div class="filterMargin hide4">
                 <label class="label-select" for="commentaire">Type de demande</label>
 
                 <input class="filter type-filter" type="text" name="typedemande" id="typedemande">
@@ -80,19 +80,19 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                     <input class="filter medium-filter" type="text" name="dateDemande" id="Collaborateur">
                 </div>
             <?php } ?>
-            <div class="filterMargin">
+            <div class="filterMargin hide2">
                 <label class="label-select" for="commentaire">Date de début</label>
                 <input class="filter medium-filter" type="text" name="dateDebut" id="dateDebut">
             </div>
-            <div class="filterMargin">
+            <div class="filterMargin hide2">
                 <label class="label-select" for="commentaire">Date de fin</label>
                 <input class="filter medium-filter" type="text" name="dateFin" id="dateFin">
             </div>
-            <div class="filterMargin">
+            <div class="filterMargin hide1">
                 <label class="label-select" for="commentaire">Nb jours</label>
                 <input class="filter small-filter" type="text" name="nbJours" id="nbJours">
             </div>
-            <div class="filterMargin">
+            <div class="filterMargin hide3">
                 <label class="label-select" for="commentaire">Statut</label>
                 <input class="filter medium-filter" type="text" name="Collaborateur" id="statut">
             </div>
@@ -101,7 +101,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
         for ($i = 0; $i < Count($dates); $i++) { ?>
             <div class="congeType card">
                 <div class="list_conge">
-                    <div class="Type1">
+                    <div class="Type1 hide4">
                         <?php
                         if ($i === Count($dates) - 1) { ?>
                             <div class="filter-info-type">
@@ -143,7 +143,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                             ?>
                         </div>
                     <?php } ?>
-                    <div class="Type3">
+                    <div class="Type3 hide2">
                         <?php
                         if ($i === Count($dates) - 1) { ?>
                             <div class="filter-info-medium">
@@ -156,7 +156,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                         <?php }
                         ?>
                     </div>
-                    <div class="Type4">
+                    <div class="Type4 hide2">
                         <?php
                         if ($i === Count($dates) - 1) { ?>
                             <div class="filter-info-medium">
@@ -169,7 +169,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                         <?php }
                         ?>
                     </div>
-                    <div class="Type5">
+                    <div class="Type5 hide1">
                         <?php
                         if ($dates[$i]["DateDiff"] == 0) {
                             $dates[$i]["DateDiff"] = 1;
@@ -184,7 +184,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                             </div>
                         <?php } ?>
                     </div>
-                    <div class="Type6">
+                    <div class="Type6 hide3">
                         <?php
                         if ($i === Count($dates) - 1 && $dates[$i]['answer'] === 1) { ?>
                             <div class="filter-info-medium">

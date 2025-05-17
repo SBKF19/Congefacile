@@ -98,12 +98,18 @@ body {
     align-items: center;
 }
 
-.onglet img {
+.toggle-button img {
     width: 20px;
     height: 20px;
     opacity: 0.5;
     margin: 5px 30px 0 0;
 }
+
+.toggle-button{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;}
 
 .menu-lign {
     border: 1px solid #DFE4EA;
@@ -206,6 +212,7 @@ body {
     color: #004C6C;
 }
 
+
 /*---------------------------------------CSS DU KIT UI------------------------------------------*/
 
 
@@ -292,6 +299,7 @@ button:hover {
     text-decoration: none;
     padding: 8px 38px;
     border-radius: 7px;
+    width: fit-content;
 }
 
 .large-dark-button a {
@@ -588,38 +596,6 @@ p a,
     cursor: pointer;
 }
 
-.mail-input {
-    position: relative;
-    width: 100%;
-    max-width: 350px;
-}
-
-.mail-input input {
-    box-sizing: border-box;
-    width: 100%;
-    padding: 12px 12px 12px 40px;
-    /* espace pour l’icône */
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    font-size: 16px;
-    background-color: white;
-}
-
-.mail-input .icon {
-    position: absolute;
-    left: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-}
-
-.mail-input .icon img {
-    width: 100%;
-    height: auto;
-}
-
-
 /*Divs*/
 
 select,
@@ -662,7 +638,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 textarea {
     min-height: 186px;
-    min-width: 730px;
+    min-width: 56%;
     padding: 20px 15px;
     height: fit-content;
 }
@@ -932,7 +908,7 @@ Le CSS du dessous reste inchangĆ© (j'ai mĆŖme tout control-c control-v de gi
     border-radius: 12px;
     border-width: 1px;
     border: 1px solid #EAECF0;
-    width: 100%;
+    width: fit-content;
     max-height: 100%;
     margin-top: 50px;
 }
@@ -963,11 +939,8 @@ Le CSS du dessous reste inchangĆ© (j'ai mĆŖme tout control-c control-v de gi
 .History {
     margin-top: 1.5%;
     margin-left: 3%;
+    width: 75%;
 }
-
-/*
-CSS D'ABIDA
-*/
 
 /*---------------------------------------PAGE DE CONNEXION------------------------------------------*/
 
@@ -1020,41 +993,6 @@ input {
     margin-top: 10px;
 }
 
-
-@media screen and (max-width: 768px) {
-    .container {
-        max-width: 90%;
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 22px;
-    }
-
-    .buttonConnexion {
-        font-size: 14px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .container {
-        max-width: 100%;
-        padding: 10px;
-        border-radius: 0;
-        box-shadow: none;
-    }
-
-    h1 {
-        font-size: 20px;
-    }
-
-    .buttonConnexion {
-        font-size: 14px;
-        padding: 8px;
-        width: 49%;
-    }
-}
-
 /*Page d'accueil*/
 .wholeAccueil {
     max-width: 700px;
@@ -1066,13 +1004,13 @@ input {
     flex-direction: column;
     align-items: center;
     margin-top: 30px;
-    width: 107%;
 }
 
 .steps-container {
     display: flex;
     flex-direction: column;
     justify-content: left;
+    width: 860px;
 }
 
 .timeline {
@@ -1094,6 +1032,16 @@ input {
     font-weight: bold;
     color: #004080;
 }
+.etape-noms{
+        display: flex;
+        justify-content: space-between;
+        width: 78%;
+        margin: 0;
+}
+
+.etape-noms p{
+        font-weight: 500;
+}
 
 .active {
     background-color: #1b316b;
@@ -1110,7 +1058,6 @@ input {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-top: 10px;
     text-align: center;
     font-size: 14px;
 }
@@ -1131,32 +1078,52 @@ input {
     padding-left: 3%;
 }
 
-.whole_forgot_pword {
-    padding-top: 2%;
-    padding-left: 3%;
-}
+@media (max-width: 1023px) {
+        .steps-container {
+                justify-self: center;
+                width: 100%;
+                height: 75%;
+        }
 
-
-@media (max-width: 768px) {
     .timeline {
         flex-direction: column;
-        gap: 10px;
     }
 
     .line {
         width: 2px;
-        height: 50px;
+        height: 125px;
     }
 
     .descriptions {
         flex-direction: column;
         align-items: center;
+        height: 100%;
     }
 
     .description-box {
         width: 90%;
         margin-bottom: 10px;
     }
+
+    .timeline-container{
+        flex-direction: row;
+        height: 100%;
+        width: 50%;
+    }
+
+    .etape-noms{
+        flex-direction: column;
+        height: 430px;
+        gap: 25%;
+        margin-left: 10px;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 600px){
+        .descriptions{
+                height: 85%;
+        }
 }
 
 /*------------------------------------PAGE DEMANDE CONGE-------------------------------------------*/
@@ -1185,4 +1152,182 @@ input {
 }
 .new_request_message{
     color: white;
+}
+
+/*----------------------------------BURGER MENU----------------------------------------------------------- */
+.hamburger {
+  position: fixed;
+  z-index: 100;
+  top: 26px;
+  right: 20px;
+  padding: 8px;
+  border: none;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(92, 115, 160, 0.25);
+}
+
+.closeIcon {
+  display: none;
+}
+
+.menu {
+  position: fixed;
+  transform: translateY(-100%);
+  transition: transform 0.2s;
+  top: -20px;
+  left: 45%;
+  right: 0;
+  bottom: 15%;
+  z-index: 99;
+  background: rgba(255, 255, 255, 0.95);
+  color: white;
+  list-style: none;
+  padding-top: 6rem;
+  box-shadow: -10px 10px 20px 0 rgba(92, 115, 160, 0.07);
+}
+
+.material-icons {
+  font-size: 28px;
+  color: #004C6C;
+}
+
+.showMenu {
+  transform: translateY(0);
+}
+
+.menu a{
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: #637381;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 0px 10px 45px;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: #004C6C;
+}
+
+@media (min-width:1025px) {
+  .hamburger {
+    display: none;
+  }
+  .menu {
+    display: none;
+  }
+}
+
+/*------------------------------------RESPONSIVE----------------------------------------*/
+
+.counter-row{
+        display: flex;
+        align-items: center;
+        gap: 10px;;
+}
+
+@media (max-width: 1024px){
+        .side-menu {
+            display: none;
+        }
+
+        .History{
+                width: 95%;
+        }
+
+        .cont2{
+                justify-content: center;
+        }
+}
+
+@media (max-width: 768px){
+        textarea{
+                min-width: 80%;
+        }
+}
+
+@media (max-width: 425px){
+                .filter-info-large,
+                .filter-info-larger{
+                width: 150px;
+        }
+        .large-filter,
+        .larger-filter{
+                width: 150px;
+        }
+}
+
+@media (max-width: 550px){
+        .menu{
+                left: 27%;
+        }
+                .date{
+                flex-direction: column;
+                gap: 5px;
+                margin-top: 5px;
+        }
+        .title-with-dark-button{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+        }
+}
+
+@media (max-width: 1160px){
+        .br-hidden{
+                display: none;
+        }
+}
+@media (max-width: 980px){
+        .hide0{
+                display: none;
+        }
+                .filter-info-large,
+                .filter-info-larger{
+                width: 500px;
+        }
+        .large-filter,
+        .larger-filter{
+                width: 500px;
+        }
+}
+
+@media (max-width: 1495px){
+        .hide1{
+                display: none;
+        }
+}
+
+@media(max-width: 1375px){
+        .hide2{
+                display: none;
+        }
+}
+
+@media(max-width: 740px){
+        .hide3{
+                display: none;
+        }
+                .filter-info-large,
+                .filter-info-larger{
+                width: 300px;
+        }
+        .large-filter,
+        .larger-filter{
+                width: 300px;
+        }
+}
+
+@media(max-width: 565px){
+        .hide4{
+                display: none;
+        }
+
+        .filter-info-medium{
+                padding-left: 27px;
+        }
 }

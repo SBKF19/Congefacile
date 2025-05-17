@@ -1,7 +1,7 @@
 const toggleButton = document.querySelector(".toggle-button");
 const hiddenMenu = document.querySelector(".hidden-menu");
 
-// Appliquer l'état sauvegardé au chargement de la page  
+// Appliquer l'état sauvegardé au chargement de la page
 window.addEventListener("DOMContentLoaded", () => {
         const menuState = localStorage.getItem("menuState");
         if (menuState === "open") {

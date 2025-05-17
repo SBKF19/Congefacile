@@ -2,7 +2,23 @@
 include "header.php";
 include 'includes/database.php';
 ?>
-<div class="cont2">
+<!--Burger menu -->
+<ul class="menu">
+    <li><a class="menuItem" href="accueil.php">Accueil</a></li>
+    <li><a class="menuItem" href="nouvelle_demande.php">Nouvelle demande</a></li>
+    <li><a class="menuItem" href="historique_des_demandes.php">Historique des demandes</a></li>
+    <div class="menu-lign"></div>
+    <li><a class="menuItem" href="mes_informations.php">Mes informations</a></li>
+    <li><a class="menuItem">Mes préférences</a></li>
+    <li><a class="menuItem" href="includes/deco.php">Déconnexion</a></li>
+  </ul>
+  <button class="hamburger">
+    <!-- material icons https://material.io/resources/icons/ -->
+    <i class="menuIcon material-icons">menu</i>
+<!--    <i class="closeIcon material-icons">close</i> -->
+  </button>
+<!--Menu latéral -->
+<div class="cont2"><!--Début du container-->
         <div class="side-menu">
                 <div class="side-menu-pages">
                         <div class="onglet">
@@ -37,3 +53,4 @@ include 'includes/database.php';
                         </div>
                 </div>
         </div>
+        <script src="includes/burger_menu.js"></script>

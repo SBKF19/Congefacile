@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="History">
     <h1>CongéFacile</h1>
     <p>CongéFacile est votre nouvel outil dédié à la gestion des congés au sein de l'entreprise. <br>
-        Plus besoin d'échanges interminables ou de formulaires papier : en quelques clics, vous pouvez gérer <br>
+        Plus besoin d'échanges interminables ou de formulaires papier : en quelques clics, vous pouvez gérer <br class="br-hidden">
         vos abscences en toute transparence et simplicité. Connectez-vous ci-dessous pour accéder à votre espace.</p>
     <h2>Connectez-vous</h2>
     <form action="" method="POST">

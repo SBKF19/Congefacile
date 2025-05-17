@@ -72,15 +72,16 @@ $dates = $query->fetch(\PDO::FETCH_ASSOC);
     ?>
 
     <div class="Request">
-        <h2>Demande de <?= $dates["first_name"] . " " . $dates["last_name"] ?></h2>
+        <h1>Demande de <?= $dates["first_name"] . " " . $dates["last_name"] ?></h1>
         <h3>Demande du <?= date("d/m/Y H:i:s", strtotime($dates["created_at"])) ?></h3>
-        <p>Période : <?= date("d/m/Y H:i:s", strtotime($dates["start_at"])) ?> au
+        <p class="text-no-margin">Période : <?= date("d/m/Y H:i:s", strtotime($dates["start_at"])) ?> au
             <?= date("d/m/Y H:i:s", strtotime($dates["end_at"])) ?></p>
-        <p>Type de demande : <?= $dates["name"] ?></p>
-        <p>Nombre de jours : <?= $dates["DateDiff"] ?> jours</p>
+        <p class="text-low-margin">Type de demande : <?= $dates["name"] ?></p>
+        <p class="text-no-margin">Nombre de jours : <?= $dates["DateDiff"] ?> jours</p>
+        <br>
         <form method="POST" style="Margin-Bottom: 5%">
             <div>
-                <label class="titreCommentaire" for="commentaire">Commentaire Supplémentaire</label>
+                <label class="label-input" for="commentaire">Commentaire Supplémentaire</label>
                 <textarea readonly="readonly" rows="3"><?= $dates["comment"] ?></textarea>
             </div>
         </form>
@@ -94,12 +95,12 @@ $dates = $query->fetch(\PDO::FETCH_ASSOC);
         <?php if (!isset($idpage["answer"])) { ?>
             <form method="POST">
                 <div>
-                    <label class="titreCommentaire" for="commentaire">Saisir un commentaire</label>
+                    <label class="label-input" for="commentaire">Saisir un commentaire</label>
                     <textarea rows="3" name="commentaire" id="commentaire"></textarea>
                 </div>
 
-                <div class="side-menu-profile">
-                    <div style="margin-right: 3%;">
+                <div class="date">
+                    <div>
                         <input type="submit" id="refuser" class="deny" name="refuser" value="Refuser la demande">
                     </div>
                     <div>
@@ -108,7 +109,7 @@ $dates = $query->fetch(\PDO::FETCH_ASSOC);
                 </div>
             <?php } else { ?>
                 <div>
-                    <label class="titreCommentaire" for="commentaire">Saisir un commentaire</label>
+                    <label class="label-input" for="commentaire">Saisir un commentaire</label>
                     <textarea rows="3" name="commentaire" readonly
                         id="commentaire"><?php echo $dates["answer_comment"] ?></textarea>
                 </div>

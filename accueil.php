@@ -5,7 +5,7 @@ include 'includes/verify-connect.php';
 <div class="History">
     <h1>CongéFacile</h1>
     <p>CongéFacile est votre nouvel outil dédié à la gestion des congés au sein de l’entreprise. <br> Plus besoin
-        d’échanges interminables ou de formulaires papier : en quelques clics, vous pouvez gérer <br> vos absences en
+        d’échanges interminables ou de formulaires papier : en quelques clics, vous pouvez gérer <br class="br-hidden"> vos absences en
         toute
         transparence et simplicité.</p>
     <div class="steps-container">
@@ -18,6 +18,11 @@ include 'includes/verify-connect.php';
                 <div class="line"></div>
                 <span class="number" id="etape3">3</span>
             </div>
+            <div class="etape-noms">
+                        <p>Etape 1</p>
+                        <p>Etape 2</p>
+                        <p>Etape 3</p>
+                </div>
             <div class="descriptions">
                 <div class="stepbox">
                     <p>j’effectue ma demande de congés</p>
