@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 10 mai 2025 à 23:15
+-- Généré le : sam. 17 mai 2025 à 19:13
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -58,14 +58,14 @@ CREATE TABLE `person` (
   `position_id` int(8) NOT NULL,
   `alert_new_request` tinyint(1) NOT NULL,
   `alert_on_answer` tinyint(1) NOT NULL,
-  `alert_before vacation` tinyint(1) NOT NULL
+  `alert_before_vacation` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `person`
 --
 
-INSERT INTO `person` (`id`, `last_name`, `first_name`, `manager_id`, `department_id`, `position_id`, `alert_new_request`, `alert_on_answer`, `alert_before vacation`) VALUES
+INSERT INTO `person` (`id`, `last_name`, `first_name`, `manager_id`, `department_id`, `position_id`, `alert_new_request`, `alert_on_answer`, `alert_before_vacation`) VALUES
 (1, 'Salesse', 'Frederic', NULL, 1, 6, 1, 0, 0),
 (2, 'Dunwoody', 'Benson', NULL, 5, 1, 0, 0, 0),
 (3, 'Mikaël', 'Idasiak', NULL, 3, 4, 0, 0, 0),
@@ -146,6 +146,36 @@ CREATE TABLE `request` (
   `answer_at` datetime(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `request`
+--
+
+INSERT INTO `request` (`id`, `request_type_id`, `collaborator_id`, `department_id`, `created_at`, `start_at`, `end_at`, `receipt_file`, `comment`, `answer_comment`, `answer`, `answer_at`) VALUES
+(1, 1, 6, NULL, '2025-05-11 19:44:31.000000', '2025-05-12 00:00:00.000000', '2025-05-19 00:00:00.000000', NULL, '', '', 1, '2025-05-11 20:02:48.000000'),
+(2, 1, 6, NULL, '2025-05-11 19:59:47.000000', '2025-05-12 00:00:00.000000', '2025-05-19 00:00:00.000000', NULL, '', NULL, NULL, NULL),
+(3, 2, 12, NULL, '2016-06-14 16:22:22.000000', '2016-06-14 06:00:00.000000', '2016-06-15 06:00:00.000000', NULL, 'Salut Benson je suis malade je pourrais pas venir aujourd\'hui', NULL, NULL, NULL),
+(4, 3, 7, NULL, '2025-05-17 17:01:08.000000', '2025-05-19 00:00:00.000000', '2025-05-26 00:00:00.000000', NULL, 'Je suis malade, je ne pourrais pas venir', NULL, NULL, NULL),
+(5, 5, 7, NULL, '2025-05-17 17:01:37.000000', '2025-05-23 00:00:00.000000', '2025-05-23 00:00:00.000000', NULL, 'J\'ai bowling avec les copains', NULL, NULL, NULL),
+(6, 2, 8, NULL, '2025-05-17 17:09:51.000000', '2025-05-12 00:00:00.000000', '2025-05-15 00:00:00.000000', NULL, 'j\'ai besoin d\'une pause', NULL, NULL, NULL),
+(7, 2, 9, NULL, '2025-05-17 17:10:37.000000', '2025-05-26 00:00:00.000000', '2025-05-27 00:00:00.000000', NULL, 'j\'ai fini les features j\'ai besoin de prendre du temps pour moi même', NULL, NULL, NULL),
+(8, 3, 9, NULL, '2025-05-17 17:11:19.000000', '2025-05-30 00:00:00.000000', '2025-06-03 00:00:00.000000', NULL, 'J\'ai besoin de repos, car je suis malade', NULL, NULL, NULL),
+(9, 5, 10, NULL, '2025-05-17 17:12:27.000000', '2025-05-26 00:00:00.000000', '2025-05-30 00:00:00.000000', NULL, 'Je suis en vacances, mon avion aura du retard', NULL, NULL, NULL),
+(10, 2, 10, NULL, '2025-05-17 17:12:58.000000', '2025-06-09 00:00:00.000000', '2025-06-11 00:00:00.000000', NULL, 'Bonjour, je souhaite prendre mes congés payés', NULL, NULL, NULL),
+(11, 5, 14, NULL, '2025-05-17 17:15:51.000000', '2025-06-11 00:00:00.000000', '2025-06-12 00:00:00.000000', NULL, 'J\'ai un truc à régler', NULL, NULL, NULL),
+(12, 3, 15, NULL, '2025-05-17 17:16:29.000000', '2025-07-14 00:00:00.000000', '2025-07-15 00:00:00.000000', NULL, 'Je suis à l\'hopital', NULL, NULL, NULL),
+(13, 2, 16, NULL, '2025-05-17 17:20:38.000000', '2025-06-16 00:00:00.000000', '2025-06-22 00:00:00.000000', NULL, 'Je serais en plein déménagement', NULL, NULL, NULL),
+(14, 3, 18, NULL, '2025-05-17 17:21:24.000000', '2025-05-21 00:00:00.000000', '2025-05-22 00:00:00.000000', NULL, 'RDV médical', NULL, NULL, NULL),
+(15, 5, 29, NULL, '2025-05-17 17:33:12.000000', '2025-05-19 00:00:00.000000', '2025-05-20 00:00:00.000000', NULL, 'J\'ai tournoi de foot', NULL, NULL, NULL),
+(16, 3, 29, NULL, '2025-05-17 17:33:42.000000', '2025-05-14 00:00:00.000000', '2025-05-14 00:00:00.000000', NULL, 'Je ne me sens pas bien', NULL, NULL, NULL),
+(17, 3, 28, NULL, '2025-05-17 17:34:42.000000', '2025-05-14 00:00:00.000000', '2025-05-14 00:00:00.000000', NULL, 'je ne me sens pas bien', NULL, NULL, NULL),
+(18, 3, 26, NULL, '2025-05-17 17:37:48.000000', '2025-05-20 00:00:00.000000', '2025-05-21 00:00:00.000000', NULL, 'J\'ai besoin d\'une pause pour recharger mes batteries', NULL, NULL, NULL),
+(19, 2, 30, NULL, '2025-05-17 17:38:33.000000', '2025-05-19 00:00:00.000000', '2025-05-20 00:00:00.000000', NULL, 'Cecil, j\'ai besoin de congés Cecil !!', 'garde la pêche', 0, '2025-05-17 18:03:48.000000'),
+(20, 3, 31, NULL, '2025-05-17 17:39:30.000000', '2025-05-21 00:00:00.000000', '2025-05-23 00:00:00.000000', NULL, 'J\'ai besoin de me changer les idées. Je serais de retour différent, mais plus performant', NULL, NULL, NULL),
+(21, 3, 19, NULL, '2025-05-17 18:02:19.000000', '2025-05-19 00:00:00.000000', '2025-05-21 00:00:00.000000', NULL, '', NULL, NULL, NULL),
+(22, 4, 20, NULL, '2025-05-17 18:02:49.000000', '2025-05-12 00:00:00.000000', '2025-05-26 00:00:00.000000', NULL, '', NULL, NULL, NULL),
+(23, 4, 35, NULL, '2025-05-17 18:04:53.000000', '2025-07-21 00:00:00.000000', '2025-08-04 00:00:00.000000', NULL, 'C\'est une fille', NULL, NULL, NULL),
+(24, 2, 6, NULL, '2025-05-17 18:26:29.000000', '2025-05-19 00:00:00.000000', '2025-05-30 00:00:00.000000', NULL, '', NULL, NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -190,40 +220,40 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `password`, `enabled`, `created_at`, `role`, `person_id`) VALUES
 (1, 'f.salesse@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2020-01-01 00:00:00.000000', 'Manager', 1),
-(2, 'b.dunwoody@thepark.com', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2010-09-06 00:00:00.000000', 'Manager', 2),
-(3, 'i.mikaël@stvincent.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2023-09-01 00:00:00.000000', 'Manager', 3),
-(4, 'w.garmadon@ninja.go', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Manager', 4),
-(5, 'c.stedman@invincib.le', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2021-03-26 00:00:00.000000', 'Manager', 5),
-(6, 'j.martins@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2020-01-02 00:00:00.000000', 'Collaborateur', 6),
+(2, 'b.dunwoody@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2010-09-06 00:00:00.000000', 'Manager', 2),
+(3, 'i.mikaël@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2023-09-01 00:00:00.000000', 'Manager', 3),
+(4, 'w.garmadon@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Manager', 4),
+(5, 'c.stedman@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2021-03-26 00:00:00.000000', 'Manager', 5),
+(6, 'j.martins@mentalworks.fr', '$2y$10$6L12iZBgXs2tgYYI7ueqlOu7CgUHx7oJfw9OQTxpz.4CUWVByXWAS', 1, '2020-01-02 00:00:00.000000', 'Collaborateur', 6),
 (7, 'o.salesse@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2020-01-03 00:00:00.000000', 'Collaborateur', 7),
 (8, 'j.martin@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2020-01-04 00:00:00.000000', 'Collaborateur', 8),
 (9, 'a.turcey@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2020-01-05 00:00:00.000000', 'Collaborateur', 9),
 (10, 'n.valenti@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2020-01-06 00:00:00.000000', 'Collaborateur', 10),
 (11, 'l.dupas@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2020-01-07 00:00:00.000000', 'Collaborateur', 11),
-(12, 'm.mordi@thepark.com', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2010-09-06 00:00:00.000000', 'Collaborateur', 12),
-(13, 'r.trashboat@thepark.com', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2010-09-06 00:00:00.000000', 'Collaborateur', 13),
-(14, 's.quippenger@thepark.com', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2010-09-06 00:00:00.000000', 'Collaborateur', 14),
-(15, 'p.maellard@thepark.com', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2010-09-06 00:00:00.000000', 'Collaborateur', 15),
-(16, 'm.sorrenstein@thepark.com', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2010-09-06 00:00:00.000000', 'Collaborateur', 16),
-(17, 'f.ghost@thepark.com', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2010-09-06 00:00:00.000000', 'Collaborateur', 17),
-(18, 's.benkherouf@stvincent.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2024-01-01 00:00:00.000000', 'Collaborateur', 18),
-(19, 'n.le goffic@stvincent.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2024-01-02 00:00:00.000000', 'Collaborateur', 19),
-(20, 'e.valenti@stvincent.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2024-01-03 00:00:00.000000', 'Collaborateur', 20),
-(21, 'k.platel@stvincent.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2024-01-04 00:00:00.000000', 'Collaborateur', 21),
-(22, 'a.bibi@stvincent.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2024-01-05 00:00:00.000000', 'Collaborateur', 22),
-(23, 'e.leclerc@stvincent.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2024-01-06 00:00:00.000000', 'Collaborateur', 23),
-(24, 'k.smith@ninja.go', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Collaborateur', 24),
-(25, 'j.walker@ninja.go', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2011-01-14 00:00:00.000000', 'Collaborateur', 25),
-(26, 'z.julien@ninja.go', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Collaborateur', 26),
-(27, 'c.bucket@ninja.go', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Collaborateur', 27),
-(28, 'n.smith@ninja.go', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Collaborateur', 28),
-(29, 'l.garmadon@ninja.go', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Collaborateur', 29),
-(30, 'm.grayson@invincib.le', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2021-03-26 00:00:00.000000', 'Collaborateur', 30),
-(31, 'r.connors@invincib.le', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2021-03-26 00:00:00.000000', 'Collaborateur', 31),
-(32, 'r.sloan@invincib.le', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2021-03-26 00:00:00.000000', 'Collaborateur', 32),
-(33, 'k.cha@invincib.le', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2021-03-26 00:00:00.000000', 'Collaborateur', 33),
-(34, 's.rae@invincib.le', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2021-03-26 00:00:00.000000', 'Collaborateur', 34),
-(35, 's.wilkins@invincib.le', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2021-03-26 00:00:00.000000', 'Collaborateur', 35);
+(12, 'm.mordi@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2010-09-06 00:00:00.000000', 'Collaborateur', 12),
+(13, 'r.trashboat@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2010-09-06 00:00:00.000000', 'Collaborateur', 13),
+(14, 's.quippenger@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2010-09-06 00:00:00.000000', 'Collaborateur', 14),
+(15, 'p.maellard@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2010-09-06 00:00:00.000000', 'Collaborateur', 15),
+(16, 'm.sorrenstein@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2010-09-06 00:00:00.000000', 'Collaborateur', 16),
+(17, 'f.ghost@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2010-09-06 00:00:00.000000', 'Collaborateur', 17),
+(18, 's.benkherouf@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2024-01-01 00:00:00.000000', 'Collaborateur', 18),
+(19, 'n.legoffic@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2024-01-02 00:00:00.000000', 'Collaborateur', 19),
+(20, 'e.valenti@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2024-01-03 00:00:00.000000', 'Collaborateur', 20),
+(21, 'k.platel@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2024-01-04 00:00:00.000000', 'Collaborateur', 21),
+(22, 'a.bibi@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2024-01-05 00:00:00.000000', 'Collaborateur', 22),
+(23, 'e.leclerc@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2024-01-06 00:00:00.000000', 'Collaborateur', 23),
+(24, 'k.smith@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Collaborateur', 24),
+(25, 'j.walker@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2011-01-14 00:00:00.000000', 'Collaborateur', 25),
+(26, 'z.julien@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Collaborateur', 26),
+(27, 'c.bucket@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Collaborateur', 27),
+(28, 'n.smith@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Collaborateur', 28),
+(29, 'l.garmadon@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2011-01-14 00:00:00.000000', 'Collaborateur', 29),
+(30, 'm.grayson@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2021-03-26 00:00:00.000000', 'Collaborateur', 30),
+(31, 'r.connors@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2021-03-26 00:00:00.000000', 'Collaborateur', 31),
+(32, 'r.sloan@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2021-03-26 00:00:00.000000', 'Collaborateur', 32),
+(33, 'k.cha@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 0, '2021-03-26 00:00:00.000000', 'Collaborateur', 33),
+(34, 's.rae@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2021-03-26 00:00:00.000000', 'Collaborateur', 34),
+(35, 's.wilkins@mentalworks.fr', '$2y$10$/01Z30mkd3ZkTil3pBOkUenRXA8HJhk..yH96XDU8YNL/4VN8lLqK', 1, '2021-03-26 00:00:00.000000', 'Collaborateur', 35);
 
 --
 -- Index pour les tables déchargées
@@ -297,13 +327,13 @@ ALTER TABLE `position`
 -- AUTO_INCREMENT pour la table `request`
 --
 ALTER TABLE `request`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `request_type`
 --
 ALTER TABLE `request_type`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `user`
