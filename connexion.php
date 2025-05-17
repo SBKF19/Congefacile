@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include 'includes/database.php';
 include 'includes/login-menu.php';
 
@@ -62,13 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     'department' => $utilisateur['department_id'],
                     'manager_id' => $utilisateur['manager_id']
                 ];
-
-                // On créé un message de succès de connexion.
-                $_SESSION['message'] = [
-                    'type' => 'success',
-                    'message' => 'Vous êtes maintenant connecté.',
-                ];
-
                 // On redirige l'utilisateur sur la page d'accueil.
                 header('Location: accueil.php');
             } else {

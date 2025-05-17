@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include 'includes/verify-connect.php';
 include 'includes/database.php';
 
@@ -87,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 'message' => 'Votre demande à bien été envoyée.',
             ];
             header('Location: historique_des_demandes.php');
+            ob_end_flush();
         }
     }
 }
