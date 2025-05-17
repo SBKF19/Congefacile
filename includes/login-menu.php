@@ -1,18 +1,17 @@
 <?php
         include "header.php";
 ?>
+<!--Burger menu -->
 <ul class="menu">
-    <li><a class="menuItem" href="#">Home</a></li>
-    <li><a class="menuItem" href="#">Profile</a></li>
-    <li><a class="menuItem" href="#">About</a></li>
-    <li><a class="menuItem" href="#">Contacts</a></li>
+    <li><a class="menuItem" href="connexion.php">Connexion</a></li>
   </ul>
   <button class="hamburger">
     <!-- material icons https://material.io/resources/icons/ -->
     <i class="menuIcon material-icons">menu</i>
-    <i class="closeIcon material-icons">close</i>
+<!--    <i class="closeIcon material-icons">close</i> -->
   </button>
-<div class="cont2">
+<!--Menu latéral -->
+<div class="cont2"><!--Début du container-->
 <div class="side-menu">
         <div class="side-menu-pages">
                 <div class="onglet">

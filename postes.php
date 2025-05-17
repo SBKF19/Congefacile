@@ -44,7 +44,7 @@ for ($i = 0; $i < Count($postes1); $i++){
                                 <label class="label-select">Nom du poste</label>
                                 <input class="large-filter filter" type="text" id="nomPoste">
                         </div>
-                        <div class="filterMargin">
+                        <div class="filterMargin hide0">
                                 <label class="label-select">Nb personnes liées</label>
                                 <input class="medium-filter filter" type="text" id="nbPersLiees">
                         </div>
@@ -66,7 +66,7 @@ for ($i = 0; $i < Count($postes1); $i++){
                             <?php }
                         ?>
                         </div>
-                        <div class="Type2">
+                        <div class="Type2 hide0">
                             <?php
                             if( $i === Count($tab)-1){ ?>
                             <div class="filter-info-medium">

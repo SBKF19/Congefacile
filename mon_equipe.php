@@ -43,20 +43,20 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
 
                 <input class="filter medium-filter" type="text" name="nomEquipe" id="nomEquipe">
             </div>
-            <div class="filterMargin">
+            <div class="filterMargin hide3">
                 <label class="label-select" for="commentaire">Prénom</label>
                 <input class="filter medium-filter" type="text" name="prenomEquipe" id="prenomEquipe">
             </div>
-            <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Adresse mail</label>
+            <div class="filterMargin hide1">
+                <label class="label-select" for="commentaire">Adresse mail</label>
                 <input class="filter type-filter" type="text" name="mailEquipe" id="mailEquipe">
             </div>
-            <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Poste</label>
+            <div class="filterMargin hide2">
+                <label class="label-select" for="commentaire">Poste</label>
                 <input class="filter  type-filter" type="text" name="posteEquipe" id="posteEquipe">
             </div>
-            <div class="filterMargin">
-                <label class="titreCommentaire" for="commentaire">Nb congés posés sur l'année</label>
+            <div class="filterMargin hide4">
+                <label class="label-select" for="commentaire">Nb congés posés sur l'année</label>
                 <input class="filter type-filter" type="text" name="nbConges" id="nbConges">
             </div>
         </div>
@@ -77,7 +77,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                         <?php }
                         ?>
                     </div>
-                    <div class="Type2">
+                    <div class="Type2 hide3">
                         <?php
                         if ($i === Count($dates) - 1) { ?>
                             <div class="filter-info-medium margin-team">
@@ -90,7 +90,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                         <?php }
                         ?>
                     </div>
-                    <div class="Type3">
+                    <div class="Type3 hide1">
                         <?php
                         if ($i === Count($dates) - 1) { ?>
                             <div class="filter-info-type">
@@ -103,7 +103,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                         <?php }
                         ?>
                     </div>
-                    <div class="Type4">
+                    <div class="Type4 hide2">
                         <?php
                         if ($i === Count($dates) - 1) { ?>
                             <div class="filter-info-medium">
@@ -116,7 +116,7 @@ $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
                         <?php }
                         ?>
                     </div>
-                    <div class="Type5">
+                    <div class="Type5 hide4">
                         <?php
                         if ($i === Count($dates) - 1) { ?>
                             <div class="filter-info-small margin-team">

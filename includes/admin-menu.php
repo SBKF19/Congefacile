@@ -17,8 +17,30 @@ $requete->execute();
 $demande_en_attente = $requete->fetch(PDO::FETCH_ASSOC);
 
 ?>
-
-<div class="cont2">
+<!--Burger menu -->
+<ul class="menu">
+    <li><a class="menuItem" href="accueil.php">Accueil</a></li>
+    <li><a class="menuItem counter-row" href="demandes_en_attente.php">Demandes en attente <div class="side-menu-counter">
+                                        <p><?php echo $demande_en_attente['demande_en_attente'] ?></p>
+                                </div></a></li>
+    <li><a class="menuItem" href="historique_des_demandes.php">Historique des demandes</a></li>
+    <li><a class="menuItem" href="mon_equipe.php">Mon équipe</a></li>
+    <div class="menu-lign"></div>
+    <li><a class="menuItem" href="mes_informations.php">Mes informations</a></li>
+    <li><a class="menuItem">Mes préférences</a></li>
+                                        <li><a href="types_de_demandes.php">Types de demandes</a></li>
+                                        <li><a href="directions_services.php">Directions/Services</a></li>
+                                        <li><a>Managers</a></li>
+                                        <li><a href="postes.php">Postes</a></li>
+    <li><a class="menuItem" href="includes/deco.php">Déconnexion</a></li>
+  </ul>
+  <button class="hamburger">
+    <!-- material icons https://material.io/resources/icons/ -->
+    <i class="menuIcon material-icons">menu</i>
+<!--    <i class="closeIcon material-icons">close</i> -->
+  </button>
+<!--Menu latéral -->
+<div class="cont2"> <!--Début du container-->
         <div class="side-menu">
                 <div class="side-menu-pages">
                         <div class="onglet">
@@ -79,3 +101,4 @@ $demande_en_attente = $requete->fetch(PDO::FETCH_ASSOC);
                 </div>
         </div>
         <script src="includes/menu-lateral.js"></script>
+        <script src="includes/burger_menu.js"></script>
