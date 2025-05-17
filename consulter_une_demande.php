@@ -61,8 +61,8 @@ $dates = $query->fetch(\PDO::FETCH_ASSOC);
         $query->execute();
         $demande = $query->fetch(\PDO::FETCH_ASSOC);
         if ($demande === false) {
-            echo '<h1>La demande à bien été répondue.</h1>';
-            echo '<a class="dark-button" href="accueil.php">Retour à la liste</a>';
+            echo '<h1>Vous avez bien répondu à la demande.</h1>';
+            echo '<a class="dark-button" href="demandes_en_attente.php">Retour à la liste</a>';
             exit;
         }
 

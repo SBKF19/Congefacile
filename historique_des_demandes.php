@@ -2,6 +2,7 @@
 include 'includes/verify-connect.php';
 include 'includes/database.php';
 
+
 if ($_SESSION['utilisateur']['role'] == "Manager") {
     $query = $connexion->prepare('
         SELECT request.id as id, answer, start_at, end_at, DATEDIFF( end_at, start_at) as DateDiff, name , last_name, first_name
@@ -43,6 +44,18 @@ $query->execute();
 $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
 ?>
 <div class="History">
+    <?php
+    if (isset($_SESSION['message'])) {
+        $alerte = $_SESSION['message'];
+        unset($_SESSION['message']);
+    ?>
+    <div class = "background_new_request_message">
+        <span class = "new_request_message"><?= $alerte['message'] ?></span>
+    </div>
+
+    <?php
+        } // Fin du if ?>
+
     <?php
     if ($_SESSION['utilisateur']['role'] == "Manager") { ?>
         <h1>Historique des demandes</h1>

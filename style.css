@@ -1177,3 +1177,12 @@ input {
 .details-padding {
     padding-left: 69px;
 }
+.background_new_request_message{
+    background-color: green;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 16px;
+}
+.new_request_message{
+    color: white;
+}

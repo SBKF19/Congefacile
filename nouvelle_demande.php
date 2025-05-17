@@ -83,6 +83,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $aller = '';
             $erreurs['empty'] = '';
             $requeteInsertion->execute();
+            $_SESSION['message'] = [
+                'message' => 'Votre demande à bien été envoyée.',
+            ];
             header('Location: historique_des_demandes.php');
         }
     }
