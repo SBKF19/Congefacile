@@ -10,7 +10,7 @@ $id_collabo = $_SESSION['utilisateur']['person_id'];
 if ($_SESSION['utilisateur']['role'] == "Manager") {
         $snake = "none";
 } elseif ($_SESSION['utilisateur']['role'] == "Collaborateur") {
-        $snake = "inherit";
+        $snake = "";
 }
 
 if ($_SESSION['utilisateur']['role'] == "Collaborateur") {
