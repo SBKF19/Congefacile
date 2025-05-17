@@ -9,7 +9,7 @@ include 'includes/database.php';
 $id_collabo = $_SESSION['utilisateur']['person_id'];
 if ($_SESSION['utilisateur']['role'] == "Manager") {
         $snake = "none";
-} elseif ($_SESSION['utilisateur']['role'] == "Collaborateur" ) {
+} elseif ($_SESSION['utilisateur']['role'] == "Collaborateur") {
         $snake = "inherit";
 }
 
@@ -93,6 +93,12 @@ $prenom_manager = $informations2["first_name"];
 <div class="demande">
         <h1>Mes informations</h1>
         <form action="" method="post">
+                <div>
+                        <label for="mail" class="label-input">Adresse email</label>
+                        <input type="text" id="email" name="email" class=" defaultbox-input defaultbox"
+                                value="<?php echo $email; ?>" readonly>
+                </div>
+                <br>
                 <div class="date">
                         <div>
                                 <label for="nom" class="label-input">Nom de famille</label>
@@ -107,12 +113,6 @@ $prenom_manager = $informations2["first_name"];
                         </div>
                 </div>
                 <br>
-                <div>
-                        <label for="mail" class="label-input">Adresse email</label>
-                        <input type="text" id="email" name="email" class=" defaultbox-input defaultbox"
-                                value="<?php echo $email; ?>" readonly>
-                </div>
-                <br>
                 <div class="date">
                         <div>
                                 <label for="direction" class="label-input">Direction/Service</label>
@@ -122,7 +122,7 @@ $prenom_manager = $informations2["first_name"];
                         </div>
                         <br>
 
-                        <div>
+                        <div style="display: <?php echo $snake ?>;">
                                 <label for="poste" class="label-input">Poste</label>
                                 <input type="text" id="poste" name="poste" class="defaultbox-input defaultbox"
                                         value="<?php echo $poste; ?>" readonly>
@@ -130,7 +130,7 @@ $prenom_manager = $informations2["first_name"];
                         </div>
                 </div>
                 <br>
-                <div style="display: <?php echo $snake  ?>;">
+                <div style="display: <?php echo $snake ?>;">
                         <label for="Manager" class="label-input">Manager</label>
                         <input type="text" id="nom_manager" name="nom_manager" class="defaultbox-input defaultbox"
                                 value="<?php echo $prenom_manager . " " . $nom_manager; ?>" readonly>
@@ -138,7 +138,7 @@ $prenom_manager = $informations2["first_name"];
                 </div>
         </form>
         <br>
-        <?php include('mdp_oublie_colla.php')?>
+        <?php include('mdp_oublie_colla.php') ?>
 </div>
 
 
