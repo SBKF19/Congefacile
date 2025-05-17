@@ -58,16 +58,16 @@ include 'includes/database.php';
 
     <form>
         <label for="password" class="label-input">Mot de passe actuel</label>
-        <input type="password" id="password" name="password" class="defaultbox-input"><br>
+        <input type="password" id="password" name="password" class="password-input"><br>
         <div class="date">
 
             <div>
                 <label for="newpass" class="label-input">Nouveau mot de passe</label>
-                <input type="password" id="newpass" name="newpass" class="defaultbox-input">
+                <input type="password" id="newpass" name="newpass" class="password-input">
             </div>
             <div>
                 <label for="confirmpass" class="label-input">Confirmation du mot de passe</label>
-                <input type="password" id="confirmpass" name="confirmpass" class="defaultbox-input">
+                <input type="password" id="confirmpass" name="confirmpass" class="password-input">
             </div>
         </div>
         <br>
