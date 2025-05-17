@@ -29,8 +29,6 @@ $query->execute();
 
 $dates = $query->fetchAll(\PDO::FETCH_ASSOC);
 
-var_dump($dates);
-
 ?>
 
 <div class="History">
@@ -134,15 +132,11 @@ var_dump($dates);
                         <?php
                         if ($i === Count($dates) - 1) { ?>
                             <div class="filter-info-details details-padding">
-                                <button class="details-button">
-                                    <a href="modifier_un_collaborateur.php?id=<?php echo $dates[$i]["id"]; ?>">Détails</a>
-                                </button>
+                                    <a class="details-button" href="modifier_un_collaborateur.php?id=<?php echo $dates[$i]["id"]; ?>">Détails</a>
                             </div>
                         <?php } else { ?>
                             <div class="filter-info-details filterBorderBottom details-padding">
-                                <button class="details-button">
-                                    <a href="modifier_un_collaborateur.php?id=<?php echo $dates[$i]["id"]; ?>">Détails</a>
-                                </button>
+                                <a class="details-button" href="modifier_un_collaborateur.php?id=<?php echo $dates[$i]["id"]; ?>">Détails</a>
                             </div>
                         <?php } ?>
                     </div>
