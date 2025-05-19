@@ -1,5 +1,5 @@
 # Installation :
-### Version 8.2 de PHP, HTML 5, CSS, Javascript et MYSQL.
+### [Version 8.2 de PHP] [HTML 5, CSS, Javascript] [MYSQL]
 Il faut récuperer le fichier conge_facile.sql dans le dossier "includes" du projet et l'importer dans my sql dans une base de données nommée "conge_facile"
 
 
