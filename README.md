@@ -1,3 +1,8 @@
+# Installation :
+### Version 8.2 de PHP, HTML 5, CSS, Javascript et MYSQL.
+Il faut récuperer le fichier conge_facile.sql dans le dossier "includes" du projet et l'importer dans my sql dans une base de données nommée "conge_facile"
+
+
 # Congefacile
 Congefacile est un site qui permet de faciliter la gestion des congés au sein de l'entreprise.
 Il existe 3 parties : 
